@@ -47,7 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
 
                 <h1>Personal Info</h1>
-                <hr style="border:1px solid ">
                 <?= $form->field($model, 'name') ?>
 
                 <?= $form->field($model, 'bio')->textarea() ?>
