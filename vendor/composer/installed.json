@@ -821,58 +821,6 @@
         ]
     },
     {
-        "name": "dektrium/yii2-rbac",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/dektrium/yii2-rbac.git",
-            "reference": "c6d315a3c9652b3b1ced19fe105f65e6e09f375b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/c6d315a3c9652b3b1ced19fe105f65e6e09f375b",
-            "reference": "c6d315a3c9652b3b1ced19fe105f65e6e09f375b",
-            "shasum": ""
-        },
-        "require": {
-            "kartik-v/yii2-widget-select2": "*",
-            "yiisoft/yii2": "2.0.*"
-        },
-        "time": "2015-12-04 21:55:40",
-        "type": "yii2-extension",
-        "extra": {
-            "bootstrap": "dektrium\\rbac\\Bootstrap"
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "dektrium\\rbac\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Dmitry Erofeev",
-                "email": "dmeroff@gmail.com",
-                "homepage": "http://dmeroff.ru"
-            }
-        ],
-        "description": "RBAC management module for Yii2",
-        "keywords": [
-            "dektrium",
-            "rbac gui",
-            "rbac management",
-            "rbac module",
-            "yii rbac",
-            "yii2",
-            "yii2-rbac"
-        ]
-    },
-    {
         "name": "bower-asset/jquery",
         "version": "2.2.2",
         "version_normalized": "2.2.2.0",
@@ -1362,6 +1310,58 @@
         "keywords": [
             "tinymce",
             "yii2"
+        ]
+    },
+    {
+        "name": "dektrium/yii2-rbac",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dektrium/yii2-rbac.git",
+            "reference": "a0b237b81e06b802a031a85c767b7e949b30e327"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/a0b237b81e06b802a031a85c767b7e949b30e327",
+            "reference": "a0b237b81e06b802a031a85c767b7e949b30e327",
+            "shasum": ""
+        },
+        "require": {
+            "kartik-v/yii2-widget-select2": "*",
+            "yiisoft/yii2": "2.0.*"
+        },
+        "time": "2016-03-25 07:35:43",
+        "type": "yii2-extension",
+        "extra": {
+            "bootstrap": "dektrium\\rbac\\Bootstrap"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "dektrium\\rbac\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dmitry Erofeev",
+                "email": "dmeroff@gmail.com",
+                "homepage": "http://dmeroff.ru"
+            }
+        ],
+        "description": "RBAC management module for Yii2",
+        "keywords": [
+            "dektrium",
+            "rbac gui",
+            "rbac management",
+            "rbac module",
+            "yii rbac",
+            "yii2",
+            "yii2-rbac"
         ]
     }
 ]

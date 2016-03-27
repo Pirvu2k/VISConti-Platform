@@ -2,25 +2,21 @@
 
 namespace app\models;
 
-class User extends \dektrium\user\models\User
+use dektrium\user\models\User as BaseUser;
+
+class User extends BaseUser
 {
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-        // add field to scenarios
-        $scenarios['create'][]   = 'field';
-        $scenarios['update'][]   = 'field';
-        $scenarios['register'][] = 'field';
-        return $scenarios;
+    public function init() {
+        $this->on(self::BEFORE_REGISTER, function() {
+            $this->username = $this->email;
+        });
+
+        parent::init();
     }
 
-    public function rules()
-    {
+    public function rules() {
         $rules = parent::rules();
-        // add some rules
-        $rules['fieldRequired'] = ['field', 'required'];
-        $rules['fieldLength']   = ['field', 'string', 'max' => 10];
-
+        unset($rules['usernameRequired']);
         return $rules;
     }
 }

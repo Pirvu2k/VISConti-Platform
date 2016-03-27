@@ -25,6 +25,9 @@ use yii\db\ActiveRecord;
  * @property string  $location
  * @property string  $website
  * @property string  $bio
+ * @property string  $phone_number
+ * @property string  $fax_number
+ * @property string  $country 
  * @property User    $user
  *
  * @author Dmitry Erofeev <dmeroff@gmail.com
@@ -59,8 +62,15 @@ class Profile extends ActiveRecord
             'nameLength' => ['name', 'string', 'max' => 255],
             'publicEmailLength' => ['public_email', 'string', 'max' => 255],
             'gravatarEmailLength' => ['gravatar_email', 'string', 'max' => 255],
-            'locationLength' => ['location', 'string', 'max' => 255],
             'websiteLength' => ['website', 'string', 'max' => 255],
+            'phoneNumberValidator' =>['phone_number','integer','min'=>9999999999,'max'=>999999999999999,'tooSmall' => 'Please enter a valid phone number.','tooBig'=> 'Please enter a valid phone number.'],
+            'faxNumberValidator' =>['fax_number','integer','min'=>9999999999,'max'=>999999999999999,'tooSmall' => 'Please enter a valid fax number.','tooBig'=> 'Please enter a valid fax number.'],
+            'countryString' => ['country', 'string'],
+            'stateString' => ['state', 'string'],
+            'addressString' => ['address', 'string'],
+            'cityString' => ['city', 'string'],
+            'zipInt' => ['zip','string' , 'min'=> 3, 'max'=>16],
+            'byear' => ['byear', 'string'],
         ];
     }
 
@@ -69,11 +79,18 @@ class Profile extends ActiveRecord
     {
         return [
             'name'           => Yii::t('user', 'Name'),
-            'public_email'   => Yii::t('user', 'Email (public)'),
+            'public_email'   => Yii::t('user', 'Public E-mail'),
             'gravatar_email' => Yii::t('user', 'Gravatar email'),
-            'location'       => Yii::t('user', 'Location'),
             'website'        => Yii::t('user', 'Website'),
             'bio'            => Yii::t('user', 'Bio'),
+            'phone_number'   => Yii::t('user', 'Phone Number (International Format)'),
+            'fax_number'     => Yii::t('user', 'Fax Number (International Format)'),
+            'country'        => Yii::t('user', 'Country'),
+            'state'          => Yii::t('user', 'State'),
+            'address'        => Yii::t('user', 'Address'),
+            'city'           => Yii::t('user', 'City'),
+            'zip'            => Yii::t('user', 'Zip/Postal Code'),
+            'byear'          => Yii::t('user', 'Year of Birth'),
         ];
     }
 

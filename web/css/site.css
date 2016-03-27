@@ -10700,14 +10700,11 @@ form.navbar-form .tt-dropdown-menu {
     -webkit-animation: alertIn .4s ease-in-out forwards;
     animation: alertIn .4s ease-in-out forwards;
     border-radius: 3px;
-    font-size: 14px;
-    height: 26px;
-    line-height: 26px;
+    font-size: 19px;
+    line-height: 45px;
     opacity: 0;
     padding: 0 10px;
-    position: absolute;
-    top: 7px;
-    right: 7px;
+    position: static;
     -webkit-transform: scale3d(0.5, .5, 1);
     transform: scale3d(0.5, .5, 1)
 }

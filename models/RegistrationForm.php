@@ -1,21 +1,14 @@
-<?php 
+<?php
 
 namespace app\models;
 
-class RegistrationForm extends \dektrium\user\models\RegistrationForm
+use dektrium\user\models\RegistrationForm as BaseRegistrationForm;
+
+class RegistrationForm extends BaseRegistrationForm
 {
-    /**
-     * @var string
-     */
-    public $field;
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
+    public function rules() {
         $rules = parent::rules();
-        $rules['fieldRequired'] = ['field', 'required'];
-        $rules['fieldLength']   = ['field', 'string', 'max' => 10];
+        unset($rules['usernameRequired']);
         return $rules;
     }
 }

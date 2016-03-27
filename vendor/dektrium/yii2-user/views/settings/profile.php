@@ -10,7 +10,8 @@
  */
 
 use yii\helpers\Html;
-
+use yii\helpers\ArrayHelper;
+use app\models\Country;
 /*
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
@@ -45,17 +46,48 @@ $this->params['breadcrumbs'][] = $this->title;
                     'validateOnBlur'         => false,
                 ]); ?>
 
+                <h1>Personal Info</h1>
+                <hr style="border:1px solid ">
                 <?= $form->field($model, 'name') ?>
+
+                <?= $form->field($model, 'bio')->textarea() ?>
 
                 <?= $form->field($model, 'public_email') ?>
 
+                <?php 
+                    $items=[];
+                    for($i=1900;$i<=2016;$i++)
+                        array_push($items,$i);
+
+                    echo $form->field($model, 'byear')->dropDownList($items,['value'=> $model->byear ]);
+
+                ?>
+
                 <?= $form->field($model, 'website') ?>
 
-                <?= $form->field($model, 'location') ?>
+                <h1> Contact Info </h1>
 
-                <?= $form->field($model, 'gravatar_email')->hint(\yii\helpers\Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) ?>
+                
 
-                <?= $form->field($model, 'bio')->textarea() ?>
+                <?= $form->field($model, 'phone_number') ?>
+
+                <?= $form->field($model, 'fax_number') ?>
+
+                <?php 
+                    $items = ArrayHelper::map(Country::find()->all(), 'id', 'country_name');
+                    echo $form->field($model, 'country')->dropDownList($items,['value'=> $model->country ]);
+
+                ?>
+
+                <?= $form->field($model, 'state') ?>
+
+                <?= $form->field($model, 'city') ?>
+
+                <?= $form->field($model, 'address') ?>
+
+                <?= $form->field($model, 'zip') ?>
+
+                
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">

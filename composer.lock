@@ -286,12 +286,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dektrium/yii2-rbac.git",
-                "reference": "c6d315a3c9652b3b1ced19fe105f65e6e09f375b"
+                "reference": "a0b237b81e06b802a031a85c767b7e949b30e327"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/c6d315a3c9652b3b1ced19fe105f65e6e09f375b",
-                "reference": "c6d315a3c9652b3b1ced19fe105f65e6e09f375b",
+                "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/a0b237b81e06b802a031a85c767b7e949b30e327",
+                "reference": "a0b237b81e06b802a031a85c767b7e949b30e327",
                 "shasum": ""
             },
             "require": {
@@ -328,7 +328,7 @@
                 "yii2",
                 "yii2-rbac"
             ],
-            "time": "2015-12-04 21:55:40"
+            "time": "2016-03-25 07:35:43"
         },
         {
             "name": "dektrium/yii2-user",
