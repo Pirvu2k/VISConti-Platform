@@ -16,6 +16,8 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use app\models\Experience;
+use app\models\Education;
 
 /**
  * ProfileController shows users profiles.
@@ -62,6 +64,7 @@ class ProfileController extends Controller
      */
     public function actionIndex()
     {
+        
         return $this->redirect(['show', 'id' => Yii::$app->user->getId()]);
     }
 
@@ -76,13 +79,16 @@ class ProfileController extends Controller
     public function actionShow($id)
     {
         $profile = $this->finder->findProfileById($id);
-
+        $experience=Experience::find()->where(['user_id' => $id]) -> all();
+        $education=Education::find()->where(['user_id' => $id]) -> all();
         if ($profile === null) {
             throw new NotFoundHttpException();
         }
 
         return $this->render('show', [
             'profile' => $profile,
+            'experience' => $experience,
+            'education' => $education
         ]);
     }
 }

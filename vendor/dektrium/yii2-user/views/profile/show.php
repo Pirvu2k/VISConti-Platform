@@ -60,19 +60,34 @@ $this->params['breadcrumbs'][] = $this->title;
                         <li><i class="glyphicon glyphicon-home text-muted"></i> Zip/Postal Code : <?= Html::a(Html::encode($profile->zip)) ?></li>
                     <?php endif; ?>
                      <h5> <b>Education :</b> </h5>
-                     <?php if (!empty($profile->degree)): ?>
-                        <li><i class="glyphicon glyphicon-education text-muted"></i> Degree : <?= Html::a(Html::encode($profile->degree)) ?></li>
+                    
+                    <?php if (!empty($profile->ed_desc)): ?>
+                        <li><i class="glyphicon glyphicon-list-alt text-muted"></i> Education Details : <br> <?= Html::a(Html::encode($profile->ed_desc)) ?></li>
                     <?php endif; ?>
-                    <?php if (!empty($profile->degree_details)): ?>
-                        <li><i class="glyphicon glyphicon-unchecked text-muted"></i> Degree Details : <?= Html::a(Html::encode($profile->degree_details)) ?></li>
+
+                    <?php if (!empty($education)): ?>
+                        <li><i class="glyphicon glyphicon-education text-muted"></i> Education : 
+                                <ul style="margin-left:50px;">
+                                    <?php foreach($education as $item) : ?>
+                                        <li><i class="glyphicon glyphicon-check text-muted"></i> <?= $item->degree . " at " . $item->institution . " , from " . $item->from . " to " . $item->to ?>;</li>
+                                    <?php endforeach; ?>
+                                </ul>
+                        </li>
                     <?php endif; ?>
-                    <?php if (!empty($profile->institution_name)): ?>
-                        <li><i class="glyphicon glyphicon-unchecked text-muted"></i> Instutition : <?= Html::a(Html::encode($profile->institution_name)) ?></li>
-                    <?php endif; ?>
-                    <?php if (!empty($profile->start_year) && !empty($profile->end_year)): ?>
-                        <li><i class="glyphicon glyphicon-unchecked text-muted"></i> Period : <?= Html::a(Html::encode($profile->start_year)) ?> to <?php if($profile->end_year == "2016") echo "<a>Present</a>"; else echo Html::a(Html::encode($profile->end_year)); ?></li>
-                    <?php endif; ?>
+
                      <h5> <b>Experience :</b> </h5>
+                     <?php if (!empty($profile->exp_desc)): ?>
+                        <li><i class="glyphicon glyphicon-list-alt text-muted"></i> Experience Details : <br> <?= Html::a(Html::encode($profile->exp_desc)) ?></li>
+                     <?php endif; ?>
+                     <?php if (!empty($experience)): ?>
+                        <li><i class="glyphicon glyphicon-star text-muted"></i> Work Experience : 
+                                <ul style="margin-left:50px;">
+                                    <?php foreach($experience as $item) : ?>
+                                        <li><i class="glyphicon glyphicon-check text-muted"></i> <?= $item->job_title . " at " . $item->institution . " , from " . $item->from . " to " . $item->to ?>;</li>
+                                    <?php endforeach; ?>
+                                </ul>
+                        </li>
+                    <?php endif; ?>
                     <li><i class="glyphicon glyphicon-time text-muted"></i> <?= Yii::t('user', 'Joined on {0, date}', $profile->user->created_at) ?></li>
                 </ul>
                 

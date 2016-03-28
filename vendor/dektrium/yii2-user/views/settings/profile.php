@@ -11,7 +11,10 @@
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\grid\GridView;
 use app\models\Country;
+use app\models\Experience;
+use yii\web\UrlManager;
 /*
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
@@ -49,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h1>Personal Info</h1>
                 <?= $form->field($model, 'name') ?>
 
-                <?= $form->field($model, 'bio')->textarea() ?>
+                <?= $form->field($model, 'bio')->textarea(['rows'=>'4']) ?>
 
                 <?= $form->field($model, 'public_email') ?>
 
@@ -64,9 +67,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'website') ?>
 
-                <h1> Contact Info </h1>
+                <h1> Education </h1>
 
-                
+                <?php // $form->field($model, 'degree')->dropDownList(['Associate' => 'Associate', 'Bachelor' => 'Bachelor', 'Master'=>'Master', 'PhD'=>'PhD'], ['value'=>$model->country]) ?> 
+
+                <?= $form->field($model, 'ed_desc')->textarea(['rows'=>'4']) ?>
+
+                <iframe width="815" height="300" src="<?php echo Yii::$app->urlManager->createUrl('education/index');?>" frameBorder="0"></iframe>
+
+                <h1> Experience </h1>
+
+                <?= $form->field($model, 'exp_desc')->textarea(['rows'=>'4']) ?>
+
+                <iframe width="815" height="300" src="<?php echo Yii::$app->urlManager->createUrl('experience/index');?>" frameBorder="0"></iframe>
+
+
+                <h1> Contact Info </h1>
 
                 <?= $form->field($model, 'phone_number') ?>
 
@@ -86,33 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'zip') ?>
 
-                <h1> Education </h1>
-
-                <?= $form->field($model, 'degree')->dropDownList(['Associate' => 'Associate', 'Bachelor' => 'Bachelor', 'Master'=>'Master', 'PhD'=>'PhD'], ['value'=>$model->country]) ?>
-
-                <?= $form->field($model, 'degree_details') ?>
-
-                <?= $form->field($model, 'institution_name') ?>
-
-                <?php 
-                    $items=[];
-                    for($i=1960;$i<=2016;$i++)
-                        $items[$i]=$i;
-
-                    echo $form->field($model, 'start_year')->dropDownList($items,['value'=> $model->start_year ]);
-
-                ?>
-
-
-                <?php 
-                    $items=[];
-                    for($i=1960;$i<=2016;$i++)
-                        $items[$i]=$i;
-
-                    echo $form->field($model, 'end_year')->dropDownList($items,['value'=> $model->end_year ]);
-
-                ?>
-
+                
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
                         <?= \yii\helpers\Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?><br>

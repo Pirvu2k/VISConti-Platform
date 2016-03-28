@@ -71,11 +71,8 @@ class Profile extends ActiveRecord
             'cityString' => ['city', 'string'],
             'zipInt' => ['zip','string' , 'min'=> 3, 'max'=>16],
             'byear' => ['byear', 'string'],
-            'degreeString' => ['degree', 'string'],
-            'degreeDetailsString' => ['degree_details', 'string'],
-            'institutionString' => ['institution_name', 'string'],
-            'startyearString' => ['start_year', 'string'],
-            'endyearString' => ['end_year', 'string'],
+            'eddescString' => ['ed_desc', 'string'],
+            'expdescString' => ['exp_desc', 'string'],
         ];
     }
 
@@ -96,11 +93,8 @@ class Profile extends ActiveRecord
             'city'           => Yii::t('user', 'City'),
             'zip'            => Yii::t('user', 'Zip/Postal Code'),
             'byear'          => Yii::t('user', 'Year of Birth'),
-            'degree'         => Yii::t('user', 'Degree'),
-            'degree_details' => Yii::t('user', 'Degree Details'),
-            'institution_name' => Yii::t('user', 'Institution'),
-            'start_year'     =>Yii::t('user','Start Year'),
-            'end_year'     =>Yii::t('user','End Year'),
+            'ed_desc'        => Yii::t('user', 'Education Details'),
+            'exp_desc'       => Yii::t('user', 'Experience Details'),
         ];
     }
 
