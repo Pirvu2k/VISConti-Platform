@@ -482,6 +482,44 @@ CREATE TABLE IF NOT EXISTS `degrees` (
 /*!40000 ALTER TABLE `degrees` ENABLE KEYS */;
 
 
+-- Dumping structure for table yii2basic.education
+CREATE TABLE IF NOT EXISTS `education` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(50) NOT NULL DEFAULT '0',
+  `degree` varchar(50) NOT NULL DEFAULT '0',
+  `institution` varchar(50) NOT NULL DEFAULT '0',
+  `from` varchar(50) NOT NULL DEFAULT '0',
+  `to` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- Dumping data for table yii2basic.education: ~1 rows (approximately)
+/*!40000 ALTER TABLE `education` DISABLE KEYS */;
+INSERT INTO `education` (`id`, `user_id`, `degree`, `institution`, `from`, `to`) VALUES
+	(1, '5', 'Master', 'Somewhere', '1977', '1978'),
+	(2, '5', 'PhD', 'CNET', '2010', '2014');
+/*!40000 ALTER TABLE `education` ENABLE KEYS */;
+
+
+-- Dumping structure for table yii2basic.experience
+CREATE TABLE IF NOT EXISTS `experience` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(50) NOT NULL DEFAULT '0',
+  `job_title` varchar(50) NOT NULL DEFAULT '0',
+  `institution` varchar(50) NOT NULL DEFAULT '0',
+  `from` varchar(50) NOT NULL DEFAULT '0',
+  `to` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table yii2basic.experience: ~2 rows (approximately)
+/*!40000 ALTER TABLE `experience` DISABLE KEYS */;
+INSERT INTO `experience` (`id`, `user_id`, `job_title`, `institution`, `from`, `to`) VALUES
+	(6, '5', 'da', 'da', '2010', '2015'),
+	(7, '5', 'test', 'test', '2011', '2015');
+/*!40000 ALTER TABLE `experience` ENABLE KEYS */;
+
+
 -- Dumping structure for table yii2basic.expert
 CREATE TABLE IF NOT EXISTS `expert` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -843,15 +881,12 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `bio` text,
   `gravatar_email` varchar(50) DEFAULT NULL,
   `state` varchar(50) DEFAULT NULL,
+  `ed_desc` text,
   `address` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `zip` varchar(50) DEFAULT NULL,
-  `degree` varchar(50) DEFAULT NULL,
-  `degree_details` varchar(50) DEFAULT NULL,
-  `institution_name` varchar(50) DEFAULT NULL,
-  `start_year` varchar(50) DEFAULT NULL,
-  `end_year` varchar(50) DEFAULT NULL,
   `byear` varchar(50) DEFAULT NULL,
+  `exp_desc` varchar(50) DEFAULT NULL,
   `gravatar_id` varchar(50) DEFAULT NULL,
   `phone_number` varchar(50) DEFAULT NULL,
   `fax_number` varchar(50) DEFAULT NULL,
@@ -862,16 +897,16 @@ CREATE TABLE IF NOT EXISTS `profile` (
 
 -- Dumping data for table yii2basic.profile: ~9 rows (approximately)
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` (`user_id`, `name`, `public_email`, `website`, `bio`, `gravatar_email`, `state`, `address`, `city`, `zip`, `degree`, `degree_details`, `institution_name`, `start_year`, `end_year`, `byear`, `gravatar_id`, `phone_number`, `fax_number`, `country`) VALUES
-	(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(4, 'da', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'd41d8cd98f00b204e9800998ecf8427e', '+40784198777', '+40784198777', '17'),
-	(5, 'Mihai The boss', 'test@test.com', '', 'AAAAAAAAA', NULL, '', 'yes', '', '21323', 'Master', 'I got this when i was 5', 'da', '1978', '2012', '1916', NULL, '+407222222222', '+407222222222', 'Albania'),
-	(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `profile` (`user_id`, `name`, `public_email`, `website`, `bio`, `gravatar_email`, `state`, `ed_desc`, `address`, `city`, `zip`, `byear`, `exp_desc`, `gravatar_id`, `phone_number`, `fax_number`, `country`) VALUES
+	(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(4, 'da', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'd41d8cd98f00b204e9800998ecf8427e', '+40784198777', '+40784198777', '17'),
+	(5, 'Mihai The boss', 'test@test.com', '', 'AAAAAAAAA', NULL, '', 'This is where I say stuff about my education.\r\n', 'yes', '', '21323', '1916', NULL, NULL, '+407222222222', '+407222222222', 'Albania'),
+	(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 
 
