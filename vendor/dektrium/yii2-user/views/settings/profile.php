@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php 
                     $items=[];
                     for($i=1900;$i<=2016;$i++)
-                        array_push($items,$i);
+                        $items[$i]=$i;
 
                     echo $form->field($model, 'byear')->dropDownList($items,['value'=> $model->byear ]);
 
@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'fax_number') ?>
 
                 <?php 
-                    $items = ArrayHelper::map(Country::find()->all(), 'id', 'country_name');
+                    $items = ArrayHelper::map(Country::find()->all(), 'country_name', 'country_name');
                     echo $form->field($model, 'country')->dropDownList($items,['value'=> $model->country ]);
 
                 ?>
@@ -86,7 +86,32 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'zip') ?>
 
-                
+                <h1> Education </h1>
+
+                <?= $form->field($model, 'degree')->dropDownList(['Associate' => 'Associate', 'Bachelor' => 'Bachelor', 'Master'=>'Master', 'PhD'=>'PhD'], ['value'=>$model->country]) ?>
+
+                <?= $form->field($model, 'degree_details') ?>
+
+                <?= $form->field($model, 'institution_name') ?>
+
+                <?php 
+                    $items=[];
+                    for($i=1960;$i<=2016;$i++)
+                        $items[$i]=$i;
+
+                    echo $form->field($model, 'start_year')->dropDownList($items,['value'=> $model->start_year ]);
+
+                ?>
+
+
+                <?php 
+                    $items=[];
+                    for($i=1960;$i<=2016;$i++)
+                        $items[$i]=$i;
+
+                    echo $form->field($model, 'end_year')->dropDownList($items,['value'=> $model->end_year ]);
+
+                ?>
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">

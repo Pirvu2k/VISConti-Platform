@@ -1363,5 +1363,58 @@
             "yii2",
             "yii2-rbac"
         ]
+    },
+    {
+        "name": "kartik-v/yii2-field-range",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kartik-v/yii2-field-range.git",
+            "reference": "db63bea49cb1899991caf0ac9ead58e7e2d3f123"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kartik-v/yii2-field-range/zipball/db63bea49cb1899991caf0ac9ead58e7e2d3f123",
+            "reference": "db63bea49cb1899991caf0ac9ead58e7e2d3f123",
+            "shasum": ""
+        },
+        "require": {
+            "kartik-v/yii2-krajee-base": "*"
+        },
+        "time": "2015-04-21 15:14:23",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "kartik\\field\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD 3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Kartik Visweswaran",
+                "email": "kartikv2@gmail.com",
+                "homepage": "http://www.krajee.com/"
+            }
+        ],
+        "description": "Easily manage Yii 2 ActiveField ranges (from/to) with Bootstrap 3 addons markup and more",
+        "homepage": "https://github.com/kartik-v/yii2-field-range",
+        "keywords": [
+            "addon",
+            "bootstrap",
+            "bootstrap 3",
+            "date",
+            "extension",
+            "field-range",
+            "from",
+            "range",
+            "to",
+            "widget",
+            "yii2"
+        ]
     }
 ]

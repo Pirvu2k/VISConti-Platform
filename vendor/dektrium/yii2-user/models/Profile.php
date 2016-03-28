@@ -58,7 +58,7 @@ class Profile extends ActiveRecord
             'bioString' => ['bio', 'string'],
             'publicEmailPattern' => ['public_email', 'email'],
             'gravatarEmailPattern' => ['gravatar_email', 'email'],
-            'websiteUrl' => ['website', 'url'],
+            'websiteUrl' => ['website', 'url', 'defaultScheme' => 'http'],
             'nameLength' => ['name', 'string', 'max' => 255],
             'publicEmailLength' => ['public_email', 'string', 'max' => 255],
             'gravatarEmailLength' => ['gravatar_email', 'string', 'max' => 255],
@@ -71,6 +71,11 @@ class Profile extends ActiveRecord
             'cityString' => ['city', 'string'],
             'zipInt' => ['zip','string' , 'min'=> 3, 'max'=>16],
             'byear' => ['byear', 'string'],
+            'degreeString' => ['degree', 'string'],
+            'degreeDetailsString' => ['degree_details', 'string'],
+            'institutionString' => ['institution_name', 'string'],
+            'startyearString' => ['start_year', 'string'],
+            'endyearString' => ['end_year', 'string'],
         ];
     }
 
@@ -91,6 +96,11 @@ class Profile extends ActiveRecord
             'city'           => Yii::t('user', 'City'),
             'zip'            => Yii::t('user', 'Zip/Postal Code'),
             'byear'          => Yii::t('user', 'Year of Birth'),
+            'degree'         => Yii::t('user', 'Degree'),
+            'degree_details' => Yii::t('user', 'Degree Details'),
+            'institution_name' => Yii::t('user', 'Institution'),
+            'start_year'     =>Yii::t('user','Start Year'),
+            'end_year'     =>Yii::t('user','End Year'),
         ];
     }
 
