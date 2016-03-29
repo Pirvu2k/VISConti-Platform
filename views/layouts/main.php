@@ -53,10 +53,8 @@ AppAsset::register($this);
 
             <div id="header-actions" class="col-sm-4" data-view="header_actions" data-model_name="user" data-model_id="5598ec54ad44d93f30b9f805">
 				<?php
-					if(!Yii::$app->user->isGuest && Yii::$app->user->can('student'))
-						echo '<a class="btn purple" href="index.php?r=canvas/create">Create Canvas</a>';
-					else if(!Yii::$app->user->isGuest && Yii::$app->user->can('expert'))
-						echo '<a class="btn purple" href="index.php?r=canvas/index">Review Projects</a>';
+					if(!Yii::$app->user->isGuest)
+                        echo '<a class="btn purple" href="index.php?r=user/profile/show&id=' . Yii::$app->user->identity->id . '">'. Yii::$app->user->identity->username .'</a>';
 				?>
             </div>
         </nav>
@@ -76,7 +74,7 @@ AppAsset::register($this);
 <div class="content">
 	</br></br>
 	<?php
-		$is = (($controller->action->id === "faq" && Yii::$app->user->isGuest) || ($controller->action->id === "profile") || ($controller->action->id === "login") || ($controller->action->id === "register")) ? true : false;
+		$is = (($controller->action->id === "faq" && Yii::$app->user->isGuest) || ($controller->action->id === "profile") || ($controller->action->id === "account") || ($controller->action->id === "login") || ($controller->action->id === "register")) ? true : false;
 		if(!$is) {
 			echo '<ul id="sidebar" class="col-sm-12 col-md-1"></ul>';
 	?>
@@ -97,7 +95,7 @@ AppAsset::register($this);
     array_push($navItemsRight,['label' => 'Sign In', 'url' => ['/user/security/login']],['label' => 'Sign Up', 'url' => ['/user/registration/register']]);
   } else {
     array_push($navItemsRight,['label' => 'Account', 'url' => ['/user/settings/profile']],
-		['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+		['label' => 'Logout',
         'url' => ['/user/security/logout'],
         'linkOptions' => ['data-method' => 'post']]
     );

@@ -22,6 +22,8 @@ use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\web\Application as WebApplication;
 use yii\web\IdentityInterface;
+use yii\rbac\DbManager;
+
 
 /**
  * User ActiveRecord model.
@@ -234,6 +236,8 @@ class User extends ActiveRecord implements IdentityInterface
         $this->confirmed_at = time();
         $this->password = $this->password == null ? Password::generate(8) : $this->password;
 
+
+
         $this->trigger(self::BEFORE_CREATE);
 
         if (!$this->save()) {
@@ -427,6 +431,9 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if ($insert) {
             $this->setAttribute('auth_key', Yii::$app->security->generateRandomString());
+
+           
+
             if (Yii::$app instanceof WebApplication) {
                 $this->setAttribute('registration_ip', Yii::$app->request->userIP);
             }
@@ -446,6 +453,9 @@ class User extends ActiveRecord implements IdentityInterface
         if ($insert) {
             if ($this->_profile == null) {
                 $this->_profile = Yii::createObject(Profile::className());
+                 $auth = Yii::$app->authManager;
+                 $studentRole = $auth->getRole('student');
+                 $auth->assign($studentRole, $this->getId());
             }
             $this->_profile->link('user', $this);
         }

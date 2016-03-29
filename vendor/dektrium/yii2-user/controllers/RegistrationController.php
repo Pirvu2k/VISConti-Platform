@@ -20,6 +20,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use app\models\Role;
 
 /**
  * RegistrationController is responsible for all registration process, which includes registration of a new account,
@@ -81,8 +82,6 @@ class RegistrationController extends Controller
         $this->performAjaxValidation($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->register()) {
-            
-           
 
             return $this->render('/message', [
                 'title'  => Yii::t('user', 'Your account has been created'),

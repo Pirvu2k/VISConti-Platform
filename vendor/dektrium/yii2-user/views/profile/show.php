@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                      <h5> <b>Experience :</b> </h5>
                      <?php if (!empty($profile->exp_desc)): ?>
-                        <li><i class="glyphicon glyphicon-list-alt text-muted"></i> Experience Details : <br> <?= Html::a(Html::encode($profile->exp_desc)) ?></li>
+                        <li><i class="glyphicon glyphicon-briefcase text-muted"></i> Experience Details : <br> <?= Html::a(Html::encode($profile->exp_desc)) ?></li>
                      <?php endif; ?>
                      <?php if (!empty($experience)): ?>
                         <li><i class="glyphicon glyphicon-star text-muted"></i> Work Experience : 

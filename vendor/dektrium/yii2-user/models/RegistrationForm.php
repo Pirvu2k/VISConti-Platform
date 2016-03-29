@@ -92,7 +92,7 @@ class RegistrationForm extends Model
     {
         return [
             'email'    => Yii::t('user', 'E-mail'),
-            'username' => Yii::t('user', 'Full Name'),
+            'username' => Yii::t('user', 'Username'),
             'password' => Yii::t('user', 'Password'),
         ];
     }

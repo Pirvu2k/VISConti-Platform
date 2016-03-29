@@ -21,7 +21,7 @@ use yii\web\UrlManager;
  * @var dektrium\user\models\Profile $profile
  */
 
-$this->title = Yii::t('user', 'Profile settings');
+$this->title = Yii::t('user', 'Profile settings (press Save at the bottom of page to save changes)');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
