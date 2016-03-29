@@ -23,7 +23,11 @@ use yii\base\Model;
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class LoginForm extends Model
-{
+{   /**
+     * @inheritdoc
+     */
+    public $captcha;
+
     /** @var string User's email or username */
     public $login;
 

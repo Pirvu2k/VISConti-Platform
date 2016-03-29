@@ -62,7 +62,14 @@ class RegistrationController extends Controller
             ],
         ];
     }
-
+     public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+            ],
+        ];
+    }
     /**
      * Displays the registration page.
      * After successful registration if enableConfirmation is enabled shows info message otherwise redirects to home page.

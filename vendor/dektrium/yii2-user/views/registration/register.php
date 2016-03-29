@@ -11,6 +11,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\captcha\Captcha;
+use yii\captcha\CaptchaValidator;
+use yii\captcha\CaptchaAction;
 
 /**
  * @var yii\web\View              $this
@@ -30,8 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-body">
                 <?php $form = ActiveForm::begin([
                     'id'                     => 'registration-form',
-                    'enableAjaxValidation'   => true,
-                    'enableClientValidation' => false,
+                    'enableAjaxValidation'   => false,
+                    'enableClientValidation' => true,
                 ]); ?>
 
                 <?= $form->field($model, 'email') ?>
@@ -43,6 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if ($module->enableGeneratingPassword == false): ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
                 <?php endif ?>
+
+                <?= $form->field($model, 'captcha')->widget(Captcha::className(),['captchaAction' => '/site/captcha']) ?>
 
                 <?= Html::submitButton(Yii::t('user', 'Create Account'), ['class' => 'btn btn-success btn-block']) ?>
 

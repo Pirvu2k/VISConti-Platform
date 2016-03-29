@@ -23,6 +23,11 @@ use yii\base\Model;
 class RegistrationForm extends Model
 {   
     /**
+     * @var string
+     */
+    public $captcha;
+
+    /**
      * @var string Expert checkbox
      */
     public $is_expert=false;
@@ -88,6 +93,9 @@ class RegistrationForm extends Model
             'passwordLength'   => ['password', 'string', 'min' => 6],
             // expert check
             'expertCheck'   => ['is_expert','boolean'],
+            //captcha
+            'captcha' => ['captcha','captcha'],
+            'captchaRequired' => ['captcha','required'],
         ];
     }
 

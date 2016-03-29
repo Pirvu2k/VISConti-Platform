@@ -100,6 +100,7 @@ AppAsset::register($this);
         'linkOptions' => ['data-method' => 'post']]
     );
   }
+  
   if(!Yii::$app->user->isGuest && Yii::$app->user->can('student'))
   {
     array_push($navItems,
