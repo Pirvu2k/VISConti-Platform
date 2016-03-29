@@ -21,7 +21,11 @@ use yii\base\Model;
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class RegistrationForm extends Model
-{
+{   
+    /**
+     * @var string Expert checkbox
+     */
+    public $is_expert;
     /**
      * @var string User email address
      */

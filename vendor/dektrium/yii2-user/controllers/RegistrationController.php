@@ -82,7 +82,7 @@ class RegistrationController extends Controller
         $this->performAjaxValidation($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->register()) {
-
+            
             return $this->render('/message', [
                 'title'  => Yii::t('user', 'Your account has been created'),
                 'module' => $this->module,

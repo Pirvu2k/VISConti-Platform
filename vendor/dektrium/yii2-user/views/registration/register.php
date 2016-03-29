@@ -37,7 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'username') ?>
-
+                <div class="checkbox">
+                <?= $form->field($model, 'is_expert')->checkbox(['label'=>'I am an expert']) ?>
+                </div>
                 <?php if ($module->enableGeneratingPassword == false): ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
                 <?php endif ?>
