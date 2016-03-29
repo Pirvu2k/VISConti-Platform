@@ -45,6 +45,7 @@ $config = [
     'user' => [
         'class' => 'dektrium\user\Module',
         'enableUnconfirmedLogin' => true,
+        'rememberFor' => 1209600,
         'confirmWithin' => 21600,
         'cost' => 12,
         'admins' => ['admin'],

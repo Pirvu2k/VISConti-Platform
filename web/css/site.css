@@ -149,6 +149,7 @@ html input[disabled] {
 }
 input[type=checkbox],
 input[type=radio] {
+    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0
@@ -9122,7 +9123,7 @@ body.modal-open,
 input,
 textarea,
 .form-control {
-    -webkit-appearance: none;
+    
     border: 1px solid rgba(0, 0, 0, .1);
     box-shadow: 0 1px 0 #fff;
     color: #333;

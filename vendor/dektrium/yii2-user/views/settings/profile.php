@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     for($i=1900;$i<=2016;$i++)
                         $items[$i]=$i;
 
-                    echo $form->field($model, 'byear')->dropDownList($items,['value'=> $model->byear ]);
+                    echo $form->field($model, 'byear')->dropDownList($items,['prompt'=>'Please select your birth year.' ]);
 
                 ?>
 
@@ -90,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php 
                     $items = ArrayHelper::map(Country::find()->all(), 'country_name', 'country_name');
-                    echo $form->field($model, 'country')->dropDownList($items,['value'=> $model->country ]);
+                    echo $form->field($model, 'country')->dropDownList($items,['prompt'=>'Please select your country.'  ]);
 
                 ?>
 

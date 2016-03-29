@@ -70,7 +70,7 @@ class Profile extends ActiveRecord
             'addressString' => ['address', 'string'],
             'cityString' => ['city', 'string'],
             'zipInt' => ['zip','string' , 'min'=> 3, 'max'=>16],
-            'byear' => ['byear', 'string'],
+            'byear' => ['byear', 'integer'],
             'eddescString' => ['ed_desc', 'string'],
             'expdescString' => ['exp_desc', 'string'],
         ];

@@ -10,6 +10,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Educations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
+<link href="../web/css/site.css" rel="stylesheet" />
+
+
 <div class="education-update">
 
     <h1><?= Html::encode($this->title) ?></h1>

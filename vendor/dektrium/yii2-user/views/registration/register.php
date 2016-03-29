@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
  * @var dektrium\user\Module      $module
  */
 
-$this->title = Yii::t('user', 'Sign up');
+$this->title = Yii::t('user', 'Register');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'password')->passwordInput() ?>
                 <?php endif ?>
 
-                <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
+                <?= Html::submitButton(Yii::t('user', 'Create Account'), ['class' => 'btn btn-success btn-block']) ?>
 
                 <?php ActiveForm::end(); ?>
             </div>

@@ -25,7 +25,7 @@ class RegistrationForm extends Model
     /**
      * @var string Expert checkbox
      */
-    public $is_expert;
+    public $is_expert=false;
     /**
      * @var string User email address
      */
@@ -86,6 +86,8 @@ class RegistrationForm extends Model
             // password rules
             'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->enableGeneratingPassword],
             'passwordLength'   => ['password', 'string', 'min' => 6],
+            // expert check
+            'expertCheck'   => ['is_expert','boolean'],
         ];
     }
 
@@ -98,6 +100,7 @@ class RegistrationForm extends Model
             'email'    => Yii::t('user', 'E-mail'),
             'username' => Yii::t('user', 'Username'),
             'password' => Yii::t('user', 'Password'),
+            'is_expert'=> Yii::t('user', 'I am an expert'),
         ];
     }
 
@@ -119,7 +122,7 @@ class RegistrationForm extends Model
         if (!$this->validate()) {
             return false;
         }
-
+        
         /** @var User $user */
         $user = Yii::createObject(User::className());
         $user->setScenario('register');
@@ -127,6 +130,17 @@ class RegistrationForm extends Model
 
         if (!$user->register()) {
             return false;
+        }
+
+        if($this->is_expert == true)
+        {
+                $auth = Yii::$app->authManager;
+                $expertRole = $auth->getRole('expert');
+                $auth->assign($expertRole, $this->getId($user));
+        } else {
+                 $auth = Yii::$app->authManager;
+                 $studentRole = $auth->getRole('student');
+                 $auth->assign($studentRole, $this->getId($user));
         }
 
         Yii::$app->session->setFlash(
@@ -149,5 +163,10 @@ class RegistrationForm extends Model
     protected function loadAttributes(User $user)
     {
         $user->setAttributes($this->attributes);
+    }
+
+    protected function getId(User $user)
+    {
+        return $user->getAttribute('id');
     }
 }

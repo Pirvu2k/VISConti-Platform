@@ -455,10 +455,7 @@ class User extends ActiveRecord implements IdentityInterface
                 $this->_profile = Yii::createObject(Profile::className());
                  
             }
-            $auth = Yii::$app->authManager;
-                 $studentRole = $auth->getRole('student');
-                 $auth->assign($studentRole, $this->getId());
-                 $this->_profile->link('user', $this);
+                $this->_profile->link('user', $this);
         }
     }
 
