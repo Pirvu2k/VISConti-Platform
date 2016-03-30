@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "canvases".
@@ -15,11 +16,7 @@ use Yii;
  */
 class Canvas extends \yii\db\ActiveRecord
 {   
-    /**
-     * @inheritdoc
-     */
-    public $captcha;
-     
+    public $files;
     /**
      * @inheritdoc
      */
@@ -40,7 +37,7 @@ class Canvas extends \yii\db\ActiveRecord
             [['date_added', 'date_modified','requested','assigned_to','expert_id','student_id','created_by'], 'safe'],
             ['eng_summary','string', 'max' => 120,'min'=>10 ],
             ['title','string','max'=>50,'min'=>5],
-            ['captcha','captcha']
+            [['files'], 'file', 'maxFiles' => 4]
         ];
     }
 
@@ -59,5 +56,17 @@ class Canvas extends \yii\db\ActiveRecord
             'eng_summary' => 'Summary (in English)',
             'language' => 'Language'
         ];
+    }
+
+    public function upload()
+    {
+        if ($this->validate()) { 
+            foreach ($this->files as $file) {
+                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

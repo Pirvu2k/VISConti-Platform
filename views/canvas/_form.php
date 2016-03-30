@@ -12,7 +12,7 @@ use yii\captcha\CaptchaAction;
 
 <div class="canvas-form">
 
-    <?php $form = ActiveForm::begin(['enableClientValidation' => false]); ?>
+    <?php $form = ActiveForm::begin(['enableClientValidation' => false],['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textarea(['rows' => 1])->textInput(['placeholder' => '5-50 Characters']) ?>
 
@@ -22,10 +22,8 @@ use yii\captcha\CaptchaAction;
 
     <?= $form->field($model, 'eng_summary')->textarea(['rows' => 2])->textInput(['placeholder' => '10-120 Characters']) ?>
 
-    <?= $form->field($model, 'captcha')->widget(\yii\captcha\Captcha::classname(), [
-        // configure additional widget properties here
-    ]) ?>
-    
+    <?= $form->field($model, 'files[]')->fileInput(['multiple' => true]) ?>
+
     <?php if(Yii::$app->user->identity->isAdmin || Yii::$app->user->can('expert'))
     {
     	echo $form->field($model,'requested')->radioList(['Accepted'=>'Accepted' , 'In queue'=>'In queue' ,'Declined'=>'Declined']);

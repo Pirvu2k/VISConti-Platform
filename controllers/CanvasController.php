@@ -5,12 +5,15 @@ namespace app\controllers;
 use Yii;
 use app\models\Canvas;
 use app\models\CanvasSearch;
+use app\models\File;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\db\Query;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;
 
 /**
  * CanvasController implements the CRUD actions for Canvas model.
@@ -33,12 +36,12 @@ class CanvasController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['create'],
+                        'actions' => ['create','view','update'],
                         'roles' => ['student'],
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index','view','update','delete'],
                         'roles' => ['expert'],
                     ],
                     [
@@ -93,6 +96,16 @@ class CanvasController extends Controller
           $model->created_by= Yii::$app->user->identity->username;
           $model->student_id= Yii::$app->user->identity->id;
           $model->requested = 1;
+          $model->files=UploadedFile::getInstances($model, 'files');
+          if ($model->upload()) {
+                foreach($model->files as $file)
+                {
+                    $up = new File();
+                    $up->name=$file->baseName . "." . $file->extension;
+                    $up->canvas_id=$model->id;
+                    $up->save();
+                }
+            }
            if ($model->save()) {             
              return $this->redirect(['view', 'id' => $model->id]);             
            } 
