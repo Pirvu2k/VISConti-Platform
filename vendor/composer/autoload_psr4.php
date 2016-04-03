@@ -17,6 +17,7 @@ return array(
     'yii\\authclient\\' => array($vendorDir . '/yiisoft/yii2-authclient'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'letyii\\tinymce\\' => array($vendorDir . '/letyii/yii2-tinymce'),
+    'kato\\' => array($vendorDir . '/perminder-klair/yii2-dropzone'),
     'kartik\\select2\\' => array($vendorDir . '/kartik-v/yii2-widget-select2'),
     'kartik\\field\\' => array($vendorDir . '/kartik-v/yii2-field-range'),
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),

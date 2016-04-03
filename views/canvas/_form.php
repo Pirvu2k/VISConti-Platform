@@ -22,7 +22,21 @@ use yii\captcha\CaptchaAction;
 
     <?= $form->field($model, 'eng_summary')->textarea(['rows' => 2])->textInput(['placeholder' => '10-120 Characters']) ?>
 
-    <?= $form->field($model, 'files[]')->fileInput(['multiple' => true]) ?>
+    <?php
+
+	echo \kato\DropZone::widget([  
+		'options' => [
+			'url' => 'uploads',
+			'maxFilesize' => '2',
+			'clientEvents' => [
+				'complete' => "function(file){console.log(file)}",
+				'removedfile' => "function(file){alert(file.name + ' is removed')}"
+		]
+		],
+	]);
+	   
+	   echo '</br>';
+	?>
 
     <?php if(Yii::$app->user->identity->isAdmin || Yii::$app->user->can('expert'))
     {

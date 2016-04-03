@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "82416718edf1403014df0ab142145d89",
-    "content-hash": "a0b5d55936ffbbd48e8b94cd6b778bb0",
+    "hash": "c72b40a6582e38d3eb4dc6194378ad96",
+    "content-hash": "6e4b565baf1e4ee67ac478256b958e77",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -290,7 +290,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/a0b237b81e06b802a031a85c767b7e949b30e327",
+                "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/4c5c383f577256d34cbc37ed26809a8ff109b2ec",
                 "reference": "a0b237b81e06b802a031a85c767b7e949b30e327",
                 "shasum": ""
             },
@@ -623,6 +623,48 @@
                 "yii2"
             ],
             "time": "2015-07-08 08:11:14"
+        },
+        {
+            "name": "perminder-klair/yii2-dropzone",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/perminder-klair/yii2-dropzone.git",
+                "reference": "41e8145d940cc9955011138a9f16ad80e9831423"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/perminder-klair/yii2-dropzone/zipball/41e8145d940cc9955011138a9f16ad80e9831423",
+                "reference": "41e8145d940cc9955011138a9f16ad80e9831423",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kato\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Parminder Klair",
+                    "email": "perminder.klair@gmail.com"
+                }
+            ],
+            "description": "DropzoneJs Extention for Yii2",
+            "keywords": [
+                "dropzone",
+                "extension",
+                "upload",
+                "yii2"
+            ],
+            "time": "2015-11-09 11:28:44"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1376,7 +1418,8 @@
         "dektrium/yii2-user": 20,
         "dektrium/yii2-rbac": 20,
         "letyii/yii2-tinymce": 20,
-        "kartik-v/yii2-field-range": 20
+        "kartik-v/yii2-field-range": 20,
+        "perminder-klair/yii2-dropzone": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

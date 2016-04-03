@@ -22,11 +22,14 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php //$this->head() ?>
     <?php
+		$controller = Yii::$app->controller;
+		$is = (($controller->action->id === "create")) ? true : false;
+		if($is)
+			echo '<link href="/web/assets/e473f026/dropzone/dist/min/dropzone2.min.css" rel="stylesheet">';
         if (YII_ENV_DEV)
             echo '<link href="/web/assets/ba2b43d0/toolbar.css" rel="stylesheet">	';
     ?>
 	<?php
-		$controller = Yii::$app->controller;
 		$is = (($controller->action->id === "login")) ? true : false;
 		if($is)
 			echo '<link href="../web/css/login.css" rel="stylesheet">';

@@ -107,11 +107,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
         </main>
-        <footer>
-            <div class="container">
-                <small class="row">&copy; 2016 Fomrad</small>
-            </div>
-        </footer>
     </div>
 
 </div>
