@@ -16,7 +16,7 @@ use yii\captcha\CaptchaAction;
 
     <?= $form->field($model, 'title')->textarea(['rows' => 1])->textInput(['placeholder' => '5-50 Characters']) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6])->widget(letyii\tinymce\Tinymce::className()) ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 6])->widget(letyii\tinymce\Tinymce::className() , ['options' => ['rows'=>20]]) ?>
 
     <?= $form->field($model, 'language')->dropDownList(['en' => 'English', 'fr' => 'French', 'ro' => 'Romanian']); ?>
 

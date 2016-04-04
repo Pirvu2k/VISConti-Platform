@@ -87,6 +87,9 @@ class User extends ActiveRecord implements IdentityInterface
         $this->finder = Yii::$container->get(Finder::className());
         $this->mailer = Yii::$container->get(Mailer::className());
         $this->module = Yii::$app->getModule('user');
+        $this->on(self::BEFORE_REGISTER, function() {
+            $this->username = $this->email;
+        });
         parent::init();
     }
 
@@ -197,7 +200,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             // username rules
-            'usernameRequired' => ['username', 'required', 'on' => ['register', 'create', 'connect', 'update']],
+            //'usernameRequired' => ['username', 'required', 'on' => ['register', 'create', 'connect', 'update']],
             'usernameMatch'    => ['username', 'match', 'pattern' => static::$usernameRegexp],
             'usernameLength'   => ['username', 'string', 'min' => 3, 'max' => 255],
             'usernameUnique'   => ['username', 'unique', 'message' => Yii::t('user', 'This username has already been taken')],
