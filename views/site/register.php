@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php // $form->field($model, 'username') ?>
              
-                <?= $form->field($model, 'type')->dropdownList(['' => 'Please select a role', 's' => 'Student','e'=>'Expert']) ?>
+                <?= $form->field($model, 'type')->dropdownList(['s' => 'Student','e'=>'Expert'] , ['prompt' => 'Please select a role.']) ?>
                 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 

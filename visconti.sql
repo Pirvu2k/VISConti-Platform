@@ -338,11 +338,19 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
   CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table yii2basic.auth_assignment: ~2 rows (approximately)
+-- Dumping data for table yii2basic.auth_assignment: ~9 rows (approximately)
 /*!40000 ALTER TABLE `auth_assignment` DISABLE KEYS */;
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
-	('expert', '6', NULL),
-	('student', '5', NULL);
+	('expert', '19', 1459290325),
+	('expert', '22', 1459354429),
+	('expert', '24', 1459354494),
+	('student', '20', 1459290342),
+	('student', '21', 1459295097),
+	('student', '23', 1459354473),
+	('student', '25', 1459358101),
+	('student', '26', 1459786278),
+	('student', '27', 1459786568),
+	('student', '28', 1459786615);
 /*!40000 ALTER TABLE `auth_assignment` ENABLE KEYS */;
 
 
@@ -404,7 +412,6 @@ CREATE TABLE IF NOT EXISTS `canvases` (
   `title` tinytext NOT NULL,
   `content` text NOT NULL,
   `requested` text NOT NULL,
-  `student_id` tinyint(4) NOT NULL DEFAULT '1',
   `created_by` tinytext NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -412,14 +419,23 @@ CREATE TABLE IF NOT EXISTS `canvases` (
   `expert_id` tinyint(4) NOT NULL,
   `language` tinytext NOT NULL,
   `eng_summary` text NOT NULL,
+  `archive` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 
--- Dumping data for table yii2basic.canvases: ~0 rows (approximately)
+-- Dumping data for table yii2basic.canvases: ~9 rows (approximately)
 /*!40000 ALTER TABLE `canvases` DISABLE KEYS */;
-INSERT INTO `canvases` (`id`, `title`, `content`, `requested`, `student_id`, `created_by`, `date_added`, `date_modified`, `assigned_to`, `expert_id`, `language`, `eng_summary`) VALUES
-	(28, 'Project Example 1 ', '<h2><strong>Hello, my name is Mihai!</strong></h2>\r\n<p><strong>I am having a great time testing out VISConti!</strong></p>', '1', 5, 'test2', '2016-03-20 15:43:20', '2016-03-20 15:43:20', 'test3', 0, 'en', 'Short summary of the project, currently none :( '),
-	(29, 'Test Canvas Skype (edit)', '<h1 style="text-align: center;">Title</h1>\r\n<p>content</p>\r\n<p>content</p>\r\n<p>content</p>', '1', 5, 'test2', '2016-03-22 19:46:50', '2016-03-22 19:47:13', '', 0, 'en', 'Test Summary. Hello World.');
+INSERT INTO `canvases` (`id`, `title`, `content`, `requested`, `created_by`, `date_added`, `date_modified`, `assigned_to`, `expert_id`, `language`, `eng_summary`, `archive`) VALUES
+	(28, 'Project Example 1 ', '<h2><strong>Hello, my name is Mihai!</strong></h2>\r\n<p><strong>I am having a great time testing out VISConti!</strong></p>', '1', '3', '2016-03-20 15:43:20', '2016-03-20 15:43:20', 'test3', 0, 'en', 'Short summary of the project, currently none :( ', NULL),
+	(29, 'Test Canvas Skype (edit)', '<h1 style="text-align: center;">Title</h1>\r\n<p>content</p>\r\n<p>content</p>\r\n<p>content</p>', '1', 'test2', '2016-03-22 19:46:50', '2016-03-22 19:47:13', '', 0, 'en', 'Test Summary. Hello World.', NULL),
+	(54, 'Test Project', '<p>dioasjdijdasijdo<strong>idasjaidioasjdijdasijdoidasjaidioasjdijd</strong>asijdoidasjaidioasjdijdasijdoidasjai</p>', '1', 'skypeStudent', '2016-03-30 19:28:53', '2016-03-30 19:28:53', '', 0, 'en', 'blablablabalblabalbal', NULL),
+	(55, 'adi9asjdsijd', '<p>dasdasdasdasdasdasdsadasdas</p>', '1', 'student3', '2016-03-30 19:30:55', '2016-03-30 19:30:55', '', 0, 'en', 'dasdadasdadadasdas', NULL),
+	(56, 'dadadasdasd', '<p>dasdasdasdasdasdasdasd</p>', '1', 'student3', '2016-04-04 18:29:49', '2016-04-04 18:29:49', '', 0, 'en', 'asdasdasdasdasdas', NULL),
+	(57, 'dasdsadasdas', '<p>dasdasdasdasd</p>', '1', 'student3', '2016-04-04 18:30:25', '2016-04-04 18:30:25', '', 0, 'en', 'dasdasdasdasdasdasdas', NULL),
+	(58, 'dsadasdasd', '<p>asdasdadasdasddas</p>', '1', 'student3', '2016-04-04 18:43:37', '2016-04-04 18:43:37', '', 0, 'en', 'dasdasddadasdasdasdas', NULL),
+	(59, 'dasdasdasdasdas', '<p>dasdasdasdasdasdasd</p>', '1', 'student3', '2016-04-04 19:08:05', '2016-04-04 19:08:05', '', 0, 'en', 'dasdasdasdasdasdas', NULL),
+	(60, 'dasdadasdas', '<p>dasdasdasdadasdasd</p>', '1', 'mihai@pirvulet.com', '2016-04-04 19:17:13', '2016-04-04 19:17:13', '', 0, 'en', 'dasdasdasdasdasdas', NULL),
+	(61, 'dasddasdada', '<p>dasdasdasdadadas</p>', '1', '3', '2016-04-09 12:52:13', '2016-04-09 12:52:13', '', 0, 'en', 'dasdasdasdadasda', NULL);
 /*!40000 ALTER TABLE `canvases` ENABLE KEYS */;
 
 
@@ -491,13 +507,14 @@ CREATE TABLE IF NOT EXISTS `education` (
   `from` varchar(50) NOT NULL DEFAULT '0',
   `to` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table yii2basic.education: ~1 rows (approximately)
+-- Dumping data for table yii2basic.education: ~2 rows (approximately)
 /*!40000 ALTER TABLE `education` DISABLE KEYS */;
 INSERT INTO `education` (`id`, `user_id`, `degree`, `institution`, `from`, `to`) VALUES
 	(1, '5', 'Master', 'Somewhere', '1977', '1978'),
-	(2, '5', 'PhD', 'CNET', '2010', '2014');
+	(2, '5', 'PhD', 'CNET', '2010', '2014'),
+	(3, '23', 'Master', 'Ecaterina', '2012', '2016');
 /*!40000 ALTER TABLE `education` ENABLE KEYS */;
 
 
@@ -510,72 +527,61 @@ CREATE TABLE IF NOT EXISTS `experience` (
   `from` varchar(50) NOT NULL DEFAULT '0',
   `to` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table yii2basic.experience: ~2 rows (approximately)
 /*!40000 ALTER TABLE `experience` DISABLE KEYS */;
 INSERT INTO `experience` (`id`, `user_id`, `job_title`, `institution`, `from`, `to`) VALUES
 	(6, '5', 'da', 'da', '2010', '2015'),
-	(7, '5', 'test', 'test', '2011', '2015');
+	(7, '5', 'test', 'test', '2011', '2015'),
+	(8, '23', 'Developer', 'VISConti', '2012', '2016');
 /*!40000 ALTER TABLE `experience` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.expert
 CREATE TABLE IF NOT EXISTS `expert` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Last login activity` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Title` varchar(20) NOT NULL,
-  `Given name` varchar(20) NOT NULL,
-  `Family name` varchar(20) NOT NULL,
-  `Email` varchar(30) NOT NULL,
-  `Birth year` int(11) NOT NULL,
-  `Password` varchar(20) NOT NULL COMMENT 'shall be hashed in the db',
-  `Reset password expiry date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'once an expert member request reset of password, this field stores the expiry date of the reset password request',
-  `Country of residence` int(11) NOT NULL,
-  `Mobile number` varchar(50) NOT NULL,
-  `Phone number` varchar(50) NOT NULL,
-  `Fax` varchar(50) NOT NULL,
-  `Role` int(11) NOT NULL,
-  `Agreed on terms` enum('Yes','No') DEFAULT 'Yes',
-  `Industry account` int(11) NOT NULL,
-  `Account confirmed` enum('Yes','No') DEFAULT 'No',
-  `Active projects assigned` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_expert_countries` (`Country of residence`),
-  KEY `FK_expert_specialization_entity` (`Role`),
-  KEY `FK_expert_industry_account` (`Industry account`),
-  CONSTRAINT `FK_expert_countries` FOREIGN KEY (`Country of residence`) REFERENCES `countries` (`ID`),
-  CONSTRAINT `FK_expert_industry_account` FOREIGN KEY (`Industry account`) REFERENCES `industry_account` (`ID`),
-  CONSTRAINT `FK_expert_specialization_entity` FOREIGN KEY (`Role`) REFERENCES `specialization` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `last_login_activity` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `title` varchar(20) NOT NULL,
+  `given_name` varchar(20) NOT NULL,
+  `family_name` varchar(20) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `byear` int(11) NOT NULL,
+  `password` varchar(20) NOT NULL COMMENT 'shall be hashed in the db',
+  `reset_pass_exp_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'once an expert member request reset of password, this field stores the expiry date of the reset password request',
+  `country` int(11) NOT NULL,
+  `mobile` varchar(50) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `fax` varchar(50) NOT NULL,
+  `terms` enum('Yes','No') DEFAULT 'Yes',
+  `confirmed` enum('Yes','No') DEFAULT 'No',
+  `active_projects` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.expert: ~0 rows (approximately)
+-- Dumping data for table yii2basic.expert: ~2 rows (approximately)
 /*!40000 ALTER TABLE `expert` DISABLE KEYS */;
+INSERT INTO `expert` (`id`, `created_on`, `last_modified_on`, `trash`, `last_login_activity`, `title`, `given_name`, `family_name`, `email`, `byear`, `password`, `reset_pass_exp_date`, `country`, `mobile`, `phone`, `fax`, `terms`, `confirmed`, `active_projects`) VALUES
+	(1, '2016-04-07 22:45:03', '0000-00-00 00:00:00', NULL, '0000-00-00 00:00:00', '', '', '', 'expert@test.com', 0, 'test', '0000-00-00 00:00:00', 0, '', '', '', 'Yes', 'No', 0),
+	(10, '2016-04-10 15:35:42', '2016-04-10 15:35:42', NULL, '2016-04-10 15:35:42', '', '', '', 'test@test.com', 0, '$2y$13$Abtidwttd3bX0', '0000-00-00 00:00:00', 0, '', '', '', 'Yes', 'No', 0);
 /*!40000 ALTER TABLE `expert` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.expert_education
 CREATE TABLE IF NOT EXISTS `expert_education` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Institution name` varchar(20) NOT NULL,
-  `Degree` int(11) NOT NULL,
-  `Degree details` varchar(20) NOT NULL,
-  `From` date NOT NULL,
-  `To` date NOT NULL,
-  `Details` text NOT NULL,
-  `CoP` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_expert_education_degrees` (`Degree`),
-  KEY `FK_expert_education_expert` (`CoP`),
-  CONSTRAINT `FK_expert_education_degrees` FOREIGN KEY (`Degree`) REFERENCES `degrees` (`ID`),
-  CONSTRAINT `FK_expert_education_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(50) NOT NULL DEFAULT '0',
+  `degree` varchar(50) NOT NULL DEFAULT '0',
+  `institution` varchar(50) NOT NULL DEFAULT '0',
+  `from` varchar(50) NOT NULL DEFAULT '0',
+  `degree_details` varchar(1024) NOT NULL DEFAULT '0',
+  `to` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table yii2basic.expert_education: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_education` DISABLE KEYS */;
@@ -597,7 +603,7 @@ CREATE TABLE IF NOT EXISTS `expert_experience` (
   `Expert` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_expert_experience_expert` (`Expert`),
-  CONSTRAINT `FK_expert_experience_expert` FOREIGN KEY (`Expert`) REFERENCES `expert` (`ID`)
+  CONSTRAINT `FK_expert_experience_expert` FOREIGN KEY (`Expert`) REFERENCES `expert` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Expert experience entity holds data about the experience history of the experts';
 
 -- Dumping data for table yii2basic.expert_experience: ~0 rows (approximately)
@@ -616,7 +622,7 @@ CREATE TABLE IF NOT EXISTS `expert_interest` (
   PRIMARY KEY (`ID`),
   KEY `FK_expert_interest_expert` (`CoP`),
   KEY `FK_expert_interest_interest` (`Interest`),
-  CONSTRAINT `FK_expert_interest_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`ID`),
+  CONSTRAINT `FK_expert_interest_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_interest_interest` FOREIGN KEY (`Interest`) REFERENCES `interest` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -641,7 +647,7 @@ CREATE TABLE IF NOT EXISTS `expert_project_canvas_assignation` (
   KEY `FK_expert_project_canvas_assignation_expert` (`Expert`),
   KEY `FK_expert_project_canvas_assignation_expert_roles_entity` (`Role`),
   KEY `FK_expert_project_canvas_assignation_project_canvas` (`Project`),
-  CONSTRAINT `FK_expert_project_canvas_assignation_expert` FOREIGN KEY (`Expert`) REFERENCES `expert` (`ID`),
+  CONSTRAINT `FK_expert_project_canvas_assignation_expert` FOREIGN KEY (`Expert`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_project_canvas_assignation_expert_roles_entity` FOREIGN KEY (`Role`) REFERENCES `expert_roles` (`ID`),
   CONSTRAINT `FK_expert_project_canvas_assignation_project_canvas` FOREIGN KEY (`Project`) REFERENCES `project_canvas` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -678,7 +684,7 @@ CREATE TABLE IF NOT EXISTS `expert_sector` (
   PRIMARY KEY (`ID`),
   KEY `FK_expert_sector_expert` (`CoP`),
   KEY `FK_expert_sector_sector` (`Specialization`),
-  CONSTRAINT `FK_expert_sector_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`ID`),
+  CONSTRAINT `FK_expert_sector_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_sector_sector` FOREIGN KEY (`Specialization`) REFERENCES `sector` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -698,7 +704,7 @@ CREATE TABLE IF NOT EXISTS `expert_specialization` (
   PRIMARY KEY (`ID`),
   KEY `FK_expert_specialization_expert` (`CoP`),
   KEY `FK_expert_specialization_specialization` (`Specialization`),
-  CONSTRAINT `FK_expert_specialization_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`ID`),
+  CONSTRAINT `FK_expert_specialization_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_specialization_specialization` FOREIGN KEY (`Specialization`) REFERENCES `specialization` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -718,13 +724,26 @@ CREATE TABLE IF NOT EXISTS `expert_sub_sector` (
   PRIMARY KEY (`ID`),
   KEY `FK_expert_sub_sector_expert` (`CoP`),
   KEY `FK_expert_sub_sector_sub_sector` (`Sub-sector`),
-  CONSTRAINT `FK_expert_sub_sector_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`ID`),
+  CONSTRAINT `FK_expert_sub_sector_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_sub_sector_sub_sector` FOREIGN KEY (`Sub-sector`) REFERENCES `sub_sector` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.expert_sub_sector: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_sub_sector` DISABLE KEYS */;
 /*!40000 ALTER TABLE `expert_sub_sector` ENABLE KEYS */;
+
+
+-- Dumping structure for table yii2basic.files
+CREATE TABLE IF NOT EXISTS `files` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL DEFAULT '0',
+  `canvas_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table yii2basic.files: ~0 rows (approximately)
+/*!40000 ALTER TABLE `files` DISABLE KEYS */;
+/*!40000 ALTER TABLE `files` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.industry_account
@@ -895,18 +914,27 @@ CREATE TABLE IF NOT EXISTS `profile` (
   CONSTRAINT `fk_user_profile` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table yii2basic.profile: ~9 rows (approximately)
+-- Dumping data for table yii2basic.profile: ~18 rows (approximately)
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
 INSERT INTO `profile` (`user_id`, `name`, `public_email`, `website`, `bio`, `gravatar_email`, `state`, `ed_desc`, `address`, `city`, `zip`, `byear`, `exp_desc`, `gravatar_id`, `phone_number`, `fax_number`, `country`) VALUES
 	(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(4, 'da', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'd41d8cd98f00b204e9800998ecf8427e', '+40784198777', '+40784198777', '17'),
 	(5, 'Mihai The boss', 'test@test.com', '', 'AAAAAAAAA', NULL, '', 'This is where I say stuff about my education.\r\n', 'yes', '', '21323', '1916', NULL, NULL, '+407222222222', '+407222222222', 'Albania'),
-	(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(6, '', '', '', '', NULL, '', '', '', '', '', '1918', '', NULL, '', '', 'Afghanistan'),
 	(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	(19, '', '', '', '', NULL, '', '', '', '', '', '', '', NULL, '', '', ''),
+	(20, 'da', '', '', '', NULL, '', '', '', '', '', '', '', NULL, '', '', 'Afghanistan'),
+	(21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(23, 'Mihai failed so hard', 'demo@fail.com', 'http://fomrad.com', 'I am good at failing demos.', NULL, 'State', '', 'Address', 'Tg-Jiu', '2313123', '2000', '', NULL, '+40784198777', '+40784198777', 'Austria'),
+	(24, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(25, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(26, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(28, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 
 
@@ -1005,7 +1033,7 @@ CREATE TABLE IF NOT EXISTS `project_canvas_student` (
   KEY `FK_project_canvas_student_project_canvas` (`Project Canvas`),
   KEY `FK_project_canvas_student_student_roles` (`Role`),
   CONSTRAINT `FK_project_canvas_student_project_canvas` FOREIGN KEY (`Project Canvas`) REFERENCES `project_canvas` (`ID`),
-  CONSTRAINT `FK_project_canvas_student_student` FOREIGN KEY (`Student`) REFERENCES `student` (`ID`),
+  CONSTRAINT `FK_project_canvas_student_student` FOREIGN KEY (`Student`) REFERENCES `student` (`id`),
   CONSTRAINT `FK_project_canvas_student_student_roles` FOREIGN KEY (`Role`) REFERENCES `student_roles` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1098,56 +1126,51 @@ CREATE TABLE IF NOT EXISTS `states` (
 
 -- Dumping structure for table yii2basic.student
 CREATE TABLE IF NOT EXISTS `student` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Last login activity` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Given name` varchar(20) NOT NULL,
-  `Family name` varchar(20) NOT NULL,
-  `Email` varchar(20) NOT NULL,
-  `Birth year` int(11) NOT NULL,
-  `Password` varchar(20) NOT NULL,
-  `Reset password expiry date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Mobile Number` varchar(20) NOT NULL,
-  `Phone Number` varchar(20) NOT NULL,
-  `Fax` varchar(20) NOT NULL,
-  `Agreed on terms` enum('Yes','No') NOT NULL DEFAULT 'Yes',
-  `Sector` int(11) NOT NULL,
-  `Sub-sector` int(11) NOT NULL,
-  `Account Confirmed` enum('Yes','No') DEFAULT 'No',
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `Email` (`Email`),
-  KEY `FK_student_sector` (`Sector`),
-  KEY `FK_student_sub_sector` (`Sub-sector`),
-  CONSTRAINT `FK_student_sector` FOREIGN KEY (`Sector`) REFERENCES `sector` (`ID`),
-  CONSTRAINT `FK_student_sub_sector` FOREIGN KEY (`Sub-sector`) REFERENCES `sub_sector` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Student entity holds data about students that are submitting project canvas to experts to be evaluated.';
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `last_login_activity` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `given_name` varchar(20) NOT NULL,
+  `family_name` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `birth_year` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `password_exp_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `mobile` varchar(20) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `fax` varchar(20) NOT NULL,
+  `agreed_terms` enum('Yes','No') NOT NULL DEFAULT 'Yes',
+  `confirmed` enum('Yes','No') DEFAULT 'No',
+  `bio` text,
+  `website` varchar(50) DEFAULT NULL,
+  `country` varchar(50) DEFAULT NULL,
+  `state` varchar(50) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `address` varchar(50) DEFAULT NULL,
+  `zip` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COMMENT='Student entity holds data about students that are submitting project canvas to experts to be evaluated.';
 
--- Dumping data for table yii2basic.student: ~0 rows (approximately)
+-- Dumping data for table yii2basic.student: ~1 rows (approximately)
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` (`id`, `created_on`, `last_modified_on`, `last_login_activity`, `trash`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `password_exp_date`, `mobile`, `phone`, `fax`, `agreed_terms`, `confirmed`, `bio`, `website`, `country`, `state`, `city`, `address`, `zip`) VALUES
+	(90, '2016-04-10 15:51:50', '2016-04-10 15:51:50', '2016-04-10 15:51:50', NULL, '', '', 'student@test.com', 0, '$2y$13$TTFP5hdvlVcS5CvugI9PROth/TCcyKHASFdKDN9N1hJ.goRW.M.LG', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.student_education
 CREATE TABLE IF NOT EXISTS `student_education` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Institution name` varchar(20) NOT NULL,
-  `Degree` int(11) NOT NULL,
-  `Degree details` varchar(20) NOT NULL,
-  `From` date NOT NULL,
-  `To` date NOT NULL,
-  `Details` text NOT NULL,
-  `Student` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_student_education_degrees` (`Degree`),
-  KEY `FK_student_education_student` (`Student`),
-  CONSTRAINT `FK_student_education_degrees` FOREIGN KEY (`Degree`) REFERENCES `degrees` (`ID`),
-  CONSTRAINT `FK_student_education_student` FOREIGN KEY (`Student`) REFERENCES `student` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Student education entity holds data about educational history for students';
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(50) NOT NULL DEFAULT '0',
+  `degree` varchar(50) NOT NULL DEFAULT '0',
+  `institution` varchar(50) NOT NULL DEFAULT '0',
+  `degree_details` varchar(1024) NOT NULL DEFAULT '0',
+  `from` varchar(50) NOT NULL DEFAULT '0',
+  `to` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table yii2basic.student_education: ~0 rows (approximately)
 /*!40000 ALTER TABLE `student_education` DISABLE KEYS */;
@@ -1171,7 +1194,7 @@ CREATE TABLE IF NOT EXISTS `student_experience` (
   KEY `FK_student_experience_job_titles` (`Job title`),
   KEY `FK_student_experience_student` (`Student`),
   CONSTRAINT `FK_student_experience_job_titles` FOREIGN KEY (`Job title`) REFERENCES `job_titles` (`ID`),
-  CONSTRAINT `FK_student_experience_student` FOREIGN KEY (`Student`) REFERENCES `student` (`ID`)
+  CONSTRAINT `FK_student_experience_student` FOREIGN KEY (`Student`) REFERENCES `student` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Student experience entity holds data about experience/training history for students';
 
 -- Dumping data for table yii2basic.student_experience: ~0 rows (approximately)
@@ -1228,7 +1251,7 @@ CREATE TABLE IF NOT EXISTS `token` (
   CONSTRAINT `fk_user_token` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table yii2basic.token: ~9 rows (approximately)
+-- Dumping data for table yii2basic.token: ~18 rows (approximately)
 /*!40000 ALTER TABLE `token` DISABLE KEYS */;
 INSERT INTO `token` (`user_id`, `code`, `created_at`, `type`) VALUES
 	(3, 'tWxVq-0FBssj6IR5PtGpJ_k9nfDFm7V-', 1455036588, 0),
@@ -1239,7 +1262,16 @@ INSERT INTO `token` (`user_id`, `code`, `created_at`, `type`) VALUES
 	(8, 'bTvWdYVMghKkF4uVxwZHBuBg3zqqvDej', 1456469487, 0),
 	(9, 'PXn3NAF0_HoyZXO8bCex84OMz18A8TQU', 1458467410, 0),
 	(10, 'xhDkO_z8pz9WbYy3BQxbGSP_8HqLBmih', 1458467644, 0),
-	(11, 'x7G4jVQ3CFq38hkJnb6bBMJj2dPzfSC9', 1459083772, 0);
+	(19, 'cTAY-Ef3bcWE95-8NGsE7nD9mgczowdF', 1459290325, 0),
+	(20, 'Yf7ZJWGXYLQgdQcU9jZHskLMtyL0FFbo', 1459290342, 0),
+	(21, 'GEr1ZRQQcrhNSxiZppBJlONyUop2NK_s', 1459295097, 0),
+	(22, 'ANZhfVwkBMFMIC3ZTmyH03lmXKLjHcan', 1459354428, 0),
+	(23, 'p0GH28xJ1np2GCRh7Vvrp5zzyFuFH9Xj', 1459354473, 0),
+	(24, '7o_P4-b6ppurr_B2Xk9O4-qhGXek4qar', 1459354494, 0),
+	(25, 'bHK2N3jBlQ9y02wsuQQ9pwAxQB4ripei', 1459358100, 0),
+	(26, 'tgY0A9L2eLfV8i3mMw2wUIsF0pDAPLR4', 1459786277, 0),
+	(27, 'a0OPyeXb8wzLHR7fi2-y23JE1igbUkOY', 1459786567, 0),
+	(28, 'GKA8gwUnRByA3GgQ_pFGE70uZI_AC-zm', 1459786615, 0);
 /*!40000 ALTER TABLE `token` ENABLE KEYS */;
 
 
@@ -1261,9 +1293,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_email` (`email`),
   UNIQUE KEY `user_unique_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
--- Dumping data for table yii2basic.user: ~9 rows (approximately)
+-- Dumping data for table yii2basic.user: ~19 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `phone_number`) VALUES
 	(3, 'test', 'mitapirvuet@yahoo.com', '$2y$12$X1gC0iAOF1/wq.37KK7a6.4ByI8YcAFlPgXVtPzvhM4lLg2OU.C6i', 'YNMdBsrnzqTBypz2F0jahEp24cyHRQx8', 1455200788, NULL, NULL, '::1', 1455036588, 1455036588, 0, ''),
@@ -1274,7 +1306,17 @@ INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `con
 	(8, 'testut', 'test@test.com', '$2y$12$Gb.jL6xRR1Per4EPrwpXNeSUQ/4wJ4Uxws1KBlmXc6o8EY4f1C/GK', 'bvjkeSKKiSzjARuWt-9FINWQLiCCvG6O', 1456469971, NULL, NULL, '::1', 1456469487, 1456469487, 0, ''),
 	(9, 'student', 'test@testtest.com', '$2y$12$rDTteIiZxR0Kp5fSbCo50.emk0IO5G9bvZtIup.J1iMuFd8nCEcPu', 'ymU-B19TONillZaOzHP4k0JAUM7lzzwY', NULL, NULL, NULL, '::1', 1458467409, 1458467409, 0, ''),
 	(10, 'student2', 'test@testtests.com', '$2y$12$b6GUl/mfmfofmUnd00E/geKsXGJ/zi9kSuSMIfc3Qj.51fMmOYSDG', 'WQuC69jD2EsU37JIfyM1F1JDTpZGdH-y', NULL, NULL, NULL, '::1', 1458467643, 1458467643, 0, ''),
-	(11, 'testfield', 'cicatest@test.com', '$2y$12$bR6APZDU946P7m6y1hQEkehd3DxGcmBWMfpjw/QaOkmfwBC0FBZbm', 'rEjCnIpNU9871WnnXv21eOK7jKHl0mH_', NULL, NULL, NULL, '::1', 1459083771, 1459083771, 0, '');
+	(19, 'expert1', 'expert@test.com', '$2y$12$y/Vz4x0eoaCICMufA9cWVOoqCcqCbCSdp249KUvkCL8QN0CXA/Zoe', 'AzMGAd2SyXTUpbmrpKffh2B_HxAPYGxx', NULL, NULL, NULL, '::1', 1459290325, 1459290325, 0, ''),
+	(20, 'student3', 'student@test.com', '$2y$12$.XpSrVYOUe2nICIFvu/Ty.eFnspC4Bfz41uzl.FF.1Q3fb2608oFS', 'yLZ8Yvwh9ShdvGJXhjEYC6ZggJX9J9J4', NULL, NULL, NULL, '::1', 1459290341, 1459290341, 0, ''),
+	(21, 'mdasodmm', 'teksdadiadma@kdsmakm.com', '$2y$12$DzTzbNkl3Mm8.8Cwm0wAP.UWT.5M8f6PzWL/e4Fhaf.DxM68o2CSa', 'auiCAGN8Un9IA_ai8kSVlEq7ZJ6uZgeH', NULL, NULL, NULL, '::1', 1459295096, 1459295096, 0, ''),
+	(22, 'UserNameSkype', 'testskype@test.com', '$2y$12$NioiDx2MZVlDJqYrqDQCleppnqWVGiT5AOw2s3/pKh3eEKLB3sqL.', '89sUKkUzrGCU9tjl_TwymASBErdyarlS', NULL, NULL, NULL, '::1', 1459354428, 1459354428, 0, ''),
+	(23, 'skypeStudent', 'testSkypeTest@mail.com', '$2y$12$gzwrL0xxPdfA3STdbkIvhugWY684x4nbVg.U94kjmOl7dHT8RTTcu', 'kZ2FG--Fm7hC2Xtz11_hHyYw-6LfGfeW', NULL, NULL, NULL, '::1', 1459354473, 1459354473, 0, ''),
+	(24, 'SkypeExpert', 'testexpert@mail.com', '$2y$12$y73W/2E/D1eOiq9hk6jChOllhLRQytT9dOKxXbVd2PLkGv/vfyu0u', 'rXyFD2WrRv1k0PFk6O4__R-_qTIOiGoQ', NULL, NULL, NULL, '::1', 1459354493, 1459354493, 0, ''),
+	(25, 'dasijdaiodjasi', 'dasiasm@dmsakodas.com', '$2y$12$aGA1ARJkq0PxwoeDfQsXz.zxnys5Jcjuy2Indo4YfsEy0KQACmgA6', 'HGtkjyZtKukrwMzFFW7Upg6IHse_aRPn', NULL, NULL, NULL, '::1', 1459358100, 1459358100, 0, ''),
+	(26, 'sdadasdasda', 'damsidmas@mdasimda.com', '$2y$12$IjMki2XOZGlKlmLgtv97SepwrjfypCqmSzTdCWh7oy1yG4EiOxV9y', 'IEy6rhLfJCRzgISWD2-IvCMbTckxow-M', NULL, NULL, NULL, '::1', 1459786277, 1459786277, 0, ''),
+	(27, 'dasds@dsad.com', 'dasds@dsad.com', '$2y$12$h6apaXaKHtXfSmu89eZWD.9eswR11VM6BRXPo5yxltq3kzbV3jWGq', 'THcDirR_VFSpwwKSO4ZpzRvVyBydRfsn', NULL, NULL, NULL, '::1', 1459786567, 1459786567, 0, ''),
+	(28, 'mihai@pirvulet.com', 'mihai@pirvulet.com', '$2y$12$IsG4i55FqMI4d5EzYVTntOf/gbJTWnjEHyipSdXfKMt.yvlXS7l/e', 'NasLxk04dOq2g7Anwi5s3B4L0CcurTJT', NULL, NULL, NULL, '::1', 1459786614, 1459787146, 0, ''),
+	(30, 'dadada', 'wtff@wtf.com', 'da', '', NULL, NULL, NULL, NULL, 0, 0, 0, '');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

@@ -8,7 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-
+use yii\helpers\Url;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -30,7 +30,7 @@ AppAsset::register($this);
             echo '<link href="/web/assets/ba2b43d0/toolbar.css" rel="stylesheet">	';
     ?>
 	<?php
-		$is = (($controller->action->id === "login")) ? true : false;
+		$is = (($controller->action->id === "login" || $controller->action->id === "update")) ? true : false;
 		if($is)
 			echo '<link href="../web/css/login.css" rel="stylesheet">';
 	?>
@@ -98,7 +98,10 @@ AppAsset::register($this);
   if (Yii::$app->user->isGuest) {
     array_push($navItemsRight,['label' => 'Sign In', 'url' => ['/user/security/login']],['label' => 'Sign Up', 'url' => ['/user/registration/register']]);
   } else {
-    array_push($navItemsRight,['label' => 'Account', 'url' => ['/user/settings/profile']],
+    if(Yii::$app->user->identity->type == 's'){
+        array_push($navItemsRight, ['label' => 'Account', 'url' => Url::to(['student/update', 'id' => Yii::$app->user->id])]);
+    }
+    array_push($navItemsRight,
 		['label' => 'Logout',
         'url' => ['/site/logout'],
         'linkOptions' => ['data-method' => 'post']]
