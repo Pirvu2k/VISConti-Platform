@@ -4,6 +4,7 @@ use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 
 $this->title = 'Visconti';
+
 ?>
 
 <div class="row">
@@ -37,7 +38,7 @@ $this->title = 'Visconti';
                 <data><b><?= $project->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $project->date_added ?> by <a href="?r=user/profile/show&id=<?= $project->student_id ?>"><?= $project->created_by ?></a></time>
+            <time><?= $project->date_added ?> by <a href=""><?= $project->created_by ?></a></time>
             </br>
              </li>
         <?php endforeach; 
@@ -47,7 +48,7 @@ $this->title = 'Visconti';
 
     </ul>
 </div>
-<?php if(!Yii::$app->user->isGuest && Yii::$app->user->can('expert')) {?>
+<?php if(!Yii::$app->user->isGuest && Yii::$app->user->identity->type == 'e') {?>
 <div class="row">
     <h2>Invitations</h2>
     <ul class="col-md-10 col-sm-9 feed">
@@ -58,7 +59,7 @@ $this->title = 'Visconti';
                 <data><b><?= $invitation->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $invitation->date_added ?> by <a href="?r=user/profile/show&id=<?= $invitation->student_id ?>"><?= $invitation->created_by ?></a></time>
+            <time><?= $invitation->date_added ?> by <a href=""><?= $invitation->created_by ?></a></time>
             <br>
         </li>
         <?php endforeach; 
@@ -77,7 +78,7 @@ $this->title = 'Visconti';
                 <data><b><?= $project->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $project->date_added ?> by <a href="?r=user/profile/show&id=<?= $project->student_id ?>"><?= $project->created_by ?></a></time>
+            <time><?= $project->date_added ?> by <a href=""><?= $project->created_by ?></a></time>
             <br>
         </li>
         <?php endforeach; 
@@ -97,7 +98,7 @@ $this->title = 'Visconti';
                 <data><b><?= $project->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $project->date_added ?> by <a href="?r=user/profile/show&id=<?= $project->student_id ?>"><?= $project->created_by ?></a></time>
+            <time><?= $project->date_added ?> by <a href=""><?= $project->created_by ?></a></time>
             <br>
         </li>
         <?php endforeach; 

@@ -38,7 +38,7 @@ use yii\captcha\CaptchaAction;
 	   echo '</br>';
 	?>
 
-    <?php if(Yii::$app->user->identity->isAdmin || Yii::$app->user->can('expert'))
+    <?php if(Yii::$app->user->identity->type == 'e')
     {
     	echo $form->field($model,'requested')->radioList(['Accepted'=>'Accepted' , 'In queue'=>'In queue' ,'Declined'=>'Declined']);
     }

@@ -34,7 +34,7 @@ class Canvas extends \yii\db\ActiveRecord
         return [
             [['title', 'content','language','eng_summary'], 'required'],
             [['title', 'content','eng_summary'], 'string'],
-            [['date_added', 'date_modified','requested','assigned_to','expert_id','student_id','created_by'], 'safe'],
+            [['date_added', 'date_modified','requested','assigned_to','expert_id','created_by'], 'safe'],
             ['eng_summary','string', 'max' => 120,'min'=>10 ],
             ['title','string','max'=>50,'min'=>5],
             [['files'], 'file', 'maxFiles' => 4]

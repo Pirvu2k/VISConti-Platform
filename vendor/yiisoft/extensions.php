@@ -131,4 +131,22 @@ return array (
       '@kato' => $vendorDir . '/perminder-klair/yii2-dropzone',
     ),
   ),
+  'rmrevin/yii2-fontawesome' => 
+  array (
+    'name' => 'rmrevin/yii2-fontawesome',
+    'version' => '2.13.0.0',
+    'alias' => 
+    array (
+      '@rmrevin/yii/fontawesome' => $vendorDir . '/rmrevin/yii2-fontawesome',
+    ),
+  ),
+  'rmrevin/yii2-comments' => 
+  array (
+    'name' => 'rmrevin/yii2-comments',
+    'version' => '1.4.2.0',
+    'alias' => 
+    array (
+      '@rmrevin/yii/module/Comments' => $vendorDir . '/rmrevin/yii2-comments',
+    ),
+  ),
 );

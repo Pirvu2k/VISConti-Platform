@@ -1460,5 +1460,151 @@
             "widget",
             "yii2"
         ]
+    },
+    {
+        "name": "bower-asset/fontawesome",
+        "version": "v4.5.0",
+        "version_normalized": "4.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FortAwesome/Font-Awesome.git",
+            "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/fddd2c240452e6c8990c4ef75e0265b455aa7968",
+            "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968",
+            "shasum": ""
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": [
+                "less/font-awesome.less",
+                "scss/font-awesome.scss"
+            ],
+            "bower-asset-ignore": [
+                "*/.*",
+                "*.json",
+                "src",
+                "*.yml",
+                "Gemfile",
+                "Gemfile.lock",
+                "*.md"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "OFL-1.1",
+            "MIT",
+            "CC-BY-3.0"
+        ],
+        "description": "Font Awesome"
+    },
+    {
+        "name": "rmrevin/yii2-fontawesome",
+        "version": "2.13.0",
+        "version_normalized": "2.13.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rmrevin/yii2-fontawesome.git",
+            "reference": "2efbfacb22be59f373d11a7e3dfa9213e2ba18a9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/2efbfacb22be59f373d11a7e3dfa9213e2ba18a9",
+            "reference": "2efbfacb22be59f373d11a7e3dfa9213e2ba18a9",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/fontawesome": "4.5.*",
+            "php": ">=5.4.0",
+            "yiisoft/yii2": "2.0.*"
+        },
+        "time": "2015-11-26 15:24:53",
+        "type": "yii2-extension",
+        "extra": {
+            "asset-installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "rmrevin\\yii\\fontawesome\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Revin Roman",
+                "email": "roman@rmrevin.com",
+                "homepage": "https://rmrevin.com/"
+            }
+        ],
+        "description": "Asset Bundle for Yii2 with Font Awesome",
+        "keywords": [
+            "asset",
+            "awesome",
+            "bundle",
+            "font",
+            "yii"
+        ]
+    },
+    {
+        "name": "rmrevin/yii2-comments",
+        "version": "1.4.2",
+        "version_normalized": "1.4.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rmrevin/yii2-comments.git",
+            "reference": "c68ddf276fe24ece0173781a8f7391a2cf7e6a12"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rmrevin/yii2-comments/zipball/c68ddf276fe24ece0173781a8f7391a2cf7e6a12",
+            "reference": "c68ddf276fe24ece0173781a8f7391a2cf7e6a12",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0",
+            "rmrevin/yii2-fontawesome": "~2.10",
+            "yiisoft/yii2": "2.0.*"
+        },
+        "time": "2016-03-01 13:18:41",
+        "type": "yii2-extension",
+        "extra": {
+            "asset-installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "rmrevin\\yii\\module\\Comments\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Roman Revin",
+                "email": "xgismox@gmail.com",
+                "homepage": "http://rmrevin.ru/"
+            }
+        ],
+        "description": "Comments module for Yii2",
+        "keywords": [
+            "comment",
+            "module",
+            "widget",
+            "yii"
+        ]
     }
 ]

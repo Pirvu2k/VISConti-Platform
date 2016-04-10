@@ -5,13 +5,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Canvas */
-if(Yii::$app->user->identity->isAdmin)
-	{
-		$this->title = 'Edit Canvas';
-	}
-else {
+
 	$this->title ="Create Canvas";
-}
 $this->params['breadcrumbs'][] = ['label' => 'Canvas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

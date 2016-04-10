@@ -59,7 +59,7 @@ class CanvasSearch extends Canvas
             'id' => $this->id,
             'date_added' => $this->date_added,
             'date_modified' => $this->date_modified,
-            'assigned_to'=>Yii::$app->user->identity->username,
+            'assigned_to'=>Yii::$app->user->id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

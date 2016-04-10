@@ -37,12 +37,16 @@ class CanvasController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['create','view','update'],
-                        'roles' => ['student'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->type == 's';
+                        },
                     ],
                     [
                         'allow' => true,
                         'actions' => ['index','view','update','delete'],
-                        'roles' => ['expert'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->type == 'e';
+                        },
                     ],
                     [
                         'allow' => false,
@@ -93,19 +97,8 @@ class CanvasController extends Controller
         if ($model->load(Yii::$app->request->post())) {
           $model->date_added = new Expression('NOW()');
           $model->date_modified = new Expression('NOW()');
-          $model->created_by= Yii::$app->user->identity->username;
-          $model->student_id= Yii::$app->user->identity->id;
+          $model->created_by= Yii::$app->user->id;
           $model->requested = 1;
-          $model->files=UploadedFile::getInstances($model, 'files');
-          if ($model->upload()) {
-                foreach($model->files as $file)
-                {
-                    $up = new File();
-                    $up->name=$file->baseName . "." . $file->extension;
-                    $up->canvas_id=$model->id;
-                    $up->save();
-                }
-            }
            if ($model->save()) {             
              return $this->redirect(['view', 'id' => $model->id]);             
            } 

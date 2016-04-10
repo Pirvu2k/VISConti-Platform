@@ -7,6 +7,9 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'user' => [
+            'identityClass' => 'app\models\User',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'NikhuOy-GIAGtPIvqUBAurKUd1cHy1yX',
@@ -41,19 +44,6 @@ $config = [
         ],
     ],
     'params' => $params,
-    'modules' => [
-    'user' => [
-        'class' => 'dektrium\user\Module',
-        'enableUnconfirmedLogin' => true,
-        'rememberFor' => 1209600,
-        'confirmWithin' => 21600,
-        'cost' => 12,
-        'admins' => ['admin'],
-    ],
-    'rbac' => [
-        'class' => 'dektrium\rbac\Module',
-    ],
-],
 ];
 
 if (YII_ENV_DEV) {

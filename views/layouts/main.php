@@ -57,7 +57,7 @@ AppAsset::register($this);
             <div id="header-actions" class="col-sm-4" data-view="header_actions" data-model_name="user" data-model_id="5598ec54ad44d93f30b9f805">
 				<?php
 					if(!Yii::$app->user->isGuest){
-                        echo '<a class="btn purple" href="index.php?r=user/profile/show&id=' . Yii::$app->user->identity->id . '"><i class="glyphicon glyphicon-user" style="margin-right:10px;"></i>'. Yii::$app->user->identity->username .'</a>';
+                        echo '<a class="btn purple" href="index.php?r=user/profile/show&id=' . Yii::$app->user->id . '"><i class="glyphicon glyphicon-user" style="margin-right:10px;"></i>'. Yii::$app->user->identity->getEmail() .'</a>';
                     }
 				?>
             </div>
@@ -100,7 +100,7 @@ AppAsset::register($this);
   } else {
     array_push($navItemsRight,['label' => 'Account', 'url' => ['/user/settings/profile']],
 		['label' => 'Logout',
-        'url' => ['/user/security/logout'],
+        'url' => ['/site/logout'],
         'linkOptions' => ['data-method' => 'post']]
     );
   }
