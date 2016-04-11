@@ -46,11 +46,14 @@ class StudentAccount extends \yii\db\ActiveRecord
         return [
             [['created_on', 'last_modified_on', 'last_login_activity', 'password_exp_date'], 'safe'],
             [['trash', 'agreed_terms', 'confirmed'], 'string'],
-            [['given_name', 'family_name', 'birth_year'], 'required'],
             [['birth_year'], 'integer'],
-            [['given_name', 'family_name', 'email', 'mobile', 'phone', 'fax'], 'string', 'max' => 20],
+            [['mobile' , 'phone'] , 'integer' , 'message' => 'Please enter a valid number.'],
+            [['zip'] , 'integer' , 'message' => 'Please enter a valid zip code.'],
+            [['sector' , 'sub_sector'] , 'string' , 'max' => 50],
+            [['given_name', 'family_name', 'email', 'fax'], 'string', 'max' => 20],
             [['password'], 'string', 'max' => 255],
             [['email'], 'unique'],
+            [['sub_sector'] , 'validateSubsector'],
             'websiteUrl' => ['website', 'url', 'defaultScheme' => 'http'],
         ];
     }
@@ -101,5 +104,25 @@ class StudentAccount extends \yii\db\ActiveRecord
     public function getStudentExperiences()
     {
         return $this->hasMany(StudentExperience::className(), ['Student' => 'id']);
+    }
+
+    public function validateSubsector($attribute, $params)
+    {
+        if(empty($this->sector))
+            $this->addError('sub_sector' , 'Select sector first.');
+    }
+
+    public function getSector()
+    {
+        $data=Sector::find()->where(['id' => $this->sector])->one();
+        $data = $data->name;
+        return $data;
+    }
+
+    public function getSubSector()
+    {
+        $data=SubSector::find()->where(['id' => $this->sub_sector])->one();
+        $data = $data->name;
+        return $data;
     }
 }

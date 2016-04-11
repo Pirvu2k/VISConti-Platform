@@ -28,9 +28,6 @@ use yii\widgets\ActiveForm;
                 ?>
 
     <?php 
-                    $items=[];
-                    for($i=1900;$i<=2016;$i++)
-                        $items[$i]=$i;
 
                     echo $form->field($model, 'to')->dropDownList($items,['prompt'=>'Select end year.' ]);
 

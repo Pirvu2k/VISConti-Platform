@@ -57,7 +57,9 @@ AppAsset::register($this);
             <div id="header-actions" class="col-sm-4" data-view="header_actions" data-model_name="user" data-model_id="5598ec54ad44d93f30b9f805">
 				<?php
 					if(!Yii::$app->user->isGuest){
-                        echo '<a class="btn purple" href="index.php?r=user/profile/show&id=' . Yii::$app->user->id . '"><i class="glyphicon glyphicon-user" style="margin-right:10px;"></i>'. Yii::$app->user->identity->getEmail() .'</a>';
+                        if(Yii::$app->user->identity->type=='e')
+                        echo '<a class="btn purple" href="index.php?r=expert/view&id=' . Yii::$app->user->id . '"><i class="glyphicon glyphicon-user" style="margin-right:10px;"></i>'. Yii::$app->user->identity->getEmail() .'</a>';
+                        else echo '<a class="btn purple" href="index.php?r=student/view&id=' . Yii::$app->user->id . '"><i class="glyphicon glyphicon-user" style="margin-right:10px;"></i>'. Yii::$app->user->identity->getEmail() .'</a>';
                     }
 				?>
             </div>
@@ -99,8 +101,8 @@ AppAsset::register($this);
     array_push($navItemsRight,['label' => 'Sign In', 'url' => ['/user/security/login']],['label' => 'Sign Up', 'url' => ['/user/registration/register']]);
   } else {
     if(Yii::$app->user->identity->type == 's'){
-        array_push($navItemsRight, ['label' => 'Account', 'url' => Url::to(['student/update', 'id' => Yii::$app->user->id])]);
-    }
+        array_push($navItemsRight, ['label' => 'Profile', 'url' => Url::to(['student/update', 'id' => Yii::$app->user->id])]);
+    }else array_push($navItemsRight, ['label' => 'Profile', 'url' => Url::to(['expert/update', 'id' => Yii::$app->user->id])]);
     array_push($navItemsRight,
 		['label' => 'Logout',
         'url' => ['/site/logout'],
@@ -136,7 +138,7 @@ echo Nav::widget([
 
 	<footer>
 		<div class="container">
-			<small class="row">&copy; My Company <?= date('Y') ?></small>
+			<small class="row">&copy; VISConti <?= date('Y') ?></small>
 		</div>
 	</footer>
 </div>

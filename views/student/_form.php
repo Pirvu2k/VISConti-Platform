@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Country;
+use app\models\Sector;
+use app\models\SubSector;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -13,6 +15,7 @@ use yii\helpers\ArrayHelper;
 <div class="student-account-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <hr class="colorgraph">
     <h3> Personal Info </h3>
     <hr class="colorgraph">
     <?= $form->field($model, 'given_name')->textInput(['maxlength' => true]) ?>
@@ -57,12 +60,29 @@ use yii\helpers\ArrayHelper;
     <hr class="colorgraph"> 
 
     <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studenteducation/index');?>" frameBorder="0"></iframe>
+
     <hr class="colorgraph">
     <h3> Experience </h3>
     <hr class="colorgraph"> 
 
+    <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studentexperience/index');?>" frameBorder="0"></iframe>
+
+    <hr class="colorgraph">
+    <h3> Specialization </h3>
+    <hr class="colorgraph">
+
+    <?php 
+        $items = ArrayHelper::map(Sector::find()->all(), 'id', 'name');
+         echo $form->field($model, 'sector')->dropDownList($items,['prompt'=>'Please select your sector.' , 'onchange' => '$.post ("index.php?r=site/lists&id=' . '"+$(this).val(), function(data) { $("select#studentaccount-sub_sector").html(data); });' ]);
+
+         $items = ArrayHelper::map(SubSector::find()->all(), 'id', 'name');
+         echo $form->field($model, 'sub_sector')->dropDownList($items,['prompt'=>'Please select your sub-sector.'  ]);
+    ?>
+
+    <hr class="colorgraph">
+
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success pull-right' , 'style' => 'margin-right:50%']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

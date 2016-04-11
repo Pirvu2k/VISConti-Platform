@@ -15,6 +15,8 @@ use app\models\RegistrationForm;
 use app\models\Student;
 use app\models\Expert;
 use yii\db\Expression;
+use kartik\widgets\DepDrop;
+use app\models\SubSector;
 
 class SiteController extends Controller
 {   
@@ -107,11 +109,12 @@ class SiteController extends Controller
                 $student = new Student();
                 $student->email = $model->email;
                 $student->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
-                $student->created_on = $student->last_modified_on = $student->last_login_activity = new Expression('NOW()');
-                if(!Student::findOne(['email'=>$model->email]))
+                $student->created_on = $student->last_login_activity = new Expression('NOW()');
+                $student->last_modified_on = new Expression('NOW()');
+                if(!Student::findOne(['email'=>$model->email]) && !Expert::findOne(['email'=>$model->email]))
                 {
                     $student->save();
-                    return $this->redirect('index.php?r=site/loginall');
+                    return $this->redirect('index.php?r=site/login');
                 }
                 else {
                     Yii::$app->getSession()->setFlash('error', 'E-mail already in use.');
@@ -123,10 +126,10 @@ class SiteController extends Controller
                 $expert->email = $model->email;
                 $expert->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
                 $expert->created_on = $expert->last_modified_on = $expert->last_login_activity = new Expression('NOW()');
-                if(!Expert::findOne(['email'=>$model->email]))
+                if(!Expert::findOne(['email'=>$model->email]) && !Student::findOne(['email'=>$model->email]))
                 {
                     $expert->save();
-                    return $this->redirect('index.php?r=site/loginall');
+                    return $this->redirect('index.php?r=site/login');
                 }
                 else {
                     Yii::$app->getSession()->setFlash('error', 'E-mail already in use.');
@@ -174,6 +177,22 @@ class SiteController extends Controller
     public function actionFaq()
     {
         return $this->render('faq');
+    }
+
+    public function actionLists($id)
+    {
+
+        $subsectors = SubSector::find()->where(['sector' => $id])->all();
+
+        if(!empty($subsectors)) {
+            foreach($subsectors as $subsector)
+            {
+                echo "<option value='". $subsector->sector . "'>" . $subsector->name . "</option>";
+            }
+        }
+        else {
+            echo "<option>.</option>";
+        }
     }
 
 }

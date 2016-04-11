@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\StudentAccount;
 use app\models\StudentAccountSearch;
+use app\models\StudentExperience;
+use app\models\StudentEducation;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -69,8 +71,13 @@ class StudentController extends Controller
      */
     public function actionView($id)
     {
+        $experience=StudentExperience::find()->where(['user_id' => $id]) -> all();
+        $education=StudentEducation::find()->where(['user_id' => $id]) -> all();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'education' => $education,
+            'experience' => $experience,
         ]);
     }
 

@@ -23,7 +23,8 @@
 		"letyii/yii2-tinymce": "dev-master",
         "kartik-v/yii2-field-range": "dev-master",
         "perminder-klair/yii2-dropzone": "dev-master",
-        "rmrevin/yii2-comments" : "1.4.*"
+        "rmrevin/yii2-comments" : "1.4.*",
+        "kartik-v/yii2-widget-depdrop": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

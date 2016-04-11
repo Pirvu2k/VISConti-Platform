@@ -76,13 +76,15 @@ class LoginFormAll extends Model
         if ($this->type == 's') 
         {
             $this->_user = Student::findByEmail($this->email);
-            $this->_user->type = 's';
+            if($this->_user)
+                $this->_user->type = 's';
         }
         
         if ($this->type == 'e') 
         {   
             $this->_user = Expert::findByEmail($this->email);
-            $this->_user->type = 'e';
+            if($this->_user)
+                $this->_user->type = 'e';
         }
 
         return $this->_user;
