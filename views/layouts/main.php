@@ -30,7 +30,7 @@ AppAsset::register($this);
             echo '<link href="/web/assets/ba2b43d0/toolbar.css" rel="stylesheet">	';
     ?>
 	<?php
-		$is = (($controller->action->id === "login" || $controller->action->id === "update")) ? true : false;
+		$is = (($controller->action->id === "login" || $controller->action->id === "register")) ? true : false;
 		if($is)
 			echo '<link href="../web/css/login.css" rel="stylesheet">';
 	?>
@@ -98,7 +98,7 @@ AppAsset::register($this);
   ];
     $navItemsRight=[];
   if (Yii::$app->user->isGuest) {
-    array_push($navItemsRight,['label' => 'Sign In', 'url' => ['/user/security/login']],['label' => 'Sign Up', 'url' => ['/user/registration/register']]);
+    array_push($navItemsRight,['label' => 'Sign In', 'url' => ['/site/login']],['label' => 'Sign Up', 'url' => ['/site/register']]);
   } else {
     if(Yii::$app->user->identity->type == 's'){
         array_push($navItemsRight, ['label' => 'Profile', 'url' => Url::to(['student/update', 'id' => Yii::$app->user->id])]);
