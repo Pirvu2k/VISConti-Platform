@@ -24,37 +24,59 @@ use yii\captcha\CaptchaAction;
 $this->title = 'Register';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
-            </div>
-            <div class="panel-body">
-                <?php $form = ActiveForm::begin([
-                    //'enableAjaxValidation'   => true,
-                    //'enableClientValidation' => true,
-                ]); ?>
+        <div class="row" style="margin-top:20px">
+			<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+				<h2>Please Sign Up <small>It's free and always will be.</small></h2>
+				<hr class="colorgraph">
 
-                <?= $form->field($model, 'email') ?> 
+				<div class="panel-body">
+					<?php $form = ActiveForm::begin([
+						'fieldConfig' => [
+							'template' => "<div class=\"col-lg-13\">{input}</div></br><div class=\"col-lg-12\">{error}</div>",
+						],
+						//'enableAjaxValidation'   => true,
+						//'enableClientValidation' => true,
+					]); ?>
 
-                <p style="color:red;"><?= Yii::$app->session->getFlash('error'); ?> </p>
+					<?= $form->field($model, 'email', ['inputOptions' => ['placeholder' => 'E-mail', 'autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1']]) ?> 
 
-                <?php // $form->field($model, 'username') ?>
-             
-                <?= $form->field($model, 'type')->dropdownList(['s' => 'Student','e'=>'Expert'] , ['prompt' => 'Please select a role.']) ?>
-                
-                <?= $form->field($model, 'password')->passwordInput() ?>
+					<p style="color:red;"><?= Yii::$app->session->getFlash('error'); ?> </p>
 
-                <?= $form->field($model, 'captcha')->widget(Captcha::className(),['captchaAction' => '/site/captcha']) ?>
+					<?php // $form->field($model, 'username') ?>
+				 
+					<?= $form->field($model, 'type', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1']])->dropdownList(['s' => 'Student','e'=>'Expert'] , ['prompt' => 'Please select a role.']) ?>
+					
+					<?= $form->field($model, 'password', ['inputOptions' => ['placeholder' => 'Password', 'autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1']])->passwordInput() ?>
 
-                <?= Html::submitButton('Create Account', ['class' => 'btn btn-success btn-block']) ?>
+					<?= $form->field($model, 'captcha')->widget(Captcha::className(),['captchaAction' => '/site/captcha', 'options' => ['placeholder' => 'Captcha', 'autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1'],
+						'template' => '<div class="row">
+                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                <div class="form-group">
+									{image}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                <div class="form-group">
+                                    {input}
+                                </div>
+                            </div>
+                        </div>'
+					]) ?>
 
-                <?php ActiveForm::end(); ?>
+
+					<?= Html::submitButton('Create Account', ['class' => 'btn btn-success btn-block']) ?>
+
+					<?php ActiveForm::end(); ?>
+				</div>
+			
+				<hr class="colorgraph">
             </div>
         </div>
+
         <p class="text-center">
-            <?= Html::a('Already registered? Sign in!', ['/site/loginall']) ?>
+            <?= Html::a('Already registered? Sign in!', ['/site/login']) ?>
         </p>
     </div>
-</div>

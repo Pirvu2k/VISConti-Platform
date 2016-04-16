@@ -10,40 +10,51 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+    <div class="row">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
+	
+    <div class="row" style="margin-top:20px">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+				<fieldset>
+					<h2>Please fill out the following fields to login:</h2>
+					<hr class="colorgraph">
+	
+	
+					<?php $form = ActiveForm::begin([
+						'id' => 'login-form',
+						'options' => ['class' => 'form-horizontal'],
+						'fieldConfig' => [
+							'template' => "<div class=\"col-lg-12\">{input}</div></br><div class=\"col-lg-12\">{error}</div>",
+						],
+					]); ?>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'options' => ['class' => 'form-horizontal'],
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+						<?= $form->field($model, 'email', ['inputOptions' => ['placeholder' => 'E-mail', 'autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1']]) ?>
 
-        <?= $form->field($model, 'email') ?>
+						<?= $form->field($model, 'password', ['inputOptions' => ['placeholder' => 'Password', 'autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1']])->passwordInput() ?>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+						<?= $form->field($model, 'type', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1']])->dropdownList(['s'=>'Student', 'e' => 'Expert'], ['prompt' => 'Please select a role.']);?>
 
-        <?= $form->field($model, 'type')->dropdownList(['s'=>'Student', 'e' => 'Expert'], ['prompt' => 'Please select a role.']);?>
+						<?= $form->field($model, 'rememberMe', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1']])->checkbox([
+							'template' => "<div class=\"col-lg-12\">{input} {label}</div>",
+						]) ?>
+						
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<?= Html::submitButton('Login', ['class' => 'green col-sm-12', 'tabindex' => '3', 'name' => 'login-button']) ?>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<p class="text-center">
+									<?= Html::a('<button type="button" class="purple col-sm-12">Register</button>', ['site/register']) ?>
+								</p>
+							</div>
+						</div>
+						
+						<hr class="colorgraph">
+				</fieldset>
+			</div>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
 
     <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
-    </div>
-</div>
+			</div>
