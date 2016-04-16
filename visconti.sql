@@ -541,7 +541,7 @@ INSERT INTO `experience` (`id`, `user_id`, `job_title`, `institution`, `from`, `
 -- Dumping structure for table yii2basic.expert
 CREATE TABLE IF NOT EXISTS `expert` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `trash` enum('Yes','No') DEFAULT NULL,
   `last_login_activity` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -549,25 +549,32 @@ CREATE TABLE IF NOT EXISTS `expert` (
   `given_name` varchar(20) NOT NULL,
   `family_name` varchar(20) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `byear` int(11) NOT NULL,
-  `password` varchar(20) NOT NULL COMMENT 'shall be hashed in the db',
+  `birth_year` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL COMMENT 'shall be hashed in the db',
   `reset_pass_exp_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'once an expert member request reset of password, this field stores the expiry date of the reset password request',
-  `country` int(11) NOT NULL,
+  `website` varchar(50) NOT NULL,
+  `bio` varchar(1024) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  `zip` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
   `mobile` varchar(50) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `fax` varchar(50) NOT NULL,
   `terms` enum('Yes','No') DEFAULT 'Yes',
   `confirmed` enum('Yes','No') DEFAULT 'No',
   `active_projects` int(11) NOT NULL,
+  `sectors` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.expert: ~2 rows (approximately)
 /*!40000 ALTER TABLE `expert` DISABLE KEYS */;
-INSERT INTO `expert` (`id`, `created_on`, `last_modified_on`, `trash`, `last_login_activity`, `title`, `given_name`, `family_name`, `email`, `byear`, `password`, `reset_pass_exp_date`, `country`, `mobile`, `phone`, `fax`, `terms`, `confirmed`, `active_projects`) VALUES
-	(1, '2016-04-07 22:45:03', '0000-00-00 00:00:00', NULL, '0000-00-00 00:00:00', '', '', '', 'expert@test.com', 0, 'test', '0000-00-00 00:00:00', 0, '', '', '', 'Yes', 'No', 0),
-	(10, '2016-04-10 15:35:42', '2016-04-10 15:35:42', NULL, '2016-04-10 15:35:42', '', '', '', 'test@test.com', 0, '$2y$13$Abtidwttd3bX0', '0000-00-00 00:00:00', 0, '', '', '', 'Yes', 'No', 0);
+INSERT INTO `expert` (`id`, `created_on`, `last_modified_on`, `trash`, `last_login_activity`, `title`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `reset_pass_exp_date`, `website`, `bio`, `country`, `zip`, `city`, `address`, `state`, `mobile`, `phone`, `fax`, `terms`, `confirmed`, `active_projects`, `sectors`) VALUES
+	(13, '2016-04-16 03:27:44', '2016-04-11 12:32:54', NULL, '2016-04-10 22:31:29', 'Mr.', 'Mihai', 'Pirvulet', 'expert@test.com', 1915, '$2y$13$e6kmM5uEnX/E.1dtV9zSL./rOwvGamfzcUKU97luaWXw8MvXRjyIm', '0000-00-00 00:00:00', 'http://fomrad.com', 'dadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadada', 'Romania', '223945', 'Balesti', 'Str.2 Ap. 5', 'Gorj', '312312312', '443243242', '', 'Yes', 'No', 0, '1,2'),
+	(14, '2016-04-13 20:24:28', '2016-04-13 20:24:28', NULL, '2016-04-13 20:24:28', '', '', '', 'da@test.com', 0, '$2y$13$Ik8umC88ANX7NdNOypQAFu1ENzKlmfSurC3niupUfwptGvhu6N6Y2', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL);
 /*!40000 ALTER TABLE `expert` ENABLE KEYS */;
 
 
@@ -581,53 +588,56 @@ CREATE TABLE IF NOT EXISTS `expert_education` (
   `degree_details` varchar(1024) NOT NULL DEFAULT '0',
   `to` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table yii2basic.expert_education: ~0 rows (approximately)
+-- Dumping data for table yii2basic.expert_education: ~2 rows (approximately)
 /*!40000 ALTER TABLE `expert_education` DISABLE KEYS */;
+INSERT INTO `expert_education` (`id`, `user_id`, `degree`, `institution`, `from`, `degree_details`, `to`) VALUES
+	(2, '0', 'Yes', 'It\'s me', '1916', 'Here i did some of the best shit ever,', '1939'),
+	(3, '0', 'dadasdasd', 'asdasdasdas', '1905', 'dadsasdasda', '1910'),
+	(8, '13', 'sdsadasdasdas', 'dasdasdasd', '1917', 'asdasdasdas', '1916');
 /*!40000 ALTER TABLE `expert_education` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.expert_experience
 CREATE TABLE IF NOT EXISTS `expert_experience` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Institution name` varchar(20) NOT NULL,
-  `Job title` varchar(20) NOT NULL,
-  `Job description` varchar(20) NOT NULL,
-  `From` date NOT NULL,
-  `To` date NOT NULL,
-  `Details` text NOT NULL,
-  `Expert` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_expert_experience_expert` (`Expert`),
-  CONSTRAINT `FK_expert_experience_expert` FOREIGN KEY (`Expert`) REFERENCES `expert` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Expert experience entity holds data about the experience history of the experts';
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(50) NOT NULL DEFAULT '0',
+  `job_title` varchar(50) NOT NULL DEFAULT '0',
+  `institution` varchar(50) NOT NULL DEFAULT '0',
+  `from` varchar(50) NOT NULL DEFAULT '0',
+  `to` varchar(50) NOT NULL DEFAULT '0',
+  `job_description` varchar(1024) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table yii2basic.expert_experience: ~0 rows (approximately)
+-- Dumping data for table yii2basic.expert_experience: ~2 rows (approximately)
 /*!40000 ALTER TABLE `expert_experience` DISABLE KEYS */;
+INSERT INTO `expert_experience` (`id`, `user_id`, `job_title`, `institution`, `from`, `to`, `job_description`) VALUES
+	(3, '13', 'dasdasdas', 'dasdsads', '1916', '1918', 'dasdasdas'),
+	(4, '13', 'dasdasda', 'asdasdasd', '1917', '1907', 'sdasdasd');
 /*!40000 ALTER TABLE `expert_experience` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.expert_interest
 CREATE TABLE IF NOT EXISTS `expert_interest` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Interest` int(11) NOT NULL COMMENT 'Lookup to interests',
-  `CoP` int(11) NOT NULL COMMENT 'Lookup to experts',
-  PRIMARY KEY (`ID`),
-  KEY `FK_expert_interest_expert` (`CoP`),
-  KEY `FK_expert_interest_interest` (`Interest`),
-  CONSTRAINT `FK_expert_interest_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`id`),
-  CONSTRAINT `FK_expert_interest_interest` FOREIGN KEY (`Interest`) REFERENCES `interest` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `interest` int(11) NOT NULL COMMENT 'Lookup to interests',
+  `expert` int(11) NOT NULL COMMENT 'Lookup to experts',
+  PRIMARY KEY (`id`),
+  KEY `FK_expert_interest_expert` (`expert`),
+  KEY `FK_expert_interest_interest` (`interest`),
+  CONSTRAINT `FK_expert_interest_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
+  CONSTRAINT `FK_expert_interest_interest` FOREIGN KEY (`interest`) REFERENCES `interest` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.expert_interest: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_interest` DISABLE KEYS */;
+INSERT INTO `expert_interest` (`id`, `created_on`, `last_modified_on`, `trash`, `interest`, `expert`) VALUES
+	(3, '2016-04-16 02:42:00', '0000-00-00 00:00:00', NULL, 1, 13);
 /*!40000 ALTER TABLE `expert_interest` ENABLE KEYS */;
 
 
@@ -675,61 +685,70 @@ CREATE TABLE IF NOT EXISTS `expert_roles` (
 
 -- Dumping structure for table yii2basic.expert_sector
 CREATE TABLE IF NOT EXISTS `expert_sector` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Specialization` int(11) NOT NULL COMMENT 'Lookup to Sectors',
-  `CoP` int(11) NOT NULL COMMENT 'Lookup to Experts',
-  PRIMARY KEY (`ID`),
-  KEY `FK_expert_sector_expert` (`CoP`),
-  KEY `FK_expert_sector_sector` (`Specialization`),
-  CONSTRAINT `FK_expert_sector_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`id`),
-  CONSTRAINT `FK_expert_sector_sector` FOREIGN KEY (`Specialization`) REFERENCES `sector` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `sector_id` int(11) NOT NULL COMMENT 'Lookup to Sectors',
+  `expert` int(11) NOT NULL COMMENT 'Lookup to Experts',
+  PRIMARY KEY (`id`),
+  KEY `FK_expert_sector_expert` (`expert`),
+  KEY `FK_expert_sector_sector` (`sector_id`),
+  CONSTRAINT `FK_expert_sector_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
+  CONSTRAINT `FK_expert_sector_sector` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.expert_sector: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_sector` DISABLE KEYS */;
+INSERT INTO `expert_sector` (`id`, `created_on`, `last_modified_on`, `trash`, `sector_id`, `expert`) VALUES
+	(17, '2016-04-16 02:36:09', '0000-00-00 00:00:00', NULL, 1, 13),
+	(20, '2016-04-16 02:41:38', '0000-00-00 00:00:00', NULL, 2, 13),
+	(21, '2016-04-16 02:41:47', '0000-00-00 00:00:00', NULL, 3, 13);
 /*!40000 ALTER TABLE `expert_sector` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.expert_specialization
 CREATE TABLE IF NOT EXISTS `expert_specialization` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Specialization` int(11) NOT NULL COMMENT 'Lookup to Specializations',
-  `CoP` int(11) NOT NULL COMMENT 'Lookup to Experts',
-  PRIMARY KEY (`ID`),
-  KEY `FK_expert_specialization_expert` (`CoP`),
-  KEY `FK_expert_specialization_specialization` (`Specialization`),
-  CONSTRAINT `FK_expert_specialization_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`id`),
-  CONSTRAINT `FK_expert_specialization_specialization` FOREIGN KEY (`Specialization`) REFERENCES `specialization` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `specialization` int(11) NOT NULL COMMENT 'Lookup to Specializations',
+  `expert` int(11) NOT NULL COMMENT 'Lookup to Experts',
+  PRIMARY KEY (`id`),
+  KEY `FK_expert_specialization_expert` (`expert`),
+  KEY `FK_expert_specialization_specialization` (`specialization`),
+  CONSTRAINT `FK_expert_specialization_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
+  CONSTRAINT `FK_expert_specialization_specialization` FOREIGN KEY (`specialization`) REFERENCES `specialization` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.expert_specialization: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_specialization` DISABLE KEYS */;
+INSERT INTO `expert_specialization` (`id`, `created_on`, `last_modified_on`, `trash`, `specialization`, `expert`) VALUES
+	(8, '2016-04-16 02:41:59', '0000-00-00 00:00:00', NULL, 1, 13),
+	(9, '2016-04-16 02:41:59', '0000-00-00 00:00:00', NULL, 2, 13);
 /*!40000 ALTER TABLE `expert_specialization` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.expert_sub_sector
 CREATE TABLE IF NOT EXISTS `expert_sub_sector` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Sub-sector` int(11) NOT NULL COMMENT 'Lookup to sub-sectors',
-  `CoP` int(11) NOT NULL COMMENT 'Look up to Experts',
-  PRIMARY KEY (`ID`),
-  KEY `FK_expert_sub_sector_expert` (`CoP`),
-  KEY `FK_expert_sub_sector_sub_sector` (`Sub-sector`),
-  CONSTRAINT `FK_expert_sub_sector_expert` FOREIGN KEY (`CoP`) REFERENCES `expert` (`id`),
-  CONSTRAINT `FK_expert_sub_sector_sub_sector` FOREIGN KEY (`Sub-sector`) REFERENCES `sub_sector` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `subsector` int(11) NOT NULL COMMENT 'Lookup to sub-sectors',
+  `expert` int(11) NOT NULL COMMENT 'Look up to Experts',
+  PRIMARY KEY (`id`),
+  KEY `FK_expert_sub_sector_expert` (`expert`),
+  KEY `FK_expert_sub_sector_sub_sector` (`subsector`),
+  CONSTRAINT `FK_expert_sub_sector_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
+  CONSTRAINT `FK_expert_sub_sector_sub_sector` FOREIGN KEY (`subsector`) REFERENCES `sub_sector` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.expert_sub_sector: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_sub_sector` DISABLE KEYS */;
+INSERT INTO `expert_sub_sector` (`id`, `created_on`, `last_modified_on`, `trash`, `subsector`, `expert`) VALUES
+	(6, '2016-04-16 02:36:31', '0000-00-00 00:00:00', NULL, 1, 13);
 /*!40000 ALTER TABLE `expert_sub_sector` ENABLE KEYS */;
 
 
@@ -766,12 +785,12 @@ CREATE TABLE IF NOT EXISTS `industry_account` (
   KEY `FK_industry_account_sub_sector_2` (`Sub-sector 2`),
   KEY `FK_industry_account_sector_3` (`Sector 3`),
   KEY `FK_industry_account_sub_sector_3` (`Sub-sector 3`),
-  CONSTRAINT `FK_industry_account_sector` FOREIGN KEY (`Sector`) REFERENCES `sector` (`ID`),
-  CONSTRAINT `FK_industry_account_sector_2` FOREIGN KEY (`Sector 2`) REFERENCES `sector` (`ID`),
-  CONSTRAINT `FK_industry_account_sector_3` FOREIGN KEY (`Sector 3`) REFERENCES `sector` (`ID`),
-  CONSTRAINT `FK_industry_account_sub_sector` FOREIGN KEY (`Sub-sector`) REFERENCES `sub_sector` (`ID`),
-  CONSTRAINT `FK_industry_account_sub_sector_2` FOREIGN KEY (`Sub-sector 2`) REFERENCES `sub_sector` (`ID`),
-  CONSTRAINT `FK_industry_account_sub_sector_3` FOREIGN KEY (`Sub-sector 3`) REFERENCES `sub_sector` (`ID`)
+  CONSTRAINT `FK_industry_account_sector` FOREIGN KEY (`Sector`) REFERENCES `sector` (`id`),
+  CONSTRAINT `FK_industry_account_sector_2` FOREIGN KEY (`Sector 2`) REFERENCES `sector` (`id`),
+  CONSTRAINT `FK_industry_account_sector_3` FOREIGN KEY (`Sector 3`) REFERENCES `sector` (`id`),
+  CONSTRAINT `FK_industry_account_sub_sector` FOREIGN KEY (`Sub-sector`) REFERENCES `sub_sector` (`id`),
+  CONSTRAINT `FK_industry_account_sub_sector_2` FOREIGN KEY (`Sub-sector 2`) REFERENCES `sub_sector` (`id`),
+  CONSTRAINT `FK_industry_account_sub_sector_3` FOREIGN KEY (`Sub-sector 3`) REFERENCES `sub_sector` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.industry_account: ~0 rows (approximately)
@@ -824,23 +843,28 @@ CREATE TABLE IF NOT EXISTS `industry_account_representative_roles` (
 
 -- Dumping structure for table yii2basic.interest
 CREATE TABLE IF NOT EXISTS `interest` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Name` varchar(20) NOT NULL,
-  `Status` enum('Yes','No') DEFAULT NULL,
-  `Sub-sector` int(11) NOT NULL,
-  `Expert technical weight` float NOT NULL COMMENT '0-1',
-  `Expert economical weight` float NOT NULL COMMENT '0-1',
-  `Expert creative weight` float NOT NULL COMMENT '0-1',
-  PRIMARY KEY (`ID`),
-  KEY `FK_interest_sub_sector` (`Sub-sector`),
-  CONSTRAINT `FK_interest_sub_sector` FOREIGN KEY (`Sub-sector`) REFERENCES `sub_sector` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `name` varchar(20) NOT NULL,
+  `status` enum('Yes','No') DEFAULT NULL,
+  `specialization` int(11) NOT NULL,
+  `expert_technical_weight` float NOT NULL COMMENT '0-1',
+  `expert_economical_weight` float NOT NULL COMMENT '0-1',
+  `expert_creative_weight` float NOT NULL COMMENT '0-1',
+  PRIMARY KEY (`id`),
+  KEY `specialization` (`specialization`),
+  CONSTRAINT `FK_specialization_interests` FOREIGN KEY (`specialization`) REFERENCES `specialization` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.interest: ~0 rows (approximately)
+-- Dumping data for table yii2basic.interest: ~3 rows (approximately)
 /*!40000 ALTER TABLE `interest` DISABLE KEYS */;
+INSERT INTO `interest` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`, `specialization`, `expert_technical_weight`, `expert_economical_weight`, `expert_creative_weight`) VALUES
+	(1, '2016-04-15 23:17:38', '0000-00-00 00:00:00', NULL, 'test', NULL, 1, 0, 0, 0),
+	(2, '2016-04-15 23:17:45', '0000-00-00 00:00:00', NULL, 'test2', NULL, 3, 0, 0, 0),
+	(3, '2016-04-15 23:17:54', '0000-00-00 00:00:00', NULL, 'testt', NULL, 1, 0, 0, 0),
+	(4, '2016-04-15 23:17:45', '0000-00-00 00:00:00', NULL, 'test23', NULL, 3, 0, 0, 0);
 /*!40000 ALTER TABLE `interest` ENABLE KEYS */;
 
 
@@ -984,8 +1008,8 @@ CREATE TABLE IF NOT EXISTS `project_canvas` (
   UNIQUE KEY `Serial number` (`Serial number`),
   KEY `FK_project_canvas_sector` (`Target sector`),
   KEY `FK_project_canvas_sub_sector` (`Target sub-sector`),
-  CONSTRAINT `FK_project_canvas_sector` FOREIGN KEY (`Target sector`) REFERENCES `sector` (`ID`),
-  CONSTRAINT `FK_project_canvas_sub_sector` FOREIGN KEY (`Target sub-sector`) REFERENCES `sub_sector` (`ID`)
+  CONSTRAINT `FK_project_canvas_sector` FOREIGN KEY (`Target sector`) REFERENCES `sector` (`id`),
+  CONSTRAINT `FK_project_canvas_sub_sector` FOREIGN KEY (`Target sub-sector`) REFERENCES `sub_sector` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.project_canvas: ~0 rows (approximately)
@@ -1044,20 +1068,21 @@ CREATE TABLE IF NOT EXISTS `project_canvas_student` (
 
 -- Dumping structure for table yii2basic.sector
 CREATE TABLE IF NOT EXISTS `sector` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Name` varchar(20) NOT NULL,
-  `Status` enum('Active','Inactive') DEFAULT 'Active',
-  `Expert technical weight` float NOT NULL COMMENT '0-1',
-  `Expert economical weight` float NOT NULL COMMENT '0-1',
-  `Expert creative weight` float NOT NULL COMMENT '0-1',
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `name` varchar(20) NOT NULL,
+  `status` enum('Active','Inactive') DEFAULT 'Active',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.sector: ~0 rows (approximately)
+-- Dumping data for table yii2basic.sector: ~3 rows (approximately)
 /*!40000 ALTER TABLE `sector` DISABLE KEYS */;
+INSERT INTO `sector` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`) VALUES
+	(1, '2016-04-11 16:03:56', '0000-00-00 00:00:00', NULL, 'sector 1', 'Active'),
+	(2, '2016-04-11 16:04:07', '0000-00-00 00:00:00', NULL, 'sector 2', 'Active'),
+	(3, '2016-04-15 11:00:03', '0000-00-00 00:00:00', NULL, 'sector3', 'Active');
 /*!40000 ALTER TABLE `sector` ENABLE KEYS */;
 
 
@@ -1086,23 +1111,27 @@ CREATE TABLE IF NOT EXISTS `social_account` (
 
 -- Dumping structure for table yii2basic.specialization
 CREATE TABLE IF NOT EXISTS `specialization` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Name` varchar(20) NOT NULL,
-  `Status` enum('Active','Inactive') DEFAULT 'Active',
-  `Sub-sector` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `name` varchar(20) NOT NULL,
+  `status` enum('Active','Inactive') DEFAULT 'Active',
+  `subsector` int(11) NOT NULL,
   `Expert technical weight` float NOT NULL COMMENT '0-1',
   `Expert economical weight` float NOT NULL COMMENT '0-1',
   `Expert creative weight` float NOT NULL COMMENT '0-1',
-  PRIMARY KEY (`ID`),
-  KEY `FK_specialization_sub_sector` (`Sub-sector`),
-  CONSTRAINT `FK_specialization_sub_sector` FOREIGN KEY (`Sub-sector`) REFERENCES `sub_sector` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `FK_specialization_sub_sector` (`subsector`),
+  CONSTRAINT `FK_specialization_sub_sector` FOREIGN KEY (`subsector`) REFERENCES `sub_sector` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.specialization: ~0 rows (approximately)
+-- Dumping data for table yii2basic.specialization: ~3 rows (approximately)
 /*!40000 ALTER TABLE `specialization` DISABLE KEYS */;
+INSERT INTO `specialization` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`, `subsector`, `Expert technical weight`, `Expert economical weight`, `Expert creative weight`) VALUES
+	(1, '2016-04-15 11:27:41', '0000-00-00 00:00:00', NULL, 'ye', 'Active', 1, 0, 0, 0),
+	(2, '2016-04-15 11:27:41', '0000-00-00 00:00:00', NULL, 'yes', 'Active', 1, 0, 0, 0),
+	(3, '2016-04-15 11:27:58', '0000-00-00 00:00:00', NULL, 'das', 'Active', 5, 0, 0, 0);
 /*!40000 ALTER TABLE `specialization` ENABLE KEYS */;
 
 
@@ -1142,21 +1171,26 @@ CREATE TABLE IF NOT EXISTS `student` (
   `fax` varchar(20) NOT NULL,
   `agreed_terms` enum('Yes','No') NOT NULL DEFAULT 'Yes',
   `confirmed` enum('Yes','No') DEFAULT 'No',
-  `bio` text,
-  `website` varchar(50) DEFAULT NULL,
-  `country` varchar(50) DEFAULT NULL,
-  `state` varchar(50) DEFAULT NULL,
-  `city` varchar(50) DEFAULT NULL,
-  `address` varchar(50) DEFAULT NULL,
-  `zip` varchar(50) DEFAULT NULL,
+  `bio` text NOT NULL,
+  `website` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `zip` varchar(50) NOT NULL,
+  `sector` varchar(50) NOT NULL,
+  `sub_sector` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COMMENT='Student entity holds data about students that are submitting project canvas to experts to be evaluated.';
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8 COMMENT='Student entity holds data about students that are submitting project canvas to experts to be evaluated.';
 
--- Dumping data for table yii2basic.student: ~1 rows (approximately)
+-- Dumping data for table yii2basic.student: ~4 rows (approximately)
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` (`id`, `created_on`, `last_modified_on`, `last_login_activity`, `trash`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `password_exp_date`, `mobile`, `phone`, `fax`, `agreed_terms`, `confirmed`, `bio`, `website`, `country`, `state`, `city`, `address`, `zip`) VALUES
-	(90, '2016-04-10 15:51:50', '2016-04-10 15:51:50', '2016-04-10 15:51:50', NULL, '', '', 'student@test.com', 0, '$2y$13$TTFP5hdvlVcS5CvugI9PROth/TCcyKHASFdKDN9N1hJ.goRW.M.LG', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `student` (`id`, `created_on`, `last_modified_on`, `last_login_activity`, `trash`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `password_exp_date`, `mobile`, `phone`, `fax`, `agreed_terms`, `confirmed`, `bio`, `website`, `country`, `state`, `city`, `address`, `zip`, `sector`, `sub_sector`) VALUES
+	(90, '2016-04-11 18:08:00', '2016-04-10 15:51:50', '2016-04-10 15:51:50', NULL, 'Mihai', 'Da', 'student@test.com', 1910, '$2y$13$TTFP5hdvlVcS5CvugI9PROth/TCcyKHASFdKDN9N1hJ.goRW.M.LG', '0000-00-00 00:00:00', '321312', '312312', '', 'Yes', 'No', '', 'http://fomrad.com', '', '', '', '', '', '2', '2'),
+	(91, '2016-04-10 22:30:07', '2016-04-10 22:30:07', '2016-04-10 22:30:07', NULL, '', '', 'test@test.com', 0, '$2y$13$0lcGlk9Ajp/z9GYxOKRqje3Nyp5PPNo2unMhyHKs69YHqcjkmfVF6', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', ''),
+	(92, '2016-04-13 19:11:38', '2016-04-13 19:06:20', '2016-04-13 19:06:20', NULL, 'dasdas', 'adsadsda', 'skype@test.com', 1915, '$2y$13$KapwikJhUvr8py08bvy3AuABOsQPyymQW2bmeds00RJlxmT4Vnqhi', '0000-00-00 00:00:00', '123123', '312312312', '', 'Yes', 'No', '', 'http://dasdasda.com', '', '', '', '', '312321', '1', '1'),
+	(93, '2016-04-13 19:07:27', '2016-04-13 19:07:27', '2016-04-13 19:07:27', NULL, '', '', 'sykpe@test.com', 0, '$2y$13$bz681r9Vj3MAk0WsOZKC1.82J7vKX58ZzuNPv4/7jepXSUbhLUUou', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 
 
@@ -1170,35 +1204,34 @@ CREATE TABLE IF NOT EXISTS `student_education` (
   `from` varchar(50) NOT NULL DEFAULT '0',
   `to` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table yii2basic.student_education: ~0 rows (approximately)
+-- Dumping data for table yii2basic.student_education: ~2 rows (approximately)
 /*!40000 ALTER TABLE `student_education` DISABLE KEYS */;
+INSERT INTO `student_education` (`id`, `user_id`, `degree`, `institution`, `degree_details`, `from`, `to`) VALUES
+	(6, '90', 'dadada', 'adasjdasid', 'dadasdas', '1902', '1917'),
+	(7, '92', 'dsad', 'asdasdas', 'dasdas', '1915', '1917');
 /*!40000 ALTER TABLE `student_education` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.student_experience
 CREATE TABLE IF NOT EXISTS `student_experience` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Lasto modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Institution name` varchar(20) NOT NULL,
-  `Job title` int(11) NOT NULL,
-  `Job description` varchar(20) NOT NULL,
-  `From` date NOT NULL,
-  `To` date NOT NULL,
-  `Details` text NOT NULL,
-  `Student` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_student_experience_job_titles` (`Job title`),
-  KEY `FK_student_experience_student` (`Student`),
-  CONSTRAINT `FK_student_experience_job_titles` FOREIGN KEY (`Job title`) REFERENCES `job_titles` (`ID`),
-  CONSTRAINT `FK_student_experience_student` FOREIGN KEY (`Student`) REFERENCES `student` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Student experience entity holds data about experience/training history for students';
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(50) NOT NULL DEFAULT '0',
+  `job_title` varchar(50) NOT NULL DEFAULT '0',
+  `institution` varchar(50) NOT NULL DEFAULT '0',
+  `from` varchar(50) NOT NULL DEFAULT '0',
+  `to` varchar(50) NOT NULL DEFAULT '0',
+  `job_description` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table yii2basic.student_experience: ~0 rows (approximately)
+-- Dumping data for table yii2basic.student_experience: ~2 rows (approximately)
 /*!40000 ALTER TABLE `student_experience` DISABLE KEYS */;
+INSERT INTO `student_experience` (`id`, `user_id`, `job_title`, `institution`, `from`, `to`, `job_description`) VALUES
+	(9, '0', 'Programmer', 'Visconti', '1908', '1918', 'Programmer Nice.'),
+	(10, '90', 'Programmer', 'jdiasjdiasdias', '1916', '1918', 'doaskodasioa'),
+	(12, '92', 'd', 'dasdasdas', '1902', '1916', 'asdasdasd');
 /*!40000 ALTER TABLE `student_experience` ENABLE KEYS */;
 
 
@@ -1221,23 +1254,26 @@ CREATE TABLE IF NOT EXISTS `student_roles` (
 
 -- Dumping structure for table yii2basic.sub_sector
 CREATE TABLE IF NOT EXISTS `sub_sector` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Name` varchar(20) NOT NULL,
-  `Status` enum('Active','Inactive') DEFAULT 'Active',
-  `Sector` int(11) NOT NULL,
-  `Expert technical weight` float NOT NULL COMMENT '0-1',
-  `Expert economical weight` float NOT NULL COMMENT '0-1',
-  `Expert creative weight` float NOT NULL COMMENT '0-1',
-  PRIMARY KEY (`ID`),
-  KEY `FK_sub_sector_sector` (`Sector`),
-  CONSTRAINT `FK_sub_sector_sector` FOREIGN KEY (`Sector`) REFERENCES `sector` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `name` varchar(20) NOT NULL,
+  `status` enum('Active','Inactive') DEFAULT 'Active',
+  `sector` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_sub_sector_sector` (`sector`),
+  CONSTRAINT `FK_sub_sector_sector` FOREIGN KEY (`sector`) REFERENCES `sector` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.sub_sector: ~0 rows (approximately)
+-- Dumping data for table yii2basic.sub_sector: ~5 rows (approximately)
 /*!40000 ALTER TABLE `sub_sector` DISABLE KEYS */;
+INSERT INTO `sub_sector` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`, `sector`) VALUES
+	(1, '2016-04-11 16:04:20', '0000-00-00 00:00:00', NULL, 'sub1', 'Active', 1),
+	(2, '2016-04-11 16:04:30', '0000-00-00 00:00:00', NULL, 'sub2', 'Active', 1),
+	(3, '2016-04-11 17:56:32', '0000-00-00 00:00:00', NULL, 'da', 'Active', 2),
+	(4, '2016-04-15 11:00:18', '0000-00-00 00:00:00', NULL, 'das', 'Active', 3),
+	(5, '2016-04-15 11:00:20', '0000-00-00 00:00:00', NULL, 'dab', 'Active', 3);
 /*!40000 ALTER TABLE `sub_sector` ENABLE KEYS */;
 
 

@@ -4,6 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Country;
 use yii\helpers\ArrayHelper;
+use app\models\Sector;
+use app\models\SubSector;
+use app\models\Specialization;
+use app\models\Interest;
+use app\models\ExpertSector;
+use app\models\ExpertSubSector;
+use app\models\ExpertSpecialization;
+use app\models\ExpertInterest;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\StudentAccount */
@@ -69,11 +77,201 @@ use yii\helpers\ArrayHelper;
     <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('expertexperience/index');?>" frameBorder="0"></iframe>
 
     <hr class="colorgraph">
+    <h3> Specialization </h3>
+    <hr class="colorgraph">
+    <p> Note : Once you choose one or more items from a list, the next one will populate based on your choices.</p>
+    <div class="row">
+    <?php
+        //----------- sectors start ---------
+        $sectors = Sector::find()->all(); // get sectors
+
+        $user_sectors = ExpertSector::find()->where(['expert' => Yii::$app->user->id])->all(); // set checkbox based on db, and hidden one aswell
+
+        $user_subsectors = ExpertSubSector::find()->where(['expert' => Yii::$app->user->id])->all(); 
+
+        $user_specializations = ExpertSpecialization::find()->where(['expert' => Yii::$app->user->id])->all();
+
+        $user_interests = ExpertInterest::find()->where(['expert' => Yii::$app->user->id])->all();
+
+        echo '<div class="col-sm-3">';
+        echo '<p style="font-size:150%;"> <b>Sectors</b> </p>';
+
+        foreach($sectors as $s )
+        {   
+            $value=0;
+            foreach($user_sectors as $u_s){
+                if($u_s->sector_id == $s->id)
+                {
+                    $value=1;
+                    break;
+                }
+            }
+
+            echo '<input type="checkbox" class="sector controller'. $s->id .' controller" data-container=".checkbox_container'. $s->id . '" data-target=".controlled'. $s->id .'" name="sector_'.$s->id.'" '.(($value==1) ? 'checked' : '').'> 
+                         <span class="checkboxtext">'.$s->name.'</span>
+                    </input>
+                    <br>'; //echo all sectors , along with controls for subsectors
+            echo '<input type="hidden" value="'.$value.'" name="hidden_sector_'.$s->id.'"></input>';
+        }
+
+        echo '</div>';
+        echo '<div class="col-sm-3">';
+        //------- sectors end ----------
+        //------- subsectors start -----
+         
+
+        echo '<p style="font-size:150%;"> <b>Sub-Sectors</b> </p>';
+
+        foreach($sectors as $s)
+        {   
+            $subsectors = Subsector::find()->where(['sector' => $s->id])->all(); // get all subsectors for $s sector
+
+            foreach($subsectors as $item)
+            {  
+                $value=0;
+                foreach($user_subsectors as $u_s){
+                    if($u_s->subsector == $item->id)
+                    {
+                        $value=1;
+                        break;
+                    }
+                }
+                echo '<div class="checkcont checkbox_container'.$s->id.'">';
+                echo '<input type="checkbox" data-container=".checkbox_containerspec'. $item->id . '" data-target=".controlledspec'. $item->id .'"
+                     class="controlled controller controlled'.$s->id.'" name="subsector_'.$item->id.'" '.(($value==1) ? 'checked' : '').' >'.$item->name.'</input>';
+                echo '<input type="hidden" value="'.$value.'" name="hidden_subsector_'.$item->id.'"></input>';
+                echo '<br></div>';
+            }
+        }
+        echo '</div>';
+        //--------- subsectors end -----
+        //-------- specializations start ----
+        echo '<div class="col-sm-3">';
+
+         
+
+        echo '<p style="font-size:150%;"> <b>Specialization</b> </p>';
+
+        $subs = SubSector::find()->all(); // get sectors
+
+        foreach($subs as $s)
+        {   
+            $specializations = Specialization::find()->where(['subsector' => $s->id])->all(); // get all specializations for $s subsector
+
+            foreach($specializations as $item)
+            {   
+                $value=0;
+                foreach($user_specializations as $u_s){
+                    if($u_s->specialization == $item->id)
+                    {
+                        $value=1;
+                        break;
+                    }
+                }
+
+                echo '<div class="checkcont checkbox_containerspec'.$s->id.'">';
+                echo '<input type="checkbox" class="controlled controller controlledspec'.$s->id.'" data-container=".checkbox_containerint'. $item->id . '" data-target=".controlledint'. $item->id .'" name="specialization_'.$item->id.'"'.(($value==1) ? 'checked' : '').' >'.$item->name.'</input>';
+                echo '<input type="hidden" value="'.$value.'" name="hidden_specialization_'.$item->id.'"></input>';
+                echo '<br></div>';
+            }
+        }
+        echo '</div>';
+        //specializations end
+        //interests start
+
+        echo '<div class="col-sm-3">';
+
+         
+
+        echo '<p style="font-size:150%;"> <b>Interests</b> </p>';
+
+        $specs = Specialization::find()->all(); // get sectors
+
+        foreach($specs as $s)
+        {   
+            $interests = Interest::find()->where(['specialization' => $s->id])->all(); // get all specializations for $s subsector
+
+            foreach($interests as $item)
+            {   
+                $value=0;
+                foreach($user_interests as $u_i){
+                    if($u_i->interest == $item->id)
+                    {
+                        $value=1;
+                        break;
+                    }
+                }
+
+                echo '<div class="checkcont checkbox_containerint'.$s->id.'">';
+                echo '<input type="checkbox" class="controlled placeholder controlledint'.$s->id.'" name="interest_'.$item->id.'"'.(($value==1) ? 'checked' : '').' >'.$item->name.'</input>';
+                echo '<input type="hidden" value="'.$value.'" name="hidden_interest_'.$item->id.'"></input>';
+                echo '<br></div>';
+            }
+        }
+        echo '</div>';
+
+        //interests end
+    ?>
+    </div>
+    <hr class="colorgraph">
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success pull-right' , 'style' => 'margin-right:50%']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script>
+
+$('.controlled').each(function(){
+    var $this=$(this);
+    if($this.prop('checked') == false) {
+        $this.hide();
+        $this.parent('.checkcont').hide();
+    } 
+}); // disable and hide all unchecked items
+
+$('.controlled').each(function(){
+    var $this=$(this);
+    if($this.prop('checked') == true) { 
+            $('.'+$this.attr('class').split(' ')[2]).each(function(){
+                $(this).show();
+                $(this).parent('.checkcont').show();
+                //show child elements
+                $($(this).data('container')).show();
+                $($(this).data('target')).show();
+        });
+    }
+}); //show childs of checked items
+
+$('.controller').click(function () { 
+    var $this = $(this),
+        $inputs = $($this.data('target')), //get inputs
+        $containers=$($this.data('container')); // get container
+    if(this.checked) {
+        $inputs.show("slow");
+        $containers.show("slow");
+    } else 
+    {
+        $inputs.prop('checked', false); // uncheck all child elements if parent is unchecked
+        $inputs.hide("slow");
+        //alert(JSON.stringify($inputs.data('target')));
+        $inputs.each(function(){
+            var $childcontainers= $($(this).data('container')); //hide all 2nd+ level children
+            var $childinputs= $($(this).data('target')); //uncheck all 2nd+ level children
+            $childcontainers.hide("slow");
+            $childinputs.prop("checked",false);
+            $childinputs.each(function(){
+                    $($(this).data('container')).hide("slow");
+                    $($(this).data('target')).prop("checked" , false);
+            });
+                
+        });
+        $containers.hide("slow");
+    }
+})
+
+</script>

@@ -11,6 +11,34 @@ $contact_check=false;
 $experience_check=false;
 $personal_check=false;
 $bio_check=false;
+$specialization_check=false;
+
+function getSpec($id, $type) // getter function for specialization
+{   
+    if($type=='sector')
+    {
+        $sector = app\models\Sector::find()->where(['id' => $id])->one();
+        return $sector->name;
+    }
+
+    if($type=='subsector')
+    {
+        $subsector = app\models\SubSector::find()->where(['id' => $id])->one();
+        return $subsector->name;
+    }
+
+    if($type=='specialization')
+    {
+        $spec = app\models\Specialization::find()->where(['id' => $id])->one();
+        return $spec->name;
+    }
+
+    if($type=='interest')
+    {
+        $interest = app\models\Interest::find()->where(['id' => $id])->one();
+        return $interest->name;
+    }
+}
 
 $this->title = 'View Profile';
 $this->params['breadcrumbs'][] = ['label' => 'Expert Accounts', 'url' => ['index']];
@@ -86,6 +114,50 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </ul>
                         </li> <br>
                     <?php  }  if($experience_check == false) echo '<li style="height:25px;">Nothing here.</li>'; ?>
+
+                    <h5> <b>Specialization :</b> </h5>
+                     <?php if (!empty($sectors)) { $specialization_check=true; ?>
+                        <li><i class="glyphicon glyphicon-star text-muted"></i> Sectors : 
+                                <ul style="margin-left:25px;">
+                                    <?php foreach($sectors as $item) : ?>
+                                        <li style="margin-top:5px;"><i class="glyphicon glyphicon-check text-muted"></i> <?= getSpec($item->sector_id,'sector'); ?>;</li>
+                                    <?php endforeach; ?>
+                                </ul>
+                        </li> <br>
+                    <?php  } ?> 
+
+                    <?php if (!empty($subsectors)) { $specialization_check=true; ?>
+                        <li><i class="glyphicon glyphicon-star text-muted"></i> Sub-Sectors : 
+                                <ul style="margin-left:25px;">
+                                    <?php foreach($subsectors as $item) : ?>
+                                        <li style="margin-top:5px;"><i class="glyphicon glyphicon-check text-muted"></i> <?= getSpec($item->subsector,'subsector'); ?>;</li>
+                                    <?php endforeach; ?>
+                                </ul>
+                        </li> <br>
+                    <?php  } ?> 
+
+                    <?php if (!empty($specializations)) { $specialization_check=true; ?>
+                        <li><i class="glyphicon glyphicon-star text-muted"></i> Specializations : 
+                                <ul style="margin-left:25px;">
+                                    <?php foreach($specializations as $item) : ?>
+                                        <li style="margin-top:5px;"><i class="glyphicon glyphicon-check text-muted"></i> <?= getSpec($item->specialization,'specialization'); ?>;</li>
+                                    <?php endforeach; ?>
+                                </ul>
+                        </li> <br>
+                    <?php  } ?> 
+
+                    <?php if (!empty($interests)) { $specialization_check=true; ?>
+                        <li><i class="glyphicon glyphicon-star text-muted"></i> Interests : 
+                                <ul style="margin-left:25px;">
+                                    <?php foreach($interests as $item) : ?>
+                                        <li style="margin-top:5px;"><i class="glyphicon glyphicon-check text-muted"></i> <?= getSpec($item->interest,'interest'); ?>;</li>
+                                    <?php endforeach; ?>
+                                </ul>
+                        </li> <br>
+                    <?php  } ?> 
+
+                    <?php if($experience_check == false) echo '<li style="height:25px;">Nothing here.</li>'; ?>
+
                     <li><i class="glyphicon glyphicon-time text-muted"></i> <?= 'Joined on '.$model->created_on ?></li>
                 </ul>
                 

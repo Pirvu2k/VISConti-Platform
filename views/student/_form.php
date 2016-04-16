@@ -59,18 +59,6 @@ use yii\helpers\ArrayHelper;
     <h3> Education </h3>
     <hr class="colorgraph"> 
 
-    <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studenteducation/index');?>" frameBorder="0"></iframe>
-
-    <hr class="colorgraph">
-    <h3> Experience </h3>
-    <hr class="colorgraph"> 
-
-    <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studentexperience/index');?>" frameBorder="0"></iframe>
-
-    <hr class="colorgraph">
-    <h3> Specialization </h3>
-    <hr class="colorgraph">
-
     <?php 
         $items = ArrayHelper::map(Sector::find()->all(), 'id', 'name');
          echo $form->field($model, 'sector')->dropDownList($items,['prompt'=>'Please select your sector.' , 'onchange' => '$.post ("index.php?r=site/lists&id=' . '"+$(this).val(), function(data) { $("select#studentaccount-sub_sector").html(data); });' ]);
@@ -78,6 +66,14 @@ use yii\helpers\ArrayHelper;
          $items = ArrayHelper::map(SubSector::find()->all(), 'id', 'name');
          echo $form->field($model, 'sub_sector')->dropDownList($items,['prompt'=>'Please select your sub-sector.'  ]);
     ?>
+
+    <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studenteducation/index');?>" frameBorder="0"></iframe>
+
+    <hr class="colorgraph">
+    <h3> Experience </h3>
+    <hr class="colorgraph"> 
+
+    <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studentexperience/index');?>" frameBorder="0"></iframe>
 
     <hr class="colorgraph">
 

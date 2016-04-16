@@ -34,8 +34,17 @@ class StudentController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['update','view'],
+                        'actions' => ['view'],
                         'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'matchCallback' => function ($rule, $action) {
+                            if(Yii::$app->user->identity->type=='s' && (Yii::$app->user->id == Yii::$app->request->get('id')))
+                                return true;
+                            else return false; 
+                        },
                     ],
                 ],
             ],
