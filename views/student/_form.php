@@ -13,69 +13,89 @@ use yii\helpers\ArrayHelper;
 ?>
 
 <div class="student-account-form">
-
+	<div class="status-bar">
+		<section class="status-bar">
+			<div class="container">
+				<div class="row">
+					<ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+						<li class="active"><a href="#1" data-toggle="tab">Personal Info</a>
+						</li>
+						<li><a href="#2" data-toggle="tab">Contact Info</a>
+						</li>
+						<li><a href="#3" data-toggle="tab">Education</a>
+						</li>
+						<li><a href="#4" data-toggle="tab">Experience</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</div>
     <?php $form = ActiveForm::begin(); ?>
-    <hr class="colorgraph">
-    <h3> Personal Info </h3>
-    <hr class="colorgraph">
-    <?= $form->field($model, 'given_name')->textInput(['maxlength' => true]) ?>
+	<div id="profile-tab-content" class="tab-content">
+		<div class="tab-pane active" id="1">
+			<h3> Personal Info </h3>
+			<hr class="colorgraph">
+			<?= $form->field($model, 'given_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'family_name')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'family_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'website')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'website')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'bio')->textarea(['rows'=>'4']) ?>
+			<?= $form->field($model, 'bio')->textarea(['rows'=>'4']) ?>
 
-    <?php 
-                    $items=[];
-                    for($i=1900;$i<=2016;$i++)
-                        $items[$i]=$i;
+			<?php 
+							$items=[];
+							for($i=1900;$i<=2016;$i++)
+								$items[$i]=$i;
 
-                    echo $form->field($model, 'birth_year')->dropDownList($items,['prompt'=>'Please select your birth year.' ]);
+							echo $form->field($model, 'birth_year')->dropDownList($items,['prompt'=>'Please select your birth year.' ]);
 
-                ?>
-    <hr class="colorgraph">
-    <h3> Contact Info </h3>
-    <hr class="colorgraph"> 
-    <?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
+						?>
+		</div>
+		<div class="tab-pane" id="2">
+			<h3> Contact Info </h3>
+			<hr class="colorgraph"> 
+			<?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-    <?php 
-        $items = ArrayHelper::map(Country::find()->all(), 'country_name', 'country_name');
-         echo $form->field($model, 'country')->dropDownList($items,['prompt'=>'Please select your country.'  ]);
+			<?php 
+				$items = ArrayHelper::map(Country::find()->all(), 'country_name', 'country_name');
+				 echo $form->field($model, 'country')->dropDownList($items,['prompt'=>'Please select your country.'  ]);
 
-    ?>
+			?>
 
-    <?= $form->field($model, 'state') ?>
+			<?= $form->field($model, 'state') ?>
 
-    <?= $form->field($model, 'city') ?>
+			<?= $form->field($model, 'city') ?>
 
-    <?= $form->field($model, 'address') ?>
+			<?= $form->field($model, 'address') ?>
 
-    <?= $form->field($model, 'zip') ?>
+			<?= $form->field($model, 'zip') ?>
 
-    <hr class="colorgraph">
-    <h3> Education </h3>
-    <hr class="colorgraph"> 
+		</div>
+		<div class="tab-pane" id="3">
+			<h3> Education </h3>
+			<hr class="colorgraph"> 
 
-    <?php 
-        $items = ArrayHelper::map(Sector::find()->all(), 'id', 'name');
-         echo $form->field($model, 'sector')->dropDownList($items,['prompt'=>'Please select your sector.' , 'onchange' => '$.post ("index.php?r=site/lists&id=' . '"+$(this).val(), function(data) { $("select#studentaccount-sub_sector").html(data); });' ]);
+			<?php 
+				$items = ArrayHelper::map(Sector::find()->all(), 'id', 'name');
+				 echo $form->field($model, 'sector')->dropDownList($items,['prompt'=>'Please select your sector.' , 'onchange' => '$.post ("index.php?r=site/lists&id=' . '"+$(this).val(), function(data) { $("select#studentaccount-sub_sector").html(data); });' ]);
 
-         $items = ArrayHelper::map(SubSector::find()->all(), 'id', 'name');
-         echo $form->field($model, 'sub_sector')->dropDownList($items,['prompt'=>'Please select your sub-sector.'  ]);
-    ?>
+				 $items = ArrayHelper::map(SubSector::find()->all(), 'id', 'name');
+				 echo $form->field($model, 'sub_sector')->dropDownList($items,['prompt'=>'Please select your sub-sector.'  ]);
+			?>
 
-    <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studenteducation/index');?>" frameBorder="0"></iframe>
+			<iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studenteducation/index');?>" frameBorder="0"></iframe>
 
-    <hr class="colorgraph">
-    <h3> Experience </h3>
-    <hr class="colorgraph"> 
+		</div>
+		<div class="tab-pane" id="4">
+			<h3> Experience </h3>
+			<hr class="colorgraph"> 
+			<iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studentexperience/index');?>" frameBorder="0"></iframe>
 
-    <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studentexperience/index');?>" frameBorder="0"></iframe>
-
-    <hr class="colorgraph">
+		</div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success pull-right' , 'style' => 'margin-right:50%']) ?>

@@ -30,7 +30,7 @@ AppAsset::register($this);
             echo '<link href="/web/assets/ba2b43d0/toolbar.css" rel="stylesheet">	';
     ?>
 	<?php
-		$is = (($controller->action->id === "login" || $controller->action->id === "register")) ? true : false;
+		$is = (($controller->action->id === "login" || $controller->action->id === "register" || $controller->action->id === "update")) ? true : false;
 		if($is)
 			echo '<link href="../web/css/login.css" rel="stylesheet">';
 	?>
@@ -101,8 +101,8 @@ AppAsset::register($this);
     array_push($navItemsRight,['label' => 'Sign In', 'url' => ['/site/login']],['label' => 'Sign Up', 'url' => ['/site/register']]);
   } else {
     if(Yii::$app->user->identity->type == 's'){
-        array_push($navItemsRight, ['label' => 'Profile', 'url' => Url::to(['student/update', 'id' => Yii::$app->user->id])]);
-    }else array_push($navItemsRight, ['label' => 'Profile', 'url' => Url::to(['expert/update', 'id' => Yii::$app->user->id])]);
+        array_push($navItemsRight, ['label' => 'Update Profile', 'url' => Url::to(['student/update', 'id' => Yii::$app->user->id])]);
+    }else array_push($navItemsRight, ['label' => 'Update Profile', 'url' => Url::to(['expert/update', 'id' => Yii::$app->user->id])]);
     array_push($navItemsRight,
 		['label' => 'Logout',
         'url' => ['/site/logout'],
@@ -135,7 +135,7 @@ echo Nav::widget([
     <main id="new" class="container">
         <?= $content ?>
     </main>
-
+	<hr>
 	<footer>
 		<div class="container">
 			<small class="row">&copy; VISConti <?= date('Y') ?></small>

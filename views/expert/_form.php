@@ -19,201 +19,230 @@ use app\models\ExpertInterest;
 ?>
 
 <div class="student-account-form">
+	<div class="status-bar">
+		<section class="status-bar">
+			<div class="container">
+				<div class="row">
+					<ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+						<li class="active"><a href="#1" data-toggle="tab">Personal Info</a>
+						</li>
+						<li><a href="#2" data-toggle="tab">Contact Info</a>
+						</li>
+						<li><a href="#3" data-toggle="tab">Education</a>
+						</li>
+						<li><a href="#4" data-toggle="tab">Experience</a>
+						</li>
+						<li><a href="#5" data-toggle="tab">Specialization</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</div>
+	<?php $form = ActiveForm::begin(); ?>
+	<div id="profile-tab-content" class="tab-content">
+		<div class="tab-pane active" id="1">
+			<h3> Personal Info </h3>
+			<hr class="colorgraph"> 
 
-    <?php $form = ActiveForm::begin(); ?>
-    <hr class="colorgraph">
-    <h3> Personal Info </h3>
-    <hr class="colorgraph">
+			<?= $form->field($model, 'title')->dropdownList(['Mr.' => 'Mr.' , 'Ms.' => 'Ms.' , 'Mrs.' => 'Mrs.'] , ['prompt' => 'Select a Title.']) ?>
 
-    <?= $form->field($model, 'title')->dropdownList(['Mr.' => 'Mr.' , 'Ms.' => 'Ms.' , 'Mrs.' => 'Mrs.'] , ['prompt' => 'Select a Title.']) ?>
+			<?= $form->field($model, 'given_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'given_name')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'family_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'family_name')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'website')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'website')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'bio')->textarea(['rows'=>'4']) ?>
 
-    <?= $form->field($model, 'bio')->textarea(['rows'=>'4']) ?>
+			<?php 
+							$items=[];
+							for($i=1900;$i<=2016;$i++)
+								$items[$i]=$i;
 
-    <?php 
-                    $items=[];
-                    for($i=1900;$i<=2016;$i++)
-                        $items[$i]=$i;
+							echo $form->field($model, 'birth_year')->dropDownList($items,['prompt'=>'Please select your birth year.' ]);
 
-                    echo $form->field($model, 'birth_year')->dropDownList($items,['prompt'=>'Please select your birth year.' ]);
+						?>
+		</div>
+			
+		<div class="tab-pane" id="2">
+			<h3> Contact Info </h3>
+			<hr class="colorgraph"> 
+			<?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
 
-                ?>
-    <hr class="colorgraph">
-    <h3> Contact Info </h3>
-    <hr class="colorgraph"> 
-    <?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+			<?php 
+				$items = ArrayHelper::map(Country::find()->all(), 'country_name', 'country_name');
+				 echo $form->field($model, 'country')->dropDownList($items,['prompt'=>'Please select your country.'  ]);
 
-    <?php 
-        $items = ArrayHelper::map(Country::find()->all(), 'country_name', 'country_name');
-         echo $form->field($model, 'country')->dropDownList($items,['prompt'=>'Please select your country.'  ]);
+			?>
 
-    ?>
+			<?= $form->field($model, 'state') ?>
 
-    <?= $form->field($model, 'state') ?>
+			<?= $form->field($model, 'city') ?>
 
-    <?= $form->field($model, 'city') ?>
+			<?= $form->field($model, 'address') ?>
 
-    <?= $form->field($model, 'address') ?>
+			<?= $form->field($model, 'zip') ?>
 
-    <?= $form->field($model, 'zip') ?>
+		</div>
+		
+		<div class="tab-pane" id="3">
+			<h3> Education </h3>
+			<hr class="colorgraph"> 
 
-    <hr class="colorgraph">
-    <h3> Education </h3>
-    <hr class="colorgraph"> 
+			<iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('experteducation/index');?>" frameBorder="0"></iframe>
+		</div>
+		
+		<div class="tab-pane" id="4">
+			<h3> Experience </h3>
+			<hr class="colorgraph"> 
 
-    <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('experteducation/index');?>" frameBorder="0"></iframe>
+			<iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('expertexperience/index');?>" frameBorder="0"></iframe>
 
-    <hr class="colorgraph">
-    <h3> Experience </h3>
-    <hr class="colorgraph"> 
+		</div>
+		
+		<div class="tab-pane" id="5">
+			<h3> Specialization </h3>
+			<hr class="colorgraph"> 
+			<hr class="colorgraph">
+			<p> Note : Once you choose one or more items from a list, the next one will populate based on your choices.</p>
+			<div class="row">
+			<?php
+				//----------- sectors start ---------
+				$sectors = Sector::find()->all(); // get sectors
 
-    <iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('expertexperience/index');?>" frameBorder="0"></iframe>
+				$user_sectors = ExpertSector::find()->where(['expert' => Yii::$app->user->id])->all(); // set checkbox based on db, and hidden one aswell
 
-    <hr class="colorgraph">
-    <h3> Specialization </h3>
-    <hr class="colorgraph">
-    <p> Note : Once you choose one or more items from a list, the next one will populate based on your choices.</p>
-    <div class="row">
-    <?php
-        //----------- sectors start ---------
-        $sectors = Sector::find()->all(); // get sectors
+				$user_subsectors = ExpertSubSector::find()->where(['expert' => Yii::$app->user->id])->all(); 
 
-        $user_sectors = ExpertSector::find()->where(['expert' => Yii::$app->user->id])->all(); // set checkbox based on db, and hidden one aswell
+				$user_specializations = ExpertSpecialization::find()->where(['expert' => Yii::$app->user->id])->all();
 
-        $user_subsectors = ExpertSubSector::find()->where(['expert' => Yii::$app->user->id])->all(); 
+				$user_interests = ExpertInterest::find()->where(['expert' => Yii::$app->user->id])->all();
 
-        $user_specializations = ExpertSpecialization::find()->where(['expert' => Yii::$app->user->id])->all();
+				echo '<div class="col-sm-3">';
+				echo '<p style="font-size:150%;"> <b>Sectors</b> </p>';
 
-        $user_interests = ExpertInterest::find()->where(['expert' => Yii::$app->user->id])->all();
+				foreach($sectors as $s )
+				{   
+					$value=0;
+					foreach($user_sectors as $u_s){
+						if($u_s->sector_id == $s->id)
+						{
+							$value=1;
+							break;
+						}
+					}
 
-        echo '<div class="col-sm-3">';
-        echo '<p style="font-size:150%;"> <b>Sectors</b> </p>';
+					echo '<input type="checkbox" class="sector controller'. $s->id .' controller" data-container=".checkbox_container'. $s->id . '" data-target=".controlled'. $s->id .'" name="sector_'.$s->id.'" '.(($value==1) ? 'checked' : '').'> 
+								 <span class="checkboxtext">'.$s->name.'</span>
+							</input>
+							<br>'; //echo all sectors , along with controls for subsectors
+					echo '<input type="hidden" value="'.$value.'" name="hidden_sector_'.$s->id.'"></input>';
+				}
 
-        foreach($sectors as $s )
-        {   
-            $value=0;
-            foreach($user_sectors as $u_s){
-                if($u_s->sector_id == $s->id)
-                {
-                    $value=1;
-                    break;
-                }
-            }
+				echo '</div>';
+				echo '<div class="col-sm-3">';
+				//------- sectors end ----------
+				//------- subsectors start -----
+				 
 
-            echo '<input type="checkbox" class="sector controller'. $s->id .' controller" data-container=".checkbox_container'. $s->id . '" data-target=".controlled'. $s->id .'" name="sector_'.$s->id.'" '.(($value==1) ? 'checked' : '').'> 
-                         <span class="checkboxtext">'.$s->name.'</span>
-                    </input>
-                    <br>'; //echo all sectors , along with controls for subsectors
-            echo '<input type="hidden" value="'.$value.'" name="hidden_sector_'.$s->id.'"></input>';
-        }
+				echo '<p style="font-size:150%;"> <b>Sub-Sectors</b> </p>';
 
-        echo '</div>';
-        echo '<div class="col-sm-3">';
-        //------- sectors end ----------
-        //------- subsectors start -----
-         
+				foreach($sectors as $s)
+				{   
+					$subsectors = Subsector::find()->where(['sector' => $s->id])->all(); // get all subsectors for $s sector
 
-        echo '<p style="font-size:150%;"> <b>Sub-Sectors</b> </p>';
+					foreach($subsectors as $item)
+					{  
+						$value=0;
+						foreach($user_subsectors as $u_s){
+							if($u_s->subsector == $item->id)
+							{
+								$value=1;
+								break;
+							}
+						}
+						echo '<div class="checkcont checkbox_container'.$s->id.'">';
+						echo '<input type="checkbox" data-container=".checkbox_containerspec'. $item->id . '" data-target=".controlledspec'. $item->id .'"
+							 class="controlled controller controlled'.$s->id.'" name="subsector_'.$item->id.'" '.(($value==1) ? 'checked' : '').' >'.$item->name.'</input>';
+						echo '<input type="hidden" value="'.$value.'" name="hidden_subsector_'.$item->id.'"></input>';
+						echo '<br></div>';
+					}
+				}
+				echo '</div>';
+				//--------- subsectors end -----
+				//-------- specializations start ----
+				echo '<div class="col-sm-3">';
 
-        foreach($sectors as $s)
-        {   
-            $subsectors = Subsector::find()->where(['sector' => $s->id])->all(); // get all subsectors for $s sector
+				 
 
-            foreach($subsectors as $item)
-            {  
-                $value=0;
-                foreach($user_subsectors as $u_s){
-                    if($u_s->subsector == $item->id)
-                    {
-                        $value=1;
-                        break;
-                    }
-                }
-                echo '<div class="checkcont checkbox_container'.$s->id.'">';
-                echo '<input type="checkbox" data-container=".checkbox_containerspec'. $item->id . '" data-target=".controlledspec'. $item->id .'"
-                     class="controlled controller controlled'.$s->id.'" name="subsector_'.$item->id.'" '.(($value==1) ? 'checked' : '').' >'.$item->name.'</input>';
-                echo '<input type="hidden" value="'.$value.'" name="hidden_subsector_'.$item->id.'"></input>';
-                echo '<br></div>';
-            }
-        }
-        echo '</div>';
-        //--------- subsectors end -----
-        //-------- specializations start ----
-        echo '<div class="col-sm-3">';
+				echo '<p style="font-size:150%;"> <b>Specialization</b> </p>';
 
-         
+				$subs = SubSector::find()->all(); // get sectors
 
-        echo '<p style="font-size:150%;"> <b>Specialization</b> </p>';
+				foreach($subs as $s)
+				{   
+					$specializations = Specialization::find()->where(['subsector' => $s->id])->all(); // get all specializations for $s subsector
 
-        $subs = SubSector::find()->all(); // get sectors
+					foreach($specializations as $item)
+					{   
+						$value=0;
+						foreach($user_specializations as $u_s){
+							if($u_s->specialization == $item->id)
+							{
+								$value=1;
+								break;
+							}
+						}
 
-        foreach($subs as $s)
-        {   
-            $specializations = Specialization::find()->where(['subsector' => $s->id])->all(); // get all specializations for $s subsector
+						echo '<div class="checkcont checkbox_containerspec'.$s->id.'">';
+						echo '<input type="checkbox" class="controlled controller controlledspec'.$s->id.'" data-container=".checkbox_containerint'. $item->id . '" data-target=".controlledint'. $item->id .'" name="specialization_'.$item->id.'"'.(($value==1) ? 'checked' : '').' >'.$item->name.'</input>';
+						echo '<input type="hidden" value="'.$value.'" name="hidden_specialization_'.$item->id.'"></input>';
+						echo '<br></div>';
+					}
+				}
+				echo '</div>';
+				//specializations end
+				//interests start
 
-            foreach($specializations as $item)
-            {   
-                $value=0;
-                foreach($user_specializations as $u_s){
-                    if($u_s->specialization == $item->id)
-                    {
-                        $value=1;
-                        break;
-                    }
-                }
+				echo '<div class="col-sm-3">';
 
-                echo '<div class="checkcont checkbox_containerspec'.$s->id.'">';
-                echo '<input type="checkbox" class="controlled controller controlledspec'.$s->id.'" data-container=".checkbox_containerint'. $item->id . '" data-target=".controlledint'. $item->id .'" name="specialization_'.$item->id.'"'.(($value==1) ? 'checked' : '').' >'.$item->name.'</input>';
-                echo '<input type="hidden" value="'.$value.'" name="hidden_specialization_'.$item->id.'"></input>';
-                echo '<br></div>';
-            }
-        }
-        echo '</div>';
-        //specializations end
-        //interests start
+				 
 
-        echo '<div class="col-sm-3">';
+				echo '<p style="font-size:150%;"> <b>Interests</b> </p>';
 
-         
+				$specs = Specialization::find()->all(); // get sectors
 
-        echo '<p style="font-size:150%;"> <b>Interests</b> </p>';
+				foreach($specs as $s)
+				{   
+					$interests = Interest::find()->where(['specialization' => $s->id])->all(); // get all specializations for $s subsector
 
-        $specs = Specialization::find()->all(); // get sectors
+					foreach($interests as $item)
+					{   
+						$value=0;
+						foreach($user_interests as $u_i){
+							if($u_i->interest == $item->id)
+							{
+								$value=1;
+								break;
+							}
+						}
 
-        foreach($specs as $s)
-        {   
-            $interests = Interest::find()->where(['specialization' => $s->id])->all(); // get all specializations for $s subsector
+						echo '<div class="checkcont checkbox_containerint'.$s->id.'">';
+						echo '<input type="checkbox" class="controlled placeholder controlledint'.$s->id.'" name="interest_'.$item->id.'"'.(($value==1) ? 'checked' : '').' >'.$item->name.'</input>';
+						echo '<input type="hidden" value="'.$value.'" name="hidden_interest_'.$item->id.'"></input>';
+						echo '<br></div>';
+					}
+				}
+				echo '</div>';
 
-            foreach($interests as $item)
-            {   
-                $value=0;
-                foreach($user_interests as $u_i){
-                    if($u_i->interest == $item->id)
-                    {
-                        $value=1;
-                        break;
-                    }
-                }
-
-                echo '<div class="checkcont checkbox_containerint'.$s->id.'">';
-                echo '<input type="checkbox" class="controlled placeholder controlledint'.$s->id.'" name="interest_'.$item->id.'"'.(($value==1) ? 'checked' : '').' >'.$item->name.'</input>';
-                echo '<input type="hidden" value="'.$value.'" name="hidden_interest_'.$item->id.'"></input>';
-                echo '<br></div>';
-            }
-        }
-        echo '</div>';
-
-        //interests end
-    ?>
-    </div>
-    <hr class="colorgraph">
+				//interests end
+			?>
+			</div>
+		</div>
+	</div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success pull-right' , 'style' => 'margin-right:50%']) ?>

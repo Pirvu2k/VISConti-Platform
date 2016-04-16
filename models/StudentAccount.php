@@ -49,12 +49,14 @@ class StudentAccount extends \yii\db\ActiveRecord
             [['birth_year'], 'integer'],
             [['mobile' , 'phone'] , 'integer' , 'message' => 'Please enter a valid number.'],
             [['zip'] , 'integer' , 'message' => 'Please enter a valid zip code.'],
+            [['website', 'country', 'city', 'address', 'state'], 'string', 'max' => 50],
             [['sector' , 'sub_sector'] , 'string' , 'max' => 50],
             [['given_name', 'family_name', 'email', 'fax'], 'string', 'max' => 20],
             [['password'], 'string', 'max' => 255],
             [['email'], 'unique'],
             [['sub_sector'] , 'validateSubsector'],
             'websiteUrl' => ['website', 'url', 'defaultScheme' => 'http'],
+			[['bio'] , 'string' , 'max' => 1024],
         ];
     }
 
