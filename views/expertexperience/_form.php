@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\ArrayHelper;
+use app\models\Jobs;
 /* @var $this yii\web\View */
 /* @var $model app\models\ExpertExperience */
 /* @var $form yii\widgets\ActiveForm */
@@ -12,7 +13,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'job_title')->textInput(['maxlength' => true]) ?>
+    <?php 
+                $items = ArrayHelper::map(Jobs::find()->all(), 'code', 'code');
+                 echo $form->field($model, 'job_title')->dropDownList($items,['prompt'=>'Please select job title.'  ]);
+
+            ?>
 
     <?= $form->field($model, 'job_description')->textInput(['maxlength' => true]) ?>
 

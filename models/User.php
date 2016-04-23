@@ -91,4 +91,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $user->email;
 
     }
+
+    public function generateAuthKey()
+    {
+        $this->auth_key = \Yii::$app->security->generateRandomString();
+
+        return $this->auth_key;
+    }
 }

@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use app\models\Degrees;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\models\ExpertEducation */
 /* @var $form yii\widgets\ActiveForm */
@@ -12,7 +13,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'degree')->textInput(['maxlength' => true]) ?>
+    <?php 
+                $items = ArrayHelper::map(Degrees::find()->all(), 'code', 'code');
+                 echo $form->field($model, 'degree')->dropDownList($items,['prompt'=>'Please select degree.'  ]);
+
+            ?>
 
     <?= $form->field($model, 'institution')->textInput(['maxlength' => true]) ?>
 

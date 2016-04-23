@@ -110,15 +110,10 @@ AppAsset::register($this);
     );
   }
   
-  if(!Yii::$app->user->isGuest && Yii::$app->user->can('student'))
+  if(!Yii::$app->user->isGuest && Yii::$app->user->identity->type=='s')
   {
     array_push($navItems,
         ['label'=>'Create Canvas', 'url'=>['canvas/create']]);
-  }
-  else if(!Yii::$app->user->isGuest && Yii::$app->user->can('expert'))
-  {
-    array_push($navItems,
-        ['label'=>'Review Projects', 'url'=>['canvas/index']]);
   }
 echo '<h3>Site Menu</h3>';
 echo Nav::widget([

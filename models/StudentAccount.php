@@ -44,7 +44,7 @@ class StudentAccount extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_on', 'last_modified_on', 'last_login_activity', 'password_exp_date'], 'safe'],
+            [['created_on', 'last_modified_on', 'last_login_activity', 'password_exp_date','auth_key'], 'safe'],
             [['trash', 'agreed_terms', 'confirmed'], 'string'],
             [['birth_year'], 'integer'],
             [['mobile' , 'phone'] , 'integer' , 'message' => 'Please enter a valid number.'],

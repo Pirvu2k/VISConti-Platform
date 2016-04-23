@@ -55,7 +55,7 @@ class ExpertAccount extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_on', 'last_modified_on', 'last_login_activity', 'reset_pass_exp_date'], 'safe'],
+            [['created_on', 'last_modified_on', 'last_login_activity', 'reset_pass_exp_date','auth_key'], 'safe'],
             [['trash', 'terms', 'confirmed'], 'string'],
             [['birth_year', 'active_projects'], 'integer'],
             [['title', 'given_name', 'family_name'], 'string', 'max' => 20],
@@ -63,7 +63,7 @@ class ExpertAccount extends \yii\db\ActiveRecord
             [['password'], 'string', 'max' => 255],
             [['mobile' , 'phone'] , 'integer' , 'message' => 'Please enter a valid number.'],
             [['zip'] , 'integer' , 'message' => 'Please enter a valid zip code.'],
-            [['website', 'country', 'city', 'address', 'state', 'fax'], 'string', 'max' => 50],
+            [['website', 'country', 'city', 'address', 'state', 'fax', 'role'], 'string', 'max' => 50],
             [['bio'], 'string', 'max' => 1024],
             [['email'], 'unique'],
             'websiteUrl' => ['website', 'url', 'defaultScheme' => 'http'],

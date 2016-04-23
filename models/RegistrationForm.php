@@ -65,6 +65,8 @@ class RegistrationForm extends Model
             //captcha
             'captcha' => ['captcha','captcha'],
             'captchaRequired' => ['captcha','required'],
+            //type
+            'type' => ['type','required'],
         ];
     }
 
@@ -76,7 +78,7 @@ class RegistrationForm extends Model
         return [
             'email'    => 'E-mail',
             'password' => 'Password',
-            'type'=> 'Register As'
+            'type'=> 'Role'
         ];
     }
 

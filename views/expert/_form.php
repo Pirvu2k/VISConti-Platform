@@ -106,7 +106,6 @@ use app\models\ExpertInterest;
 		<div class="tab-pane" id="5">
 			<h3> Specialization </h3>
 			<hr class="colorgraph"> 
-			<hr class="colorgraph">
 			<p> Note : Once you choose one or more items from a list, the next one will populate based on your choices.</p>
 			<div class="row">
 			<?php
@@ -240,8 +239,21 @@ use app\models\ExpertInterest;
 
 				//interests end
 			?>
+
 			</div>
+			<br>
+
+		<?php
+		 	if(empty($model->role))
+		 		{echo Html::a('Find my role', ['/expert/role','id'=>Yii::$app->user->id], ['class'=>'btn orange']);}
+		 	else
+		 		{echo '<div class="alert alert-info">
+  						<strong>Role:</strong> '.$model->role.'.
+						</div>';}  
+		 ?>
 		</div>
+		
+
 	</div>
 
     <div class="form-group">

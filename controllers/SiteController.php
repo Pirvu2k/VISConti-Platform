@@ -50,7 +50,7 @@ class SiteController extends Controller
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'fixedVerifyCode' => null,
             ],
         ];
     }
@@ -111,10 +111,28 @@ class SiteController extends Controller
                 $student->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
                 $student->created_on = $student->last_login_activity = new Expression('NOW()');
                 $student->last_modified_on = new Expression('NOW()');
+                $student->generateAuthKey();
                 if(!Student::findOne(['email'=>$model->email]) && !Expert::findOne(['email'=>$model->email]))
                 {
                     $student->save();
-                    return $this->redirect('index.php?r=site/login');
+                    $email = \Yii::$app->mailer->compose()
+                    ->setTo($student->email)
+                    ->setFrom(['admin@visconti.com'])
+                    ->setSubject('Signup Confirmation')
+                    ->setTextBody("
+                    Click this link ".\yii\helpers\Html::a('confirm',
+                    Yii::$app->urlManager->createAbsoluteUrl(
+                    ['site/confirm','id'=>$student->id,'key'=>$student->auth_key,'type'=>'s']
+                    ))
+                    )
+                    ->send();
+                    if($email){
+                    Yii::$app->getSession()->setFlash('success','Check Your email!');
+                    }
+                    else{
+                    Yii::$app->getSession()->setFlash('warning','Failed, contact Admin!');
+                    }
+                    return $this->redirect('index.php?r=site/confirmation');
                 }
                 else {
                     Yii::$app->getSession()->setFlash('error', 'E-mail already in use.');
@@ -126,10 +144,28 @@ class SiteController extends Controller
                 $expert->email = $model->email;
                 $expert->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
                 $expert->created_on = $expert->last_modified_on = $expert->last_login_activity = new Expression('NOW()');
+                $expert->generateAuthKey();
                 if(!Expert::findOne(['email'=>$model->email]) && !Student::findOne(['email'=>$model->email]))
-                {
+                {   
                     $expert->save();
-                    return $this->redirect('index.php?r=site/login');
+                    $email = \Yii::$app->mailer->compose()
+                    ->setTo($expert->email)
+                    ->setFrom('admin@visconti.com')
+                    ->setSubject('Signup Confirmation')
+                    ->setTextBody("
+                    Click this link ".\yii\helpers\Html::a('confirm',
+                    Yii::$app->urlManager->createAbsoluteUrl(
+                    ['site/confirm','id'=>$expert->id,'key'=>$expert->auth_key,'type'=>'e']
+                    ))
+                    )
+                    ->send();
+                    if($email){
+                    Yii::$app->getSession()->setFlash('success','A confirmation message has been sent to your email address.');
+                    }
+                    else{
+                    Yii::$app->getSession()->setFlash('warning','Failed, contact Admin!');
+                    }
+                    return $this->redirect('index.php?r=site/confirmation');
                 }
                 else {
                     Yii::$app->getSession()->setFlash('error', 'E-mail already in use.');
@@ -195,4 +231,37 @@ class SiteController extends Controller
         }
     }
 
+    public function actionConfirmation(){
+        return $this->render('confirmation'); //page user sees after signup
+    }
+
+    public function actionConfirm($id, $key, $type)
+    {
+        if($type=='e')
+        {
+            $user = \app\models\Expert::find()->where([
+                'id'=>$id,
+                'auth_key'=>$key,
+                'confirmed'=>'No',
+                ])->one();
+        }
+        else {
+            $user = \app\models\Student::find()->where([
+                'id'=>$id,
+                'auth_key'=>$key,
+                'confirmed'=>'No',
+                ])->one();
+        }
+        if(!empty($user)){
+        $user->confirmed='Yes';
+        $user->save();
+        Yii::$app->getSession()->setFlash('success','Account confirmed successfully.');
+        }
+        else{
+        Yii::$app->getSession()->setFlash('warning','Seems like there was an error. Please contact admin.');
+        }
+        return $this->render('confirmation');
+    }
+
+    
 }

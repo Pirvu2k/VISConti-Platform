@@ -32,7 +32,7 @@ class ExpertController extends Controller
         return [
              'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['create', 'index','update','delete','view'],
+                'only' => ['create', 'index','update','delete','view','role'],
                 'rules' => [
                     [
                         'allow' => false,
@@ -49,6 +49,15 @@ class ExpertController extends Controller
                         'actions' => ['update'],
                         'matchCallback' => function ($rule, $action) {
                             if(Yii::$app->user->identity->type=='e' && (Yii::$app->user->id == Yii::$app->request->get('id')))
+                                return true;
+                            else return false; 
+                        },
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['role'],
+                        'matchCallback' => function ($rule, $action) {
+                            if(empty(Yii::$app->user->identity->role) && Yii::$app->user->identity->type=='e' && (Yii::$app->user->id == Yii::$app->request->get('id')))
                                 return true;
                             else return false; 
                         },
@@ -246,5 +255,99 @@ class ExpertController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionRole($id){
+        $tw = 0; // technical weight
+        $ew = 0; // economical weight
+        $cw = 0; // creative weight
+
+        $ed_records = \app\models\ExpertEducation::find()->where(['user_id' => Yii::$app->user->id])->all(); // get ed records
+
+        foreach($ed_records as $ed) 
+        {   
+            $degree = \app\models\Degrees::find()->where(['code'=>$ed->degree])->one(); // get degree weights
+
+            $tw+= $degree->expert_technical_weight * 0.1; // add degree weights
+            $ew+= $degree->expert_economical_weight * 0.1;
+            $cw+= $degree->expert_creative_weight * 0.1;
+        }
+
+        $exp_records = \app\models\ExpertExperience::find()->where(['user_id' => Yii::$app->user->id])->all();
+
+        foreach($exp_records as $exp)
+        {   
+            $job = \app\models\Jobs::find()->where(['code'=>$exp->job_title])->one();
+
+            $tw+= $job->expert_technical_weight * 0.1;
+            $ew+= $job->expert_economical_weight * 0.1;
+            $cw+= $job->expert_creative_weight * 0.1;
+        }
+
+        $sectors = \app\models\ExpertSector::find()->where(['expert' => Yii::$app->user->id])->all();
+
+        foreach($sectors as $s)
+        {   
+            $sector = \app\models\Sector::find()->where(['id'=> $s->sector_id])->one();
+
+            $tw+= $sector->expert_technical_weight * 0.1;
+            $ew+= $sector->expert_economical_weight * 0.1;
+            $cw+= $sector->expert_creative_weight * 0.1;
+        }
+
+        $subsectors = \app\models\ExpertSubSector::find()->where(['expert' => Yii::$app->user->id])->all();
+
+        foreach($subsectors as $s)
+        {   
+            $subsector = \app\models\SubSector::find()->where(['id'=> $s->subsector])->one();
+
+            $tw+= $subsector->expert_technical_weight * 0.2;
+            $ew+= $subsector->expert_economical_weight * 0.2;
+            $cw+= $subsector->expert_creative_weight * 0.2;
+        }
+
+        $specializations = \app\models\ExpertSpecialization::find()->where(['expert' => Yii::$app->user->id])->all();
+
+        foreach($specializations as $s)
+        {   
+            $specialization = \app\models\Specialization::find()->where(['id'=> $s->specialization])->one();
+
+            $tw+= $specialization->expert_technical_weight * 0.4;
+            $ew+= $specialization->expert_economical_weight * 0.4;
+            $cw+= $specialization->expert_creative_weight * 0.4;
+        }
+
+        $interests = \app\models\ExpertInterest::find()->where(['expert' => Yii::$app->user->id])->all();
+
+        foreach($interests as $i)
+        {   
+            $interest = \app\models\Interest::find()->where(['id'=> $i->interest])->one();
+
+            $tw+= $interest->expert_technical_weight * 0.8;
+            $ew+= $interest->expert_economical_weight * 0.8;
+            $cw+= $interest->expert_creative_weight * 0.8;
+        }
+
+        $max = max($tw,$ew,$cw);
+
+        $expert=\app\models\ExpertAccount::find()->where(['id'=>Yii::$app->user->id])->one();
+
+        if($max==$tw)
+        {
+            $expert->role='Technical';
+            $expert->save();
+        }
+        else if($max==$ew) {
+            $expert->role='Economical';
+            $expert->save();
+        }
+        else {
+            $expert->role='Creative';
+            $expert->save();
+        }
+
+        return $this->render('update', [
+                'model' => $this->findModel($id),
+            ]);
     }
 }
