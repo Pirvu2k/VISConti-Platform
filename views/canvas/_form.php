@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use yii\captcha\Captcha;
 use yii\captcha\CaptchaValidator;
 use yii\captcha\CaptchaAction;
+use app\models\Languages;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\models\Canvas */
 /* @var $form yii\widgets\ActiveForm */
@@ -12,13 +14,28 @@ use yii\captcha\CaptchaAction;
 
 <div class="canvas-form">
 
-    <?php $form = ActiveForm::begin(['enableClientValidation' => false],['options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['enableClientValidation' => false],['enctype' => 'multipart/form-data']); ?>
 
     <?= $form->field($model, 'title')->textarea(['rows' => 1])->textInput(['placeholder' => '5-50 Characters']) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6])->widget(letyii\tinymce\Tinymce::className() , ['options' => ['rows'=>20]]) ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 6])->widget(letyii\tinymce\Tinymce::className() , ['options' => ['rows'=>20],
+        'configs' => [
+        'plugins' => [
+            "advlist autolink lists link charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste",
+            "textcolor",
+        ],
+        'toolbar' => "undo redo | styleselect | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link "
+        ],
 
-    <?= $form->field($model, 'language')->dropDownList(['en' => 'English', 'fr' => 'French', 'ro' => 'Romanian']); ?>
+    ]) ?>
+
+    <?php 
+                $items = ArrayHelper::map(Languages::find()->all(), 'name', 'name');
+                 echo $form->field($model, 'language')->dropDownList($items,['prompt'=>'Please select language.'  ]);
+
+            ?>
 
     <?= $form->field($model, 'eng_summary')->textarea(['rows' => 2])->textInput(['placeholder' => '10-120 Characters']) ?>
 

@@ -30,7 +30,7 @@ AppAsset::register($this);
             echo '<link href="/web/assets/ba2b43d0/toolbar.css" rel="stylesheet">	';
     ?>
 	<?php
-		$is = (($controller->action->id === "login" || $controller->action->id === "register" || $controller->action->id === "update")) ? true : false;
+		$is = (($controller->action->id === "login" || $controller->action->id === "register" || $controller->action->id === "update" || $controller->action->id === "view")) ? true : false;
 		if($is)
 			echo '<link href="../web/css/login.css" rel="stylesheet">';
 	?>

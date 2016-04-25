@@ -43,7 +43,7 @@ class CanvasController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['index','view','update','delete'],
+                        'actions' => ['index','view','update'],
                         'matchCallback' => function ($rule, $action) {
                             return Yii::$app->user->identity->type == 'e';
                         },
@@ -52,6 +52,10 @@ class CanvasController extends Controller
                         'allow' => false,
                         'actions' => ['create', 'index','update','delete','view'],
                         'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => false,
+                        'actions' => ['delete'],
                     ],
                 ],
             ],
@@ -98,7 +102,7 @@ class CanvasController extends Controller
           $model->date_added = new Expression('NOW()');
           $model->date_modified = new Expression('NOW()');
           $model->created_by= Yii::$app->user->id;
-          $model->requested = 1;
+          $model->status = 'Submitted';
            if ($model->save()) {             
              return $this->redirect(['view', 'id' => $model->id]);             
            } 

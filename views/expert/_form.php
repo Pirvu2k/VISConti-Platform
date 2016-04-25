@@ -249,7 +249,7 @@ use app\models\ExpertInterest;
 		 	else
 		 		{echo '<div class="alert alert-info">
   						<strong>Role:</strong> '.$model->role.'.
-						</div>';}  
+						</div><br>';}  
 		 ?>
 		</div>
 		
