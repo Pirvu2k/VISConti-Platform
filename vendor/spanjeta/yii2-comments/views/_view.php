@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-
-<?php
-use yii\helpers\Html;
-?>
-<div class="comment-view well">
-
-<p><?=$model->comment?></p>
-
-<p><small class="pull-left">Posted By: <?= $model->createUser->full_name?></small><small >On <?= $model->create_time?></small></p>
-</div>
-=======
 <?php
 use yii\helpers\Html;
 
@@ -53,4 +41,3 @@ else {
 
 	</div>
 <?php  ?>
->>>>>>> c9579b21655241726d9f05fe4c86b60466b84d15
