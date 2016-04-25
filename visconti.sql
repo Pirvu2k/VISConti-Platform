@@ -405,6 +405,18 @@ CREATE TABLE IF NOT EXISTS `auth_rule` (
 /*!40000 ALTER TABLE `auth_rule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `auth_rule` ENABLE KEYS */;
 
+-- Dumping structure for table yii2basic.comment
+CREATE TABLE IF NOT EXISTS `comment` (
+  `id` int(11) NOT NULL,
+  `comment` text,
+  `model_type` varchar(255) DEFAULT NULL,
+  `model_id` int(11) DEFAULT NULL,
+  `state_id` int(11) DEFAULT NULL,
+  `type_id` int(11) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_user_id` int(11) DEFAULT NULL,
+  `type_user` int(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping structure for table yii2basic.canvases
 CREATE TABLE IF NOT EXISTS `canvases` (

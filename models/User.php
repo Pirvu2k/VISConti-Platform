@@ -91,6 +91,13 @@ class User extends ActiveRecord implements IdentityInterface
         return $user->email;
 
     }
+	
+    public function getEmail2(){
+        $user = Student::find()->where(['id'=>$this->id])->one();
+        
+        return $user->email;
+
+    }
 
     public function generateAuthKey()
     {
