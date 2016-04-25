@@ -15,6 +15,7 @@ use dektrium\user\Finder;
 use dektrium\user\helpers\Password;
 use Yii;
 use yii\base\Model;
+use dektrium\user\traits\ModuleTrait;
 
 /**
  * LoginForm get user's login and password, validates them and logs the user in. If user has been blocked, it adds
@@ -23,10 +24,8 @@ use yii\base\Model;
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class LoginForm extends Model
-{   /**
-     * @inheritdoc
-     */
-    public $captcha;
+{
+    use ModuleTrait;
 
     /** @var string User's email or username */
     public $login;
@@ -40,9 +39,6 @@ class LoginForm extends Model
     /** @var \dektrium\user\models\User */
     protected $user;
 
-    /** @var \dektrium\user\Module */
-    protected $module;
-
     /** @var Finder */
     protected $finder;
 
@@ -53,7 +49,6 @@ class LoginForm extends Model
     public function __construct(Finder $finder, $config = [])
     {
         $this->finder = $finder;
-        $this->module = Yii::$app->getModule('user');
         parent::__construct($config);
     }
 
@@ -61,9 +56,9 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'login'      => Yii::t('user', 'E-mail'),
+            'login'      => Yii::t('user', 'Login'),
             'password'   => Yii::t('user', 'Password'),
-            'rememberMe' => Yii::t('user', 'Remember me'),
+            'rememberMe' => Yii::t('user', 'Remember me next time'),
         ];
     }
 
@@ -123,7 +118,7 @@ class LoginForm extends Model
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
-            $this->user = $this->finder->findUserByUsernameOrEmail($this->login);
+            $this->user = $this->finder->findUserByUsernameOrEmail(trim($this->login));
 
             return true;
         } else {

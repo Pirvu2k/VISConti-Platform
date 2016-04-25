@@ -13,8 +13,10 @@ namespace dektrium\user\models;
 
 use dektrium\user\Finder;
 use dektrium\user\Mailer;
+use dektrium\user\traits\ModuleTrait;
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 
 /**
  * Model for collecting data on password recovery.
@@ -25,6 +27,7 @@ use yii\base\Model;
  */
 class RecoveryForm extends Model
 {
+    use ModuleTrait;
     /** @var string */
     public $email;
 
@@ -33,9 +36,6 @@ class RecoveryForm extends Model
 
     /** @var User */
     protected $user;
-
-    /** @var \dektrium\user\Module */
-    protected $module;
 
     /** @var Mailer */
     protected $mailer;
@@ -50,7 +50,6 @@ class RecoveryForm extends Model
      */
     public function __construct(Mailer $mailer, Finder $finder, $config = [])
     {
-        $this->module = Yii::$app->getModule('user');
         $this->mailer = $mailer;
         $this->finder = $finder;
         parent::__construct($config);
@@ -68,10 +67,11 @@ class RecoveryForm extends Model
     /** @inheritdoc */
     public function scenarios()
     {
-        return [
+        $scenarios = parent::scenarios();
+        return ArrayHelper::merge($scenarios, [
             'request' => ['email'],
             'reset'   => ['password'],
-        ];
+        ]);
     }
 
     /** @inheritdoc */
@@ -91,8 +91,11 @@ class RecoveryForm extends Model
                 'email',
                 function ($attribute) {
                     $this->user = $this->finder->findUserByEmail($this->email);
-                    if ($this->user !== null && $this->module->enableConfirmation && !$this->user->getIsConfirmed()) {
+                    if ($this->user !== null && $this->module->enableConfirmation && !$this->user->isConfirmed) {
                         $this->addError($attribute, Yii::t('user', 'You need to confirm your email address'));
+                    }
+                    if ($this->user->isBlocked) {
+                        $this->addError($attribute, Yii::t('user', 'Your account has been blocked'));
                     }
                 }
             ],
@@ -115,9 +118,18 @@ class RecoveryForm extends Model
                 'user_id' => $this->user->id,
                 'type'    => Token::TYPE_RECOVERY,
             ]);
-            $token->save(false);
-            $this->mailer->sendRecoveryMessage($this->user, $token);
-            Yii::$app->session->setFlash('info', Yii::t('user', 'An email has been sent with instructions for resetting your password'));
+
+            if (!$token->save(false)) {
+                return false;
+            }
+
+            if (!$this->mailer->sendRecoveryMessage($this->user, $token)) {
+                return false;
+            }
+
+            Yii::$app->session->setFlash('info',
+                Yii::t('user', 'An email has been sent with instructions for resetting your password')
+            );
 
             return true;
         }

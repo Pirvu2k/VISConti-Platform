@@ -14,10 +14,10 @@ namespace dektrium\user\models;
 use dektrium\user\clients\ClientInterface;
 use dektrium\user\Finder;
 use dektrium\user\models\query\AccountQuery;
-use dektrium\user\Module;
-use Yii;
+use dektrium\user\traits\ModuleTrait;
 use yii\authclient\ClientInterface as BaseClientInterface;
 use yii\db\ActiveRecord;
+use yii\helpers\Json;
 use yii\helpers\Url;
 
 /**
@@ -38,20 +38,13 @@ use yii\helpers\Url;
  */
 class Account extends ActiveRecord
 {
-    /** @var Module */
-    protected $module;
+    use ModuleTrait;
 
     /** @var Finder */
     protected static $finder;
 
     /** @var */
     private $_data;
-
-    /** @inheritdoc */
-    public function init()
-    {
-        $this->module = Yii::$app->getModule('user');
-    }
 
     /** @inheritdoc */
     public static function tableName()
@@ -81,7 +74,7 @@ class Account extends ActiveRecord
     public function getDecodedData()
     {
         if ($this->_data == null) {
-            $this->_data = json_decode($this->data);
+            $this->_data = Json::decode($this->data);
         }
 
         return $this->_data;
@@ -93,7 +86,7 @@ class Account extends ActiveRecord
      */
     public function getConnectUrl()
     {
-        $code = Yii::$app->security->generateRandomString();
+        $code = \Yii::$app->security->generateRandomString();
         $this->updateAttributes(['code' => md5($code)]);
 
         return Url::to(['/user/registration/connect', 'code' => $code]);
@@ -114,17 +107,17 @@ class Account extends ActiveRecord
      */
     public static function find()
     {
-        return Yii::createObject(AccountQuery::className(), [get_called_class()]);
+        return \Yii::createObject(AccountQuery::className(), [get_called_class()]);
     }
 
     public static function create(BaseClientInterface $client)
     {
         /** @var Account $account */
-        $account = Yii::createObject([
+        $account = \Yii::createObject([
             'class'      => static::className(),
             'provider'   => $client->getId(),
             'client_id'  => $client->getUserAttributes()['id'],
-            'data'       => json_encode($client->getUserAttributes()),
+            'data'       => Json::encode($client->getUserAttributes()),
         ]);
 
         if ($client instanceof ClientInterface) {
@@ -150,8 +143,8 @@ class Account extends ActiveRecord
      */
     public static function connectWithUser(BaseClientInterface $client)
     {
-        if (Yii::$app->user->isGuest) {
-            Yii::$app->session->setFlash('danger', Yii::t('user', 'Something went wrong'));
+        if (\Yii::$app->user->isGuest) {
+            \Yii::$app->session->setFlash('danger', \Yii::t('user', 'Something went wrong'));
 
             return;
         }
@@ -159,10 +152,10 @@ class Account extends ActiveRecord
         $account = static::fetchAccount($client);
 
         if ($account->user === null) {
-            $account->link('user', Yii::$app->user->identity);
-            Yii::$app->session->setFlash('success', Yii::t('user', 'Your account has been connected'));
+            $account->link('user', \Yii::$app->user->identity);
+            \Yii::$app->session->setFlash('success', \Yii::t('user', 'Your account has been connected'));
         } else {
-            Yii::$app->session->setFlash('danger', Yii::t('user', 'This account has already been connected to another user'));
+            \Yii::$app->session->setFlash('danger', \Yii::t('user', 'This account has already been connected to another user'));
         }
     }
 
@@ -179,11 +172,11 @@ class Account extends ActiveRecord
         $account = static::getFinder()->findAccount()->byClient($client)->one();
 
         if (null === $account) {
-            $account = Yii::createObject([
+            $account = \Yii::createObject([
                 'class'      => static::className(),
                 'provider'   => $client->getId(),
                 'client_id'  => $client->getUserAttributes()['id'],
-                'data'       => json_encode($client->getUserAttributes()),
+                'data'       => Json::encode($client->getUserAttributes()),
             ]);
             $account->save(false);
         }
@@ -206,7 +199,7 @@ class Account extends ActiveRecord
             return $user;
         }
 
-        $user = Yii::createObject([
+        $user = \Yii::createObject([
             'class'    => User::className(),
             'scenario' => 'connect',
             'username' => $account->username,
@@ -230,7 +223,7 @@ class Account extends ActiveRecord
     protected static function getFinder()
     {
         if (static::$finder === null) {
-            static::$finder = Yii::$container->get(Finder::className());
+            static::$finder = \Yii::$container->get(Finder::className());
         }
 
         return static::$finder;

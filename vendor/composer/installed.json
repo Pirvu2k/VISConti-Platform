@@ -212,42 +212,6 @@
         ]
     },
     {
-        "name": "phpspec/php-diff",
-        "version": "v1.0.2",
-        "version_normalized": "1.0.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phpspec/php-diff.git",
-            "reference": "30e103d19519fe678ae64a60d77884ef3d71b28a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phpspec/php-diff/zipball/30e103d19519fe678ae64a60d77884ef3d71b28a",
-            "reference": "30e103d19519fe678ae64a60d77884ef3d71b28a",
-            "shasum": ""
-        },
-        "time": "2013-11-01 13:02:21",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Diff": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Chris Boulton",
-                "homepage": "http://github.com/chrisboulton",
-                "role": "Original developer"
-            }
-        ],
-        "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays)."
-    },
-    {
         "name": "fzaninotto/faker",
         "version": "v1.5.0",
         "version_normalized": "1.5.0.0",
@@ -398,71 +362,6 @@
             "auth",
             "oauth",
             "yii2"
-        ]
-    },
-    {
-        "name": "dektrium/yii2-user",
-        "version": "v0.9.5",
-        "version_normalized": "0.9.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/dektrium/yii2-user.git",
-            "reference": "84100e0e63e2052ef4ddd12f1840dfd092446e23"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/84100e0e63e2052ef4ddd12f1840dfd092446e23",
-            "reference": "84100e0e63e2052ef4ddd12f1840dfd092446e23",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2": "~2.0",
-            "yiisoft/yii2-authclient": "~2.0",
-            "yiisoft/yii2-bootstrap": "~2.0",
-            "yiisoft/yii2-jui": "~2.0",
-            "yiisoft/yii2-swiftmailer": "~2.0"
-        },
-        "require-dev": {
-            "codeception/aspect-mock": "*",
-            "codeception/specify": "*",
-            "codeception/verify": "*",
-            "yiisoft/yii2-codeception": "~2.0"
-        },
-        "time": "2015-09-27 14:49:11",
-        "type": "yii2-extension",
-        "extra": {
-            "bootstrap": "dektrium\\user\\Bootstrap",
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            },
-            "asset-installer-paths": {
-                "npm-asset-library": "vendor/npm",
-                "bower-asset-library": "vendor/bower"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "dektrium\\user\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Dmitry Erofeev",
-                "email": "dmeroff@gmail.com",
-                "homepage": "http://dmeroff.ru"
-            }
-        ],
-        "description": "Flexible user registration and authentication module for Yii2",
-        "keywords": [
-            "User management",
-            "dektrium",
-            "yii2",
-            "yii2-user"
         ]
     },
     {
@@ -869,54 +768,6 @@
         ]
     },
     {
-        "name": "tinymce/tinymce",
-        "version": "4.3.8",
-        "version_normalized": "4.3.8.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/tinymce/tinymce-dist.git",
-            "reference": "96450a43232ba523ae57d4dc6ea34b8f34e9dd14"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/96450a43232ba523ae57d4dc6ea34b8f34e9dd14",
-            "reference": "96450a43232ba523ae57d4dc6ea34b8f34e9dd14",
-            "shasum": ""
-        },
-        "time": "2016-03-15 13:05:10",
-        "type": "component",
-        "extra": {
-            "component": {
-                "scripts": [
-                    "tinymce.js",
-                    "plugins/*/plugin.js",
-                    "themes/*/theme.js"
-                ],
-                "files": [
-                    "tinymce.min.js",
-                    "plugins/*/plugin.min.js",
-                    "themes/*/theme.min.js",
-                    "skins/**"
-                ]
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "LGPL-2.1"
-        ],
-        "description": "Web based JavaScript HTML WYSIWYG editor control.",
-        "homepage": "http://www.tinymce.com",
-        "keywords": [
-            "editor",
-            "html",
-            "javascript",
-            "richtext",
-            "tinymce",
-            "wysiwyg"
-        ]
-    },
-    {
         "name": "letyii/yii2-tinymce",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -952,106 +803,6 @@
         "homepage": "https://github.com/letyii/yii2-tinymce",
         "keywords": [
             "tinymce",
-            "yii2"
-        ]
-    },
-    {
-        "name": "dektrium/yii2-rbac",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/dektrium/yii2-rbac.git",
-            "reference": "a0b237b81e06b802a031a85c767b7e949b30e327"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/a0b237b81e06b802a031a85c767b7e949b30e327",
-            "reference": "a0b237b81e06b802a031a85c767b7e949b30e327",
-            "shasum": ""
-        },
-        "require": {
-            "kartik-v/yii2-widget-select2": "*",
-            "yiisoft/yii2": "2.0.*"
-        },
-        "time": "2016-03-25 07:35:43",
-        "type": "yii2-extension",
-        "extra": {
-            "bootstrap": "dektrium\\rbac\\Bootstrap"
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "dektrium\\rbac\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Dmitry Erofeev",
-                "email": "dmeroff@gmail.com",
-                "homepage": "http://dmeroff.ru"
-            }
-        ],
-        "description": "RBAC management module for Yii2",
-        "keywords": [
-            "dektrium",
-            "rbac gui",
-            "rbac management",
-            "rbac module",
-            "yii rbac",
-            "yii2",
-            "yii2-rbac"
-        ]
-    },
-    {
-        "name": "kartik-v/yii2-krajee-base",
-        "version": "1.8.2",
-        "version_normalized": "1.8.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-            "reference": "0c274e31e4392cbafc5fe158eae81738794e02ce"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/0c274e31e4392cbafc5fe158eae81738794e02ce",
-            "reference": "0c274e31e4392cbafc5fe158eae81738794e02ce",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2-bootstrap": "@dev"
-        },
-        "time": "2016-01-10 12:26:29",
-        "type": "yii2-extension",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "kartik\\base\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Kartik Visweswaran",
-                "email": "kartikv2@gmail.com",
-                "homepage": "http://www.krajee.com/"
-            }
-        ],
-        "description": "Base library and foundation components for all Yii2 Krajee extensions.",
-        "homepage": "https://github.com/kartik-v/yii2-krajee-base",
-        "keywords": [
-            "base",
-            "extension",
-            "foundation",
-            "krajee",
-            "widget",
             "yii2"
         ]
     },
@@ -1208,60 +959,6 @@
         ]
     },
     {
-        "name": "rmrevin/yii2-fontawesome",
-        "version": "2.13.0",
-        "version_normalized": "2.13.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/rmrevin/yii2-fontawesome.git",
-            "reference": "2efbfacb22be59f373d11a7e3dfa9213e2ba18a9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/2efbfacb22be59f373d11a7e3dfa9213e2ba18a9",
-            "reference": "2efbfacb22be59f373d11a7e3dfa9213e2ba18a9",
-            "shasum": ""
-        },
-        "require": {
-            "bower-asset/fontawesome": "4.5.*",
-            "php": ">=5.4.0",
-            "yiisoft/yii2": "2.0.*"
-        },
-        "time": "2015-11-26 15:24:53",
-        "type": "yii2-extension",
-        "extra": {
-            "asset-installer-paths": {
-                "npm-asset-library": "vendor/npm",
-                "bower-asset-library": "vendor/bower"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "rmrevin\\yii\\fontawesome\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Revin Roman",
-                "email": "roman@rmrevin.com",
-                "homepage": "https://rmrevin.com/"
-            }
-        ],
-        "description": "Asset Bundle for Yii2 with Font Awesome",
-        "keywords": [
-            "asset",
-            "awesome",
-            "bundle",
-            "font",
-            "yii"
-        ]
-    },
-    {
         "name": "rmrevin/yii2-comments",
         "version": "1.4.2",
         "version_normalized": "1.4.2.0",
@@ -1410,39 +1107,6 @@
         ]
     },
     {
-        "name": "bower-asset/jquery",
-        "version": "2.2.2",
-        "version_normalized": "2.2.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/jquery/jquery-dist.git",
-            "reference": "086d381cd2f3b4b8b0af85ecb2c9593a61e5b4bd"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/086d381cd2f3b4b8b0af85ecb2c9593a61e5b4bd",
-            "reference": "086d381cd2f3b4b8b0af85ecb2c9593a61e5b4bd",
-            "shasum": ""
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": "dist/jquery.js",
-            "bower-asset-ignore": [
-                "package.json"
-            ]
-        },
-        "installation-source": "dist",
-        "license": [
-            "MIT"
-        ],
-        "keywords": [
-            "browser",
-            "javascript",
-            "jquery",
-            "library"
-        ]
-    },
-    {
         "name": "bower-asset/yii2-pjax",
         "version": "v2.0.6",
         "version_normalized": "2.0.6.0",
@@ -1557,49 +1221,6 @@
         ]
     },
     {
-        "name": "spanjeta/yii2-comments",
-        "version": "v1.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/spanjeta/yii2-comments.git",
-            "reference": "ed0e21b3d687b497f4a400dc5e62f90295b52540"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/spanjeta/yii2-comments/zipball/ed0e21b3d687b497f4a400dc5e62f90295b52540",
-            "reference": "ed0e21b3d687b497f4a400dc5e62f90295b52540",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2": "*"
-        },
-        "time": "2015-06-05 06:21:47",
-        "type": "yii2-extension",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "spanjeta\\comments\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "authors": [
-            {
-                "name": "Shiv Charan Panjeta",
-                "email": "shivcharan.panjeta@gmail.com"
-            }
-        ],
-        "description": "Comments Widget adds comment box for any view",
-        "keywords": [
-            "comments",
-            "extension",
-            "yii2"
-        ]
-    },
-    {
         "name": "bower-asset/bootstrap",
         "version": "v3.3.5",
         "version_normalized": "3.3.5.0",
@@ -1707,18 +1328,257 @@
         "installation-source": "dist"
     },
     {
-        "name": "bower-asset/fontawesome",
-        "version": "v4.5.0",
-        "version_normalized": "4.5.0.0",
+        "name": "bower-asset/jquery",
+        "version": "2.2.3",
+        "version_normalized": "2.2.3.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/FortAwesome/Font-Awesome.git",
-            "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968"
+            "url": "https://github.com/jquery/jquery-dist.git",
+            "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/fddd2c240452e6c8990c4ef75e0265b455aa7968",
-            "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968",
+            "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/af22a351b2ea5801ffb1695abb3bb34d5bed9198",
+            "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198",
+            "shasum": ""
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": "dist/jquery.js",
+            "bower-asset-ignore": [
+                "package.json"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "keywords": [
+            "browser",
+            "javascript",
+            "jquery",
+            "library"
+        ]
+    },
+    {
+        "name": "dektrium/yii2-user",
+        "version": "0.9.6",
+        "version_normalized": "0.9.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dektrium/yii2-user.git",
+            "reference": "ae737861ff170b9c4376b274244bd9994ee0d248"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/ae737861ff170b9c4376b274244bd9994ee0d248",
+            "reference": "ae737861ff170b9c4376b274244bd9994ee0d248",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "~2.0",
+            "yiisoft/yii2-authclient": "~2.0",
+            "yiisoft/yii2-bootstrap": "~2.0",
+            "yiisoft/yii2-jui": "~2.0",
+            "yiisoft/yii2-swiftmailer": "~2.0"
+        },
+        "require-dev": {
+            "codeception/aspect-mock": "*",
+            "codeception/specify": "*",
+            "codeception/verify": "*",
+            "yiisoft/yii2-codeception": "~2.0"
+        },
+        "time": "2016-03-27 18:09:10",
+        "type": "yii2-extension",
+        "extra": {
+            "bootstrap": "dektrium\\user\\Bootstrap",
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            },
+            "asset-installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "dektrium\\user\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dmitry Erofeev",
+                "email": "dmeroff@gmail.com",
+                "homepage": "http://dmeroff.ru"
+            }
+        ],
+        "description": "Flexible user registration and authentication module for Yii2",
+        "keywords": [
+            "User management",
+            "dektrium",
+            "yii2",
+            "yii2-user"
+        ]
+    },
+    {
+        "name": "phpspec/php-diff",
+        "version": "v1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpspec/php-diff.git",
+            "reference": "0464787bfa7cd13576c5a1e318709768798bec6a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpspec/php-diff/zipball/0464787bfa7cd13576c5a1e318709768798bec6a",
+            "reference": "0464787bfa7cd13576c5a1e318709768798bec6a",
+            "shasum": ""
+        },
+        "time": "2016-04-07 12:29:16",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Diff": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Chris Boulton",
+                "homepage": "http://github.com/chrisboulton"
+            }
+        ],
+        "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays)."
+    },
+    {
+        "name": "tinymce/tinymce",
+        "version": "4.3.11",
+        "version_normalized": "4.3.11.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tinymce/tinymce-dist.git",
+            "reference": "969503f87d04a41ad0b84b1d215a98fba13ca5a9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/969503f87d04a41ad0b84b1d215a98fba13ca5a9",
+            "reference": "969503f87d04a41ad0b84b1d215a98fba13ca5a9",
+            "shasum": ""
+        },
+        "time": "2016-04-25 02:19:14",
+        "type": "component",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "tinymce.js",
+                    "plugins/*/plugin.js",
+                    "themes/*/theme.js"
+                ],
+                "files": [
+                    "tinymce.min.js",
+                    "plugins/*/plugin.min.js",
+                    "themes/*/theme.min.js",
+                    "skins/**"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "Web based JavaScript HTML WYSIWYG editor control.",
+        "homepage": "http://www.tinymce.com",
+        "keywords": [
+            "editor",
+            "html",
+            "javascript",
+            "richtext",
+            "tinymce",
+            "wysiwyg"
+        ]
+    },
+    {
+        "name": "kartik-v/yii2-krajee-base",
+        "version": "v1.8.4",
+        "version_normalized": "1.8.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kartik-v/yii2-krajee-base.git",
+            "reference": "3115b09aeb15a5e06f38dc16860baf153d9bf70e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/3115b09aeb15a5e06f38dc16860baf153d9bf70e",
+            "reference": "3115b09aeb15a5e06f38dc16860baf153d9bf70e",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2-bootstrap": "@dev"
+        },
+        "time": "2016-04-11 09:07:40",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.8.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "kartik\\base\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Kartik Visweswaran",
+                "email": "kartikv2@gmail.com",
+                "homepage": "http://www.krajee.com/"
+            }
+        ],
+        "description": "Base library and foundation components for all Yii2 Krajee extensions.",
+        "homepage": "https://github.com/kartik-v/yii2-krajee-base",
+        "keywords": [
+            "base",
+            "extension",
+            "foundation",
+            "krajee",
+            "widget",
+            "yii2"
+        ]
+    },
+    {
+        "name": "bower-asset/fontawesome",
+        "version": "v4.6.1",
+        "version_normalized": "4.6.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FortAwesome/Font-Awesome.git",
+            "reference": "6535013c330e801ecf0b23c437865a7fb344486d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/6535013c330e801ecf0b23c437865a7fb344486d",
+            "reference": "6535013c330e801ecf0b23c437865a7fb344486d",
             "shasum": ""
         },
         "type": "bower-asset-library",
@@ -1744,5 +1604,154 @@
             "CC-BY-3.0"
         ],
         "description": "Font Awesome"
+    },
+    {
+        "name": "rmrevin/yii2-fontawesome",
+        "version": "2.14.0",
+        "version_normalized": "2.14.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rmrevin/yii2-fontawesome.git",
+            "reference": "baac28412963974940cbfb6b83940b3aa179b0ee"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/baac28412963974940cbfb6b83940b3aa179b0ee",
+            "reference": "baac28412963974940cbfb6b83940b3aa179b0ee",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/fontawesome": "4.6.*",
+            "php": ">=5.4.0",
+            "yiisoft/yii2": "2.0.*"
+        },
+        "time": "2016-04-21 11:55:25",
+        "type": "yii2-extension",
+        "extra": {
+            "asset-installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "rmrevin\\yii\\fontawesome\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Revin Roman",
+                "email": "roman@rmrevin.com",
+                "homepage": "https://rmrevin.com/"
+            }
+        ],
+        "description": "Asset Bundle for Yii2 with Font Awesome",
+        "keywords": [
+            "asset",
+            "awesome",
+            "bundle",
+            "font",
+            "yii"
+        ]
+    },
+    {
+        "name": "spanjeta/yii2-comments",
+        "version": "v1.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/spanjeta/yii2-comments.git",
+            "reference": "ed0e21b3d687b497f4a400dc5e62f90295b52540"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/spanjeta/yii2-comments/zipball/ed0e21b3d687b497f4a400dc5e62f90295b52540",
+            "reference": "ed0e21b3d687b497f4a400dc5e62f90295b52540",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2015-06-05 06:21:47",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "spanjeta\\comments\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Shiv Charan Panjeta",
+                "email": "shivcharan.panjeta@gmail.com"
+            }
+        ],
+        "description": "Comments Widget adds comment box for any view",
+        "keywords": [
+            "comments",
+            "extension",
+            "yii2"
+        ]
+    },
+    {
+        "name": "dektrium/yii2-rbac",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dektrium/yii2-rbac.git",
+            "reference": "cd06b74f9284dbfbf9a535e6004f5f6b9b9d0b9f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/cd06b74f9284dbfbf9a535e6004f5f6b9b9d0b9f",
+            "reference": "cd06b74f9284dbfbf9a535e6004f5f6b9b9d0b9f",
+            "shasum": ""
+        },
+        "require": {
+            "kartik-v/yii2-widget-select2": "*",
+            "yiisoft/yii2": "2.0.*"
+        },
+        "time": "2016-04-08 12:07:48",
+        "type": "yii2-extension",
+        "extra": {
+            "bootstrap": "dektrium\\rbac\\Bootstrap"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "dektrium\\rbac\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dmitry Erofeev",
+                "email": "dmeroff@gmail.com",
+                "homepage": "http://dmeroff.ru"
+            }
+        ],
+        "description": "RBAC management module for Yii2",
+        "keywords": [
+            "dektrium",
+            "rbac gui",
+            "rbac management",
+            "rbac module",
+            "yii rbac",
+            "yii2",
+            "yii2-rbac"
+        ]
     }
 ]

@@ -21,25 +21,6 @@ return array (
       '@yii/authclient' => $vendorDir . '/yiisoft/yii2-authclient',
     ),
   ),
-  'dektrium/yii2-user' => 
-  array (
-    'name' => 'dektrium/yii2-user',
-    'version' => '0.9.5.0',
-    'alias' => 
-    array (
-      '@dektrium/user' => $vendorDir . '/dektrium/yii2-user',
-    ),
-    'bootstrap' => 'dektrium\\user\\Bootstrap',
-  ),
-  'kartik-v/yii2-krajee-base' => 
-  array (
-    'name' => 'kartik-v/yii2-krajee-base',
-    'version' => '1.8.2.0',
-    'alias' => 
-    array (
-      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
-    ),
-  ),
   'kartik-v/yii2-widget-select2' => 
   array (
     'name' => 'kartik-v/yii2-widget-select2',
@@ -103,16 +84,6 @@ return array (
       '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
     ),
   ),
-  'dektrium/yii2-rbac' => 
-  array (
-    'name' => 'dektrium/yii2-rbac',
-    'version' => '9999999-dev',
-    'alias' => 
-    array (
-      '@dektrium/rbac' => $vendorDir . '/dektrium/yii2-rbac',
-    ),
-    'bootstrap' => 'dektrium\\rbac\\Bootstrap',
-  ),
   'kartik-v/yii2-field-range' => 
   array (
     'name' => 'kartik-v/yii2-field-range',
@@ -129,15 +100,6 @@ return array (
     'alias' => 
     array (
       '@kato' => $vendorDir . '/perminder-klair/yii2-dropzone',
-    ),
-  ),
-  'rmrevin/yii2-fontawesome' => 
-  array (
-    'name' => 'rmrevin/yii2-fontawesome',
-    'version' => '2.13.0.0',
-    'alias' => 
-    array (
-      '@rmrevin/yii/fontawesome' => $vendorDir . '/rmrevin/yii2-fontawesome',
     ),
   ),
   'rmrevin/yii2-comments' => 
@@ -166,5 +128,43 @@ return array (
     array (
       '@spanjeta/comments' => $vendorDir . '/spanjeta/yii2-comments',
     ),
+  ),
+  'dektrium/yii2-user' => 
+  array (
+    'name' => 'dektrium/yii2-user',
+    'version' => '0.9.6.0',
+    'alias' => 
+    array (
+      '@dektrium/user' => $vendorDir . '/dektrium/yii2-user',
+    ),
+    'bootstrap' => 'dektrium\\user\\Bootstrap',
+  ),
+  'kartik-v/yii2-krajee-base' => 
+  array (
+    'name' => 'kartik-v/yii2-krajee-base',
+    'version' => '1.8.4.0',
+    'alias' => 
+    array (
+      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
+    ),
+  ),
+  'rmrevin/yii2-fontawesome' => 
+  array (
+    'name' => 'rmrevin/yii2-fontawesome',
+    'version' => '2.14.0.0',
+    'alias' => 
+    array (
+      '@rmrevin/yii/fontawesome' => $vendorDir . '/rmrevin/yii2-fontawesome',
+    ),
+  ),
+  'dektrium/yii2-rbac' => 
+  array (
+    'name' => 'dektrium/yii2-rbac',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@dektrium/rbac' => $vendorDir . '/dektrium/yii2-rbac',
+    ),
+    'bootstrap' => 'dektrium\\rbac\\Bootstrap',
   ),
 );

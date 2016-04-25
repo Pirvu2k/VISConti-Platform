@@ -15,6 +15,7 @@ use dektrium\user\Finder;
 use dektrium\user\helpers\Password;
 use dektrium\user\Mailer;
 use dektrium\user\Module;
+use dektrium\user\traits\ModuleTrait;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -22,8 +23,7 @@ use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\web\Application as WebApplication;
 use yii\web\IdentityInterface;
-use yii\rbac\DbManager;
-
+use yii\helpers\ArrayHelper;
 
 /**
  * User ActiveRecord model.
@@ -50,10 +50,16 @@ use yii\rbac\DbManager;
  * @property Account[] $accounts
  * @property Profile   $profile
  *
+ * Dependencies:
+ * @property-read Finder $finder
+ * @property-read Module $module
+ * @property-read Mailer $mailer
+ *
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    use ModuleTrait;
     const BEFORE_CREATE   = 'beforeCreate';
     const AFTER_CREATE    = 'afterCreate';
     const BEFORE_REGISTER = 'beforeRegister';
@@ -66,31 +72,26 @@ class User extends ActiveRecord implements IdentityInterface
     /** @var string Plain password. Used for model validation. */
     public $password;
 
-    /** @var \dektrium\user\Module */
-    protected $module;
-
-    /** @var Mailer */
-    protected $mailer;
-
-    /** @var Finder */
-    protected $finder;
-
     /** @var Profile|null */
     private $_profile;
 
     /** @var string Default username regexp */
     public static $usernameRegexp = '/^[-a-zA-Z0-9_\.@]+$/';
 
-    /** @inheritdoc */
-    public function init()
-    {
-        $this->finder = Yii::$container->get(Finder::className());
-        $this->mailer = Yii::$container->get(Mailer::className());
-        $this->module = Yii::$app->getModule('user');
-        $this->on(self::BEFORE_REGISTER, function() {
-            $this->username = $this->email;
-        });
-        parent::init();
+    /**
+     * @return Finder
+     * @throws \yii\base\InvalidConfigException
+     */
+    protected function getFinder() {
+        return Yii::$container->get(Finder::className());
+    }
+
+    /**
+     * @return Mailer
+     * @throws \yii\base\InvalidConfigException
+     */
+    protected function getMailer() {
+        return Yii::$container->get(Mailer::className());
     }
 
     /**
@@ -114,7 +115,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getIsAdmin()
     {
-        return in_array($this->username, $this->module->admins);
+        return (\Yii::$app->getAuthManager() && $this->module->adminPermission  ? \Yii::$app->user->can($this->module->adminPermission) : false) || in_array($this->username, $this->module->admins);
     }
 
     /**
@@ -186,13 +187,14 @@ class User extends ActiveRecord implements IdentityInterface
     /** @inheritdoc */
     public function scenarios()
     {
-        return [
+        $scenarios = parent::scenarios();
+        return ArrayHelper::merge($scenarios, [
             'register' => ['username', 'email', 'password'],
             'connect'  => ['username', 'email'],
             'create'   => ['username', 'email', 'password'],
             'update'   => ['username', 'email', 'password'],
             'settings' => ['username', 'email', 'password'],
-        ];
+        ]);
     }
 
     /** @inheritdoc */
@@ -238,8 +240,6 @@ class User extends ActiveRecord implements IdentityInterface
 
         $this->confirmed_at = time();
         $this->password = $this->password == null ? Password::generate(8) : $this->password;
-
-
 
         $this->trigger(self::BEFORE_CREATE);
 
@@ -434,9 +434,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if ($insert) {
             $this->setAttribute('auth_key', Yii::$app->security->generateRandomString());
-
-           
-
             if (Yii::$app instanceof WebApplication) {
                 $this->setAttribute('registration_ip', Yii::$app->request->userIP);
             }
@@ -456,9 +453,8 @@ class User extends ActiveRecord implements IdentityInterface
         if ($insert) {
             if ($this->_profile == null) {
                 $this->_profile = Yii::createObject(Profile::className());
-                 
             }
-                $this->_profile->link('user', $this);
+            $this->_profile->link('user', $this);
         }
     }
 

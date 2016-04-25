@@ -11,9 +11,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\captcha\Captcha;
-use yii\captcha\CaptchaValidator;
-use yii\captcha\CaptchaAction;
 
 /**
  * @var yii\web\View              $this
@@ -21,7 +18,7 @@ use yii\captcha\CaptchaAction;
  * @var dektrium\user\Module      $module
  */
 
-$this->title = Yii::t('user', 'Register');
+$this->title = Yii::t('user', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -33,23 +30,19 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-body">
                 <?php $form = ActiveForm::begin([
                     'id'                     => 'registration-form',
-                    'enableAjaxValidation'   => false,
-                    'enableClientValidation' => true,
+                    'enableAjaxValidation'   => true,
+                    'enableClientValidation' => false,
                 ]); ?>
 
                 <?= $form->field($model, 'email') ?>
 
-                <?php // $form->field($model, 'username') ?>
-                <div class="checkbox">
-                <?= $form->field($model, 'is_expert')->checkbox(['label'=>'I am an expert']) ?>
-                </div>
+                <?= $form->field($model, 'username') ?>
+
                 <?php if ($module->enableGeneratingPassword == false): ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
                 <?php endif ?>
 
-                <?= $form->field($model, 'captcha')->widget(Captcha::className(),['captchaAction' => '/site/captcha']) ?>
-
-                <?= Html::submitButton(Yii::t('user', 'Create Account'), ['class' => 'btn btn-success btn-block']) ?>
+                <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
 
                 <?php ActiveForm::end(); ?>
             </div>

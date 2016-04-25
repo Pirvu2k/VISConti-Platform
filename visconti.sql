@@ -405,6 +405,42 @@ CREATE TABLE IF NOT EXISTS `auth_rule` (
 /*!40000 ALTER TABLE `auth_rule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `auth_rule` ENABLE KEYS */;
 
+
+-- Dumping structure for table yii2basic.canvases
+CREATE TABLE IF NOT EXISTS `canvases` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `content` varchar(3000) NOT NULL,
+  `created_by` tinytext NOT NULL,
+  `requested` tinytext NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `assigned_to` tinytext NOT NULL,
+  `expert_id` tinyint(4) NOT NULL,
+  `language` tinytext NOT NULL,
+  `eng_summary` text NOT NULL,
+  `status` enum('Draft','Submitted','Expert evaluation requested','Expert evaluation in progress','Industry evaluation requested','Industry evaluation in progress','Evalution complete') NOT NULL DEFAULT 'Draft',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table yii2basic.canvases: ~12 rows (approximately)
+/*!40000 ALTER TABLE `canvases` DISABLE KEYS */;
+INSERT INTO `canvases` (`id`, `title`, `content`, `created_by`, `requested`, `date_added`, `date_modified`, `assigned_to`, `expert_id`, `language`, `eng_summary`, `status`) VALUES
+	(28, '0', '', '3', '', '2016-03-20 15:43:20', '2016-03-20 15:43:20', 'test3', 0, 'en', 'Short summary of the project, currently none :( ', 'Draft'),
+	(29, '0', '', 'test2', '', '2016-03-22 19:46:50', '2016-03-22 19:47:13', '', 0, 'en', 'Test Summary. Hello World.', 'Draft'),
+	(54, '0', '', 'skypeStudent', '', '2016-03-30 19:28:53', '2016-03-30 19:28:53', '', 0, 'en', 'blablablabalblabalbal', 'Draft'),
+	(55, '0', '', 'student3', '', '2016-03-30 19:30:55', '2016-03-30 19:30:55', '', 0, 'en', 'dasdadasdadadasdas', 'Draft'),
+	(56, '0', '', 'student3', '', '2016-04-04 18:29:49', '2016-04-04 18:29:49', '', 0, 'en', 'asdasdasdasdasdas', 'Draft'),
+	(57, '0', '', 'student3', '', '2016-04-04 18:30:25', '2016-04-04 18:30:25', '', 0, 'en', 'dasdasdasdasdasdasdas', 'Draft'),
+	(58, '0', '', 'student3', '', '2016-04-04 18:43:37', '2016-04-04 18:43:37', '', 0, 'en', 'dasdasddadasdasdasdas', 'Draft'),
+	(59, '0', '', 'student3', '', '2016-04-04 19:08:05', '2016-04-04 19:08:05', '', 0, 'en', 'dasdasdasdasdasdas', 'Draft'),
+	(60, '0', '', 'mihai@pirvulet.com', '', '2016-04-04 19:17:13', '2016-04-04 19:17:13', '', 0, 'en', 'dasdasdasdasdasdas', 'Draft'),
+	(61, '0', '', '3', '', '2016-04-09 12:52:13', '2016-04-09 12:52:13', '', 0, 'en', 'dasdasdasdadasda', 'Draft'),
+	(62, '0', '', '90', '', '2016-04-25 18:46:44', '2016-04-25 18:46:44', '', 0, 'English', 'dasdasdasdasdasdasdas', 'Draft'),
+	(63, '3123123123123', '<p>dasdasdasdasdasda</p>', '90', '', '2016-04-25 19:43:27', '2016-04-25 19:43:27', '', 0, 'Amharic', 'dasdasddadasdas', 'Submitted');
+/*!40000 ALTER TABLE `canvases` ENABLE KEYS */;
+
+
 -- Dumping structure for table yii2basic.comment
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) NOT NULL,
@@ -418,37 +454,12 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `type_user` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping structure for table yii2basic.canvases
-CREATE TABLE IF NOT EXISTS `canvases` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` tinytext NOT NULL,
-  `content` text NOT NULL,
-  `requested` text NOT NULL,
-  `created_by` tinytext NOT NULL,
-  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `assigned_to` tinytext NOT NULL,
-  `expert_id` tinyint(4) NOT NULL,
-  `language` tinytext NOT NULL,
-  `eng_summary` text NOT NULL,
-  `archive` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
-
--- Dumping data for table yii2basic.canvases: ~9 rows (approximately)
-/*!40000 ALTER TABLE `canvases` DISABLE KEYS */;
-INSERT INTO `canvases` (`id`, `title`, `content`, `requested`, `created_by`, `date_added`, `date_modified`, `assigned_to`, `expert_id`, `language`, `eng_summary`, `archive`) VALUES
-	(28, 'Project Example 1 ', '<h2><strong>Hello, my name is Mihai!</strong></h2>\r\n<p><strong>I am having a great time testing out VISConti!</strong></p>', '1', '3', '2016-03-20 15:43:20', '2016-03-20 15:43:20', 'test3', 0, 'en', 'Short summary of the project, currently none :( ', NULL),
-	(29, 'Test Canvas Skype (edit)', '<h1 style="text-align: center;">Title</h1>\r\n<p>content</p>\r\n<p>content</p>\r\n<p>content</p>', '1', 'test2', '2016-03-22 19:46:50', '2016-03-22 19:47:13', '', 0, 'en', 'Test Summary. Hello World.', NULL),
-	(54, 'Test Project', '<p>dioasjdijdasijdo<strong>idasjaidioasjdijdasijdoidasjaidioasjdijd</strong>asijdoidasjaidioasjdijdasijdoidasjai</p>', '1', 'skypeStudent', '2016-03-30 19:28:53', '2016-03-30 19:28:53', '', 0, 'en', 'blablablabalblabalbal', NULL),
-	(55, 'adi9asjdsijd', '<p>dasdasdasdasdasdasdsadasdas</p>', '1', 'student3', '2016-03-30 19:30:55', '2016-03-30 19:30:55', '', 0, 'en', 'dasdadasdadadasdas', NULL),
-	(56, 'dadadasdasd', '<p>dasdasdasdasdasdasdasd</p>', '1', 'student3', '2016-04-04 18:29:49', '2016-04-04 18:29:49', '', 0, 'en', 'asdasdasdasdasdas', NULL),
-	(57, 'dasdsadasdas', '<p>dasdasdasdasd</p>', '1', 'student3', '2016-04-04 18:30:25', '2016-04-04 18:30:25', '', 0, 'en', 'dasdasdasdasdasdasdas', NULL),
-	(58, 'dsadasdasd', '<p>asdasdadasdasddas</p>', '1', 'student3', '2016-04-04 18:43:37', '2016-04-04 18:43:37', '', 0, 'en', 'dasdasddadasdasdasdas', NULL),
-	(59, 'dasdasdasdasdas', '<p>dasdasdasdasdasdasd</p>', '1', 'student3', '2016-04-04 19:08:05', '2016-04-04 19:08:05', '', 0, 'en', 'dasdasdasdasdasdas', NULL),
-	(60, 'dasdadasdas', '<p>dasdasdasdadasdasd</p>', '1', 'mihai@pirvulet.com', '2016-04-04 19:17:13', '2016-04-04 19:17:13', '', 0, 'en', 'dasdasdasdasdasdas', NULL),
-	(61, 'dasddasdada', '<p>dasdasdasdadadas</p>', '1', '3', '2016-04-09 12:52:13', '2016-04-09 12:52:13', '', 0, 'en', 'dasdasdasdadasda', NULL);
-/*!40000 ALTER TABLE `canvases` ENABLE KEYS */;
+-- Dumping data for table yii2basic.comment: ~0 rows (approximately)
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` (`id`, `comment`, `model_type`, `model_id`, `state_id`, `type_id`, `create_time`, `create_user_id`, `type_user`) VALUES
+	(0, NULL, 'app\\models\\Canvas', 62, NULL, NULL, '2016-04-25 23:57:51', 90, 1),
+	(0, NULL, 'app\\models\\Canvas', 62, NULL, NULL, '2016-04-26 00:00:14', 90, 1);
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.countries
@@ -457,7 +468,7 @@ CREATE TABLE IF NOT EXISTS `countries` (
   `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `Trash` enum('Yes','No') DEFAULT NULL,
-  `Title` varchar(20) NOT NULL,
+  `Title` varchar(21) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -493,20 +504,23 @@ INSERT INTO `country` (`code`, `name`, `population`) VALUES
 
 -- Dumping structure for table yii2basic.degrees
 CREATE TABLE IF NOT EXISTS `degrees` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Code` varchar(20) NOT NULL,
-  `Expert technical weight` float NOT NULL COMMENT '0-1',
-  `Expert economical weight` float NOT NULL COMMENT '0-1',
-  `Expert creative weight` float NOT NULL COMMENT '0-1',
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `Code` (`Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `code` varchar(20) NOT NULL,
+  `expert_technical_weight` float NOT NULL COMMENT '0-1',
+  `expert_economical_weight` float NOT NULL COMMENT '0-1',
+  `expert_creative_weight` float NOT NULL COMMENT '0-1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Code` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.degrees: ~0 rows (approximately)
+-- Dumping data for table yii2basic.degrees: ~2 rows (approximately)
 /*!40000 ALTER TABLE `degrees` DISABLE KEYS */;
+INSERT INTO `degrees` (`id`, `created_on`, `last_modified_on`, `trash`, `code`, `expert_technical_weight`, `expert_economical_weight`, `expert_creative_weight`) VALUES
+	(1, '2016-04-23 02:09:35', '0000-00-00 00:00:00', NULL, 'dsada', 0.5, 0.3, 0.2),
+	(2, '2016-04-23 02:09:44', '0000-00-00 00:00:00', NULL, 'fdaf', 0.4, 0.2, 0.4);
 /*!40000 ALTER TABLE `degrees` ENABLE KEYS */;
 
 
@@ -578,15 +592,24 @@ CREATE TABLE IF NOT EXISTS `expert` (
   `confirmed` enum('Yes','No') DEFAULT 'No',
   `active_projects` int(11) NOT NULL,
   `sectors` varchar(50) DEFAULT NULL,
+  `auth_key` varchar(32) NOT NULL,
+  `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.expert: ~2 rows (approximately)
+-- Dumping data for table yii2basic.expert: ~9 rows (approximately)
 /*!40000 ALTER TABLE `expert` DISABLE KEYS */;
-INSERT INTO `expert` (`id`, `created_on`, `last_modified_on`, `trash`, `last_login_activity`, `title`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `reset_pass_exp_date`, `website`, `bio`, `country`, `zip`, `city`, `address`, `state`, `mobile`, `phone`, `fax`, `terms`, `confirmed`, `active_projects`, `sectors`) VALUES
-	(13, '2016-04-16 03:27:44', '2016-04-11 12:32:54', NULL, '2016-04-10 22:31:29', 'Mr.', 'Mihai', 'Pirvulet', 'expert@test.com', 1915, '$2y$13$e6kmM5uEnX/E.1dtV9zSL./rOwvGamfzcUKU97luaWXw8MvXRjyIm', '0000-00-00 00:00:00', 'http://fomrad.com', 'dadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadada', 'Romania', '223945', 'Balesti', 'Str.2 Ap. 5', 'Gorj', '312312312', '443243242', '', 'Yes', 'No', 0, '1,2'),
-	(14, '2016-04-13 20:24:28', '2016-04-13 20:24:28', NULL, '2016-04-13 20:24:28', '', '', '', 'da@test.com', 0, '$2y$13$Ik8umC88ANX7NdNOypQAFu1ENzKlmfSurC3niupUfwptGvhu6N6Y2', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL);
+INSERT INTO `expert` (`id`, `created_on`, `last_modified_on`, `trash`, `last_login_activity`, `title`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `reset_pass_exp_date`, `website`, `bio`, `country`, `zip`, `city`, `address`, `state`, `mobile`, `phone`, `fax`, `terms`, `confirmed`, `active_projects`, `sectors`, `auth_key`, `role`) VALUES
+	(13, '2016-04-25 19:48:51', '2016-04-11 12:32:54', NULL, '2016-04-10 22:31:29', 'Mr.', 'Mihai', 'Pirvulet', 'expert@test.com', 1915, '$2y$13$e6kmM5uEnX/E.1dtV9zSL./rOwvGamfzcUKU97luaWXw8MvXRjyIm', '0000-00-00 00:00:00', 'http://fomrad.com', 'dadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadada', 'Romania', '223945', 'Balesti', 'Str.2 Ap. 5', 'Gorj', '312312312', '443243242', '', 'Yes', 'No', 0, '1,2', '', 'Creative'),
+	(14, '2016-04-13 20:24:28', '2016-04-13 20:24:28', NULL, '2016-04-13 20:24:28', '', '', '', 'da@test.com', 0, '$2y$13$Ik8umC88ANX7NdNOypQAFu1ENzKlmfSurC3niupUfwptGvhu6N6Y2', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, '', ''),
+	(16, '2016-04-23 01:03:49', '2016-04-23 01:03:49', NULL, '2016-04-23 01:03:49', '', '', '', 'dada@da.com', 0, '$2y$13$0S08CmBpN0kuWUZgYu300O9wF9.FZliGb7RU5nxaAghfE9/YJzoOG', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'H8e_ovQl-oIumyKkoZYnMlG2q7yswMj-', ''),
+	(17, '2016-04-23 01:14:59', '2016-04-23 01:14:59', NULL, '2016-04-23 01:14:59', '', '', '', 'mdsam@mdsam.com', 0, '$2y$13$jfAFsK2R9OEJyosEnSoR0ueD6cNnRl6DjsOMJpRTjm1K2QYPs8M2O', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, '_tWpjnpv0trNnNtIkxlayLzSmIQuHzvS', ''),
+	(18, '2016-04-23 01:17:33', '2016-04-23 01:17:33', NULL, '2016-04-23 01:17:33', '', '', '', 'msdsam@mdsam.com', 0, '$2y$13$oCPhhP9gdEj8pNkTWmugiO/vmj6skZdIN7V6lKNo9OLEdm.qydOS.', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'L0J1mVcnGPdP1swnivqs6NlxGlwxKCYB', ''),
+	(19, '2016-04-23 01:19:19', '2016-04-23 01:19:19', NULL, '2016-04-23 01:19:19', '', '', '', 'sadsada@hdsaui.com', 0, '$2y$13$KtvDUSlIFvL7DOXdaZpJ0utrAxTzmIrh5Fa4i2QtVLKrlKkbVKzE6', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'wLHejrb8Sy_FGAkq0zGsXDmJbK9dSwLM', ''),
+	(20, '2016-04-23 01:19:48', '2016-04-23 01:19:48', NULL, '2016-04-23 01:19:48', '', '', '', 'dsadsaddas@jdins.com', 0, '$2y$13$qQww75oGG8kwrJMbFbxJbuv1vLwg8CGCQfltUxbXDSbZyJO/MVJUi', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'znS4keiShZ8zgBBD1P34LB88APD95DHK', ''),
+	(21, '2016-04-23 01:21:43', '2016-04-23 01:21:43', NULL, '2016-04-23 01:21:43', '', '', '', 'dsaddsaddas@jdins.com', 0, '$2y$13$zTwgnRZ44IZtUriI9.BzY./b5j3YMDgQUK2clMJZU2BoK4T6gZkW2', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'Vs9T8MAfA9QOWvh4YeLUTcyaq5p7BbuC', ''),
+	(22, '2016-04-23 01:41:29', '2016-04-23 01:26:30', NULL, '2016-04-23 01:26:30', '', '', '', 'dsfsdf@jidj.cin', 0, '$2y$13$1WGmaVzFiU5wqebp39p3E.mKGr9bmLSaeVsw.SErrjhMWpQnF53Di', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'Yes', 0, NULL, 'nVgyiPvHL8sto7rMScC6LrgtVHQhxluG', '');
 /*!40000 ALTER TABLE `expert` ENABLE KEYS */;
 
 
@@ -600,14 +623,13 @@ CREATE TABLE IF NOT EXISTS `expert_education` (
   `degree_details` varchar(1024) NOT NULL DEFAULT '0',
   `to` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table yii2basic.expert_education: ~2 rows (approximately)
 /*!40000 ALTER TABLE `expert_education` DISABLE KEYS */;
 INSERT INTO `expert_education` (`id`, `user_id`, `degree`, `institution`, `from`, `degree_details`, `to`) VALUES
-	(2, '0', 'Yes', 'It\'s me', '1916', 'Here i did some of the best shit ever,', '1939'),
-	(3, '0', 'dadasdasd', 'asdasdasdas', '1905', 'dadsasdasda', '1910'),
-	(8, '13', 'sdsadasdasdas', 'dasdasdasd', '1917', 'asdasdasdas', '1916');
+	(11, '13', 'dsada', 'dsadsa', '1917', 'dasdsad', '1918'),
+	(12, '13', 'fdaf', 'dsadsa', '1910', 'dsadsad', '1917');
 /*!40000 ALTER TABLE `expert_education` ENABLE KEYS */;
 
 
@@ -621,13 +643,13 @@ CREATE TABLE IF NOT EXISTS `expert_experience` (
   `to` varchar(50) NOT NULL DEFAULT '0',
   `job_description` varchar(1024) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table yii2basic.expert_experience: ~2 rows (approximately)
 /*!40000 ALTER TABLE `expert_experience` DISABLE KEYS */;
 INSERT INTO `expert_experience` (`id`, `user_id`, `job_title`, `institution`, `from`, `to`, `job_description`) VALUES
-	(3, '13', 'dasdasdas', 'dasdsads', '1916', '1918', 'dasdasdas'),
-	(4, '13', 'dasdasda', 'asdasdasd', '1917', '1907', 'sdasdasd');
+	(5, '13', 'da', 'dasdas', '1902', '1906', 'dsadsa'),
+	(6, '13', 'nu', 'teqtet', '1916', '1918', 'dwqdwqeqwe');
 /*!40000 ALTER TABLE `expert_experience` ENABLE KEYS */;
 
 
@@ -648,8 +670,6 @@ CREATE TABLE IF NOT EXISTS `expert_interest` (
 
 -- Dumping data for table yii2basic.expert_interest: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_interest` DISABLE KEYS */;
-INSERT INTO `expert_interest` (`id`, `created_on`, `last_modified_on`, `trash`, `interest`, `expert`) VALUES
-	(3, '2016-04-16 02:42:00', '0000-00-00 00:00:00', NULL, 1, 13);
 /*!40000 ALTER TABLE `expert_interest` ENABLE KEYS */;
 
 
@@ -712,10 +732,6 @@ CREATE TABLE IF NOT EXISTS `expert_sector` (
 
 -- Dumping data for table yii2basic.expert_sector: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_sector` DISABLE KEYS */;
-INSERT INTO `expert_sector` (`id`, `created_on`, `last_modified_on`, `trash`, `sector_id`, `expert`) VALUES
-	(17, '2016-04-16 02:36:09', '0000-00-00 00:00:00', NULL, 1, 13),
-	(20, '2016-04-16 02:41:38', '0000-00-00 00:00:00', NULL, 2, 13),
-	(21, '2016-04-16 02:41:47', '0000-00-00 00:00:00', NULL, 3, 13);
 /*!40000 ALTER TABLE `expert_sector` ENABLE KEYS */;
 
 
@@ -736,9 +752,6 @@ CREATE TABLE IF NOT EXISTS `expert_specialization` (
 
 -- Dumping data for table yii2basic.expert_specialization: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_specialization` DISABLE KEYS */;
-INSERT INTO `expert_specialization` (`id`, `created_on`, `last_modified_on`, `trash`, `specialization`, `expert`) VALUES
-	(8, '2016-04-16 02:41:59', '0000-00-00 00:00:00', NULL, 1, 13),
-	(9, '2016-04-16 02:41:59', '0000-00-00 00:00:00', NULL, 2, 13);
 /*!40000 ALTER TABLE `expert_specialization` ENABLE KEYS */;
 
 
@@ -755,12 +768,10 @@ CREATE TABLE IF NOT EXISTS `expert_sub_sector` (
   KEY `FK_expert_sub_sector_sub_sector` (`subsector`),
   CONSTRAINT `FK_expert_sub_sector_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_sub_sector_sub_sector` FOREIGN KEY (`subsector`) REFERENCES `sub_sector` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.expert_sub_sector: ~0 rows (approximately)
+-- Dumping data for table yii2basic.expert_sub_sector: ~1 rows (approximately)
 /*!40000 ALTER TABLE `expert_sub_sector` DISABLE KEYS */;
-INSERT INTO `expert_sub_sector` (`id`, `created_on`, `last_modified_on`, `trash`, `subsector`, `expert`) VALUES
-	(6, '2016-04-16 02:36:31', '0000-00-00 00:00:00', NULL, 1, 13);
 /*!40000 ALTER TABLE `expert_sub_sector` ENABLE KEYS */;
 
 
@@ -870,10 +881,10 @@ CREATE TABLE IF NOT EXISTS `interest` (
   CONSTRAINT `FK_specialization_interests` FOREIGN KEY (`specialization`) REFERENCES `specialization` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.interest: ~3 rows (approximately)
+-- Dumping data for table yii2basic.interest: ~4 rows (approximately)
 /*!40000 ALTER TABLE `interest` DISABLE KEYS */;
 INSERT INTO `interest` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`, `specialization`, `expert_technical_weight`, `expert_economical_weight`, `expert_creative_weight`) VALUES
-	(1, '2016-04-15 23:17:38', '0000-00-00 00:00:00', NULL, 'test', NULL, 1, 0, 0, 0),
+	(1, '2016-04-23 02:38:58', '0000-00-00 00:00:00', NULL, 'test', NULL, 1, 0.3, 0.5, 0.2),
 	(2, '2016-04-15 23:17:45', '0000-00-00 00:00:00', NULL, 'test2', NULL, 3, 0, 0, 0),
 	(3, '2016-04-15 23:17:54', '0000-00-00 00:00:00', NULL, 'testt', NULL, 1, 0, 0, 0),
 	(4, '2016-04-15 23:17:45', '0000-00-00 00:00:00', NULL, 'test23', NULL, 3, 0, 0, 0);
@@ -882,21 +893,173 @@ INSERT INTO `interest` (`id`, `created_on`, `last_modified_on`, `trash`, `name`,
 
 -- Dumping structure for table yii2basic.job_titles
 CREATE TABLE IF NOT EXISTS `job_titles` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Created on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Last modified on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Trash` enum('Yes','No') DEFAULT NULL,
-  `Code` varchar(50) NOT NULL,
-  `Expert technical weight` float NOT NULL COMMENT '0-1',
-  `Expert economical weight` float NOT NULL COMMENT '0-1',
-  `Expert creative weight` float NOT NULL COMMENT '0-1',
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `Code` (`Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `trash` enum('Yes','No') DEFAULT NULL,
+  `code` varchar(50) NOT NULL,
+  `expert_technical_weight` float NOT NULL COMMENT '0-1',
+  `expert_economical_weight` float NOT NULL COMMENT '0-1',
+  `expert_creative_weight` float NOT NULL COMMENT '0-1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Code` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.job_titles: ~0 rows (approximately)
+-- Dumping data for table yii2basic.job_titles: ~2 rows (approximately)
 /*!40000 ALTER TABLE `job_titles` DISABLE KEYS */;
+INSERT INTO `job_titles` (`id`, `created_on`, `last_modified_on`, `trash`, `code`, `expert_technical_weight`, `expert_economical_weight`, `expert_creative_weight`) VALUES
+	(1, '2016-04-23 02:21:42', '0000-00-00 00:00:00', NULL, 'da', 0.3, 0.4, 0.3),
+	(2, '2016-04-23 02:21:55', '0000-00-00 00:00:00', NULL, 'nu', 0.1, 0.2, 0.7);
 /*!40000 ALTER TABLE `job_titles` ENABLE KEYS */;
+
+
+-- Dumping structure for table yii2basic.languages
+CREATE TABLE IF NOT EXISTS `languages` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(49) CHARACTER SET utf8 DEFAULT NULL,
+  `iso_639-1` char(2) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Dumping data for table yii2basic.languages: ~135 rows (approximately)
+/*!40000 ALTER TABLE `languages` DISABLE KEYS */;
+INSERT INTO `languages` (`id`, `name`, `iso_639-1`) VALUES
+	(1, 'English', 'en'),
+	(2, 'Afar', 'aa'),
+	(3, 'Abkhazian', 'ab'),
+	(4, 'Afrikaans', 'af'),
+	(5, 'Amharic', 'am'),
+	(6, 'Arabic', 'ar'),
+	(7, 'Assamese', 'as'),
+	(8, 'Aymara', 'ay'),
+	(9, 'Azerbaijani', 'az'),
+	(10, 'Bashkir', 'ba'),
+	(11, 'Belarusian', 'be'),
+	(12, 'Bulgarian', 'bg'),
+	(13, 'Bihari', 'bh'),
+	(14, 'Bislama', 'bi'),
+	(15, 'Bengali/Bangla', 'bn'),
+	(16, 'Tibetan', 'bo'),
+	(17, 'Breton', 'br'),
+	(18, 'Catalan', 'ca'),
+	(19, 'Corsican', 'co'),
+	(20, 'Czech', 'cs'),
+	(21, 'Welsh', 'cy'),
+	(22, 'Danish', 'da'),
+	(23, 'German', 'de'),
+	(24, 'Bhutani', 'dz'),
+	(25, 'Greek', 'el'),
+	(26, 'Esperanto', 'eo'),
+	(27, 'Spanish', 'es'),
+	(28, 'Estonian', 'et'),
+	(29, 'Basque', 'eu'),
+	(30, 'Persian', 'fa'),
+	(31, 'Finnish', 'fi'),
+	(32, 'Fiji', 'fj'),
+	(33, 'Faeroese', 'fo'),
+	(34, 'French', 'fr'),
+	(35, 'Frisian', 'fy'),
+	(36, 'Irish', 'ga'),
+	(37, 'Scots/Gaelic', 'gd'),
+	(38, 'Galician', 'gl'),
+	(39, 'Guarani', 'gn'),
+	(40, 'Gujarati', 'gu'),
+	(41, 'Hausa', 'ha'),
+	(42, 'Hindi', 'hi'),
+	(43, 'Croatian', 'hr'),
+	(44, 'Hungarian', 'hu'),
+	(45, 'Armenian', 'hy'),
+	(46, 'Interlingua', 'ia'),
+	(47, 'Interlingue', 'ie'),
+	(48, 'Inupiak', 'ik'),
+	(49, 'Indonesian', 'in'),
+	(50, 'Icelandic', 'is'),
+	(51, 'Italian', 'it'),
+	(52, 'Hebrew', 'iw'),
+	(53, 'Japanese', 'ja'),
+	(54, 'Yiddish', 'ji'),
+	(55, 'Javanese', 'jw'),
+	(56, 'Georgian', 'ka'),
+	(57, 'Kazakh', 'kk'),
+	(58, 'Greenlandic', 'kl'),
+	(59, 'Cambodian', 'km'),
+	(60, 'Kannada', 'kn'),
+	(61, 'Korean', 'ko'),
+	(62, 'Kashmiri', 'ks'),
+	(63, 'Kurdish', 'ku'),
+	(64, 'Kirghiz', 'ky'),
+	(65, 'Latin', 'la'),
+	(66, 'Lingala', 'ln'),
+	(67, 'Laothian', 'lo'),
+	(68, 'Lithuanian', 'lt'),
+	(69, 'Latvian/Lettish', 'lv'),
+	(70, 'Malagasy', 'mg'),
+	(71, 'Maori', 'mi'),
+	(72, 'Macedonian', 'mk'),
+	(73, 'Malayalam', 'ml'),
+	(74, 'Mongolian', 'mn'),
+	(75, 'Moldavian', 'mo'),
+	(76, 'Marathi', 'mr'),
+	(77, 'Malay', 'ms'),
+	(78, 'Maltese', 'mt'),
+	(79, 'Burmese', 'my'),
+	(80, 'Nauru', 'na'),
+	(81, 'Nepali', 'ne'),
+	(82, 'Dutch', 'nl'),
+	(83, 'Norwegian', 'no'),
+	(84, 'Occitan', 'oc'),
+	(85, '(Afan)/Oromoor/Oriya', 'om'),
+	(86, 'Punjabi', 'pa'),
+	(87, 'Polish', 'pl'),
+	(88, 'Pashto/Pushto', 'ps'),
+	(89, 'Portuguese', 'pt'),
+	(90, 'Quechua', 'qu'),
+	(91, 'Rhaeto-Romance', 'rm'),
+	(92, 'Kirundi', 'rn'),
+	(93, 'Romanian', 'ro'),
+	(94, 'Russian', 'ru'),
+	(95, 'Kinyarwanda', 'rw'),
+	(96, 'Sanskrit', 'sa'),
+	(97, 'Sindhi', 'sd'),
+	(98, 'Sangro', 'sg'),
+	(99, 'Serbo-Croatian', 'sh'),
+	(100, 'Singhalese', 'si'),
+	(101, 'Slovak', 'sk'),
+	(102, 'Slovenian', 'sl'),
+	(103, 'Samoan', 'sm'),
+	(104, 'Shona', 'sn'),
+	(105, 'Somali', 'so'),
+	(106, 'Albanian', 'sq'),
+	(107, 'Serbian', 'sr'),
+	(108, 'Siswati', 'ss'),
+	(109, 'Sesotho', 'st'),
+	(110, 'Sundanese', 'su'),
+	(111, 'Swedish', 'sv'),
+	(112, 'Swahili', 'sw'),
+	(113, 'Tamil', 'ta'),
+	(114, 'Telugu', 'te'),
+	(115, 'Tajik', 'tg'),
+	(116, 'Thai', 'th'),
+	(117, 'Tigrinya', 'ti'),
+	(118, 'Turkmen', 'tk'),
+	(119, 'Tagalog', 'tl'),
+	(120, 'Setswana', 'tn'),
+	(121, 'Tonga', 'to'),
+	(122, 'Turkish', 'tr'),
+	(123, 'Tsonga', 'ts'),
+	(124, 'Tatar', 'tt'),
+	(125, 'Twi', 'tw'),
+	(126, 'Ukrainian', 'uk'),
+	(127, 'Urdu', 'ur'),
+	(128, 'Uzbek', 'uz'),
+	(129, 'Vietnamese', 'vi'),
+	(130, 'Volapuk', 'vo'),
+	(131, 'Wolof', 'wo'),
+	(132, 'Xhosa', 'xh'),
+	(133, 'Yoruba', 'yo'),
+	(134, 'Chinese', 'zh'),
+	(135, 'Zulu', 'zu');
+/*!40000 ALTER TABLE `languages` ENABLE KEYS */;
 
 
 -- Dumping structure for table yii2basic.migration
@@ -1086,15 +1249,18 @@ CREATE TABLE IF NOT EXISTS `sector` (
   `trash` enum('Yes','No') DEFAULT NULL,
   `name` varchar(20) NOT NULL,
   `status` enum('Active','Inactive') DEFAULT 'Active',
+  `expert_technical_weight` float NOT NULL COMMENT '0-1',
+  `expert_economical_weight` float NOT NULL COMMENT '0-1',
+  `expert_creative_weight` float NOT NULL COMMENT '0-1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.sector: ~3 rows (approximately)
 /*!40000 ALTER TABLE `sector` DISABLE KEYS */;
-INSERT INTO `sector` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`) VALUES
-	(1, '2016-04-11 16:03:56', '0000-00-00 00:00:00', NULL, 'sector 1', 'Active'),
-	(2, '2016-04-11 16:04:07', '0000-00-00 00:00:00', NULL, 'sector 2', 'Active'),
-	(3, '2016-04-15 11:00:03', '0000-00-00 00:00:00', NULL, 'sector3', 'Active');
+INSERT INTO `sector` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`, `expert_technical_weight`, `expert_economical_weight`, `expert_creative_weight`) VALUES
+	(1, '2016-04-23 02:27:58', '0000-00-00 00:00:00', NULL, 'sector 1', 'Active', 0.3, 0.2, 0.1),
+	(2, '2016-04-23 02:28:03', '0000-00-00 00:00:00', NULL, 'sector 2', 'Active', 0.8, 0, 0.2),
+	(3, '2016-04-15 11:00:03', '0000-00-00 00:00:00', NULL, 'sector3', 'Active', 0, 0, 0);
 /*!40000 ALTER TABLE `sector` ENABLE KEYS */;
 
 
@@ -1130,9 +1296,9 @@ CREATE TABLE IF NOT EXISTS `specialization` (
   `name` varchar(20) NOT NULL,
   `status` enum('Active','Inactive') DEFAULT 'Active',
   `subsector` int(11) NOT NULL,
-  `Expert technical weight` float NOT NULL COMMENT '0-1',
-  `Expert economical weight` float NOT NULL COMMENT '0-1',
-  `Expert creative weight` float NOT NULL COMMENT '0-1',
+  `expert_technical_weight` float NOT NULL COMMENT '0-1',
+  `expert_economical_weight` float NOT NULL COMMENT '0-1',
+  `expert_creative_weight` float NOT NULL COMMENT '0-1',
   PRIMARY KEY (`id`),
   KEY `FK_specialization_sub_sector` (`subsector`),
   CONSTRAINT `FK_specialization_sub_sector` FOREIGN KEY (`subsector`) REFERENCES `sub_sector` (`id`)
@@ -1140,8 +1306,8 @@ CREATE TABLE IF NOT EXISTS `specialization` (
 
 -- Dumping data for table yii2basic.specialization: ~3 rows (approximately)
 /*!40000 ALTER TABLE `specialization` DISABLE KEYS */;
-INSERT INTO `specialization` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`, `subsector`, `Expert technical weight`, `Expert economical weight`, `Expert creative weight`) VALUES
-	(1, '2016-04-15 11:27:41', '0000-00-00 00:00:00', NULL, 'ye', 'Active', 1, 0, 0, 0),
+INSERT INTO `specialization` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`, `subsector`, `expert_technical_weight`, `expert_economical_weight`, `expert_creative_weight`) VALUES
+	(1, '2016-04-23 02:36:18', '0000-00-00 00:00:00', NULL, 'ye', 'Active', 1, 0.3, 0.3, 0.4),
 	(2, '2016-04-15 11:27:41', '0000-00-00 00:00:00', NULL, 'yes', 'Active', 1, 0, 0, 0),
 	(3, '2016-04-15 11:27:58', '0000-00-00 00:00:00', NULL, 'das', 'Active', 5, 0, 0, 0);
 /*!40000 ALTER TABLE `specialization` ENABLE KEYS */;
@@ -1192,17 +1358,19 @@ CREATE TABLE IF NOT EXISTS `student` (
   `zip` varchar(50) NOT NULL,
   `sector` varchar(50) NOT NULL,
   `sub_sector` varchar(50) NOT NULL,
+  `auth_key` varchar(32) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8 COMMENT='Student entity holds data about students that are submitting project canvas to experts to be evaluated.';
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8 COMMENT='Student entity holds data about students that are submitting project canvas to experts to be evaluated.';
 
 -- Dumping data for table yii2basic.student: ~4 rows (approximately)
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` (`id`, `created_on`, `last_modified_on`, `last_login_activity`, `trash`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `password_exp_date`, `mobile`, `phone`, `fax`, `agreed_terms`, `confirmed`, `bio`, `website`, `country`, `state`, `city`, `address`, `zip`, `sector`, `sub_sector`) VALUES
-	(90, '2016-04-11 18:08:00', '2016-04-10 15:51:50', '2016-04-10 15:51:50', NULL, 'Mihai', 'Da', 'student@test.com', 1910, '$2y$13$TTFP5hdvlVcS5CvugI9PROth/TCcyKHASFdKDN9N1hJ.goRW.M.LG', '0000-00-00 00:00:00', '321312', '312312', '', 'Yes', 'No', '', 'http://fomrad.com', '', '', '', '', '', '2', '2'),
-	(91, '2016-04-10 22:30:07', '2016-04-10 22:30:07', '2016-04-10 22:30:07', NULL, '', '', 'test@test.com', 0, '$2y$13$0lcGlk9Ajp/z9GYxOKRqje3Nyp5PPNo2unMhyHKs69YHqcjkmfVF6', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', ''),
-	(92, '2016-04-13 19:11:38', '2016-04-13 19:06:20', '2016-04-13 19:06:20', NULL, 'dasdas', 'adsadsda', 'skype@test.com', 1915, '$2y$13$KapwikJhUvr8py08bvy3AuABOsQPyymQW2bmeds00RJlxmT4Vnqhi', '0000-00-00 00:00:00', '123123', '312312312', '', 'Yes', 'No', '', 'http://dasdasda.com', '', '', '', '', '312321', '1', '1'),
-	(93, '2016-04-13 19:07:27', '2016-04-13 19:07:27', '2016-04-13 19:07:27', NULL, '', '', 'sykpe@test.com', 0, '$2y$13$bz681r9Vj3MAk0WsOZKC1.82J7vKX58ZzuNPv4/7jepXSUbhLUUou', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '');
+INSERT INTO `student` (`id`, `created_on`, `last_modified_on`, `last_login_activity`, `trash`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `password_exp_date`, `mobile`, `phone`, `fax`, `agreed_terms`, `confirmed`, `bio`, `website`, `country`, `state`, `city`, `address`, `zip`, `sector`, `sub_sector`, `auth_key`) VALUES
+	(90, '2016-04-11 18:08:00', '2016-04-10 15:51:50', '2016-04-10 15:51:50', NULL, 'Mihai', 'Da', 'student@test.com', 1910, '$2y$13$TTFP5hdvlVcS5CvugI9PROth/TCcyKHASFdKDN9N1hJ.goRW.M.LG', '0000-00-00 00:00:00', '321312', '312312', '', 'Yes', 'No', '', 'http://fomrad.com', '', '', '', '', '', '2', '2', ''),
+	(91, '2016-04-10 22:30:07', '2016-04-10 22:30:07', '2016-04-10 22:30:07', NULL, '', '', 'test@test.com', 0, '$2y$13$0lcGlk9Ajp/z9GYxOKRqje3Nyp5PPNo2unMhyHKs69YHqcjkmfVF6', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', ''),
+	(92, '2016-04-13 19:11:38', '2016-04-13 19:06:20', '2016-04-13 19:06:20', NULL, 'dasdas', 'adsadsda', 'skype@test.com', 1915, '$2y$13$KapwikJhUvr8py08bvy3AuABOsQPyymQW2bmeds00RJlxmT4Vnqhi', '0000-00-00 00:00:00', '123123', '312312312', '', 'Yes', 'No', '', 'http://dasdasda.com', '', '', '', '', '312321', '1', '1', ''),
+	(93, '2016-04-13 19:07:27', '2016-04-13 19:07:27', '2016-04-13 19:07:27', NULL, '', '', 'sykpe@test.com', 0, '$2y$13$bz681r9Vj3MAk0WsOZKC1.82J7vKX58ZzuNPv4/7jepXSUbhLUUou', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', ''),
+	(94, '2016-04-23 00:24:34', '2016-04-23 00:24:34', '2016-04-23 00:24:34', NULL, '', '', 'blabla@blabla.com', 0, '$2y$13$YMhPvHcmotZGg2Mhx4XxfeCcftt2kwjT3ANujbGWZS/4tonWjUiYu', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', 'cxdjYeCH1Z9Vk5UcQjuqihKFTGV5Ct3d');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 
 
@@ -1273,6 +1441,9 @@ CREATE TABLE IF NOT EXISTS `sub_sector` (
   `name` varchar(20) NOT NULL,
   `status` enum('Active','Inactive') DEFAULT 'Active',
   `sector` int(11) NOT NULL,
+  `expert_technical_weight` float NOT NULL COMMENT '0-1',
+  `expert_economical_weight` float NOT NULL COMMENT '0-1',
+  `expert_creative_weight` float NOT NULL COMMENT '0-1',
   PRIMARY KEY (`id`),
   KEY `FK_sub_sector_sector` (`sector`),
   CONSTRAINT `FK_sub_sector_sector` FOREIGN KEY (`sector`) REFERENCES `sector` (`id`)
@@ -1280,12 +1451,12 @@ CREATE TABLE IF NOT EXISTS `sub_sector` (
 
 -- Dumping data for table yii2basic.sub_sector: ~5 rows (approximately)
 /*!40000 ALTER TABLE `sub_sector` DISABLE KEYS */;
-INSERT INTO `sub_sector` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`, `sector`) VALUES
-	(1, '2016-04-11 16:04:20', '0000-00-00 00:00:00', NULL, 'sub1', 'Active', 1),
-	(2, '2016-04-11 16:04:30', '0000-00-00 00:00:00', NULL, 'sub2', 'Active', 1),
-	(3, '2016-04-11 17:56:32', '0000-00-00 00:00:00', NULL, 'da', 'Active', 2),
-	(4, '2016-04-15 11:00:18', '0000-00-00 00:00:00', NULL, 'das', 'Active', 3),
-	(5, '2016-04-15 11:00:20', '0000-00-00 00:00:00', NULL, 'dab', 'Active', 3);
+INSERT INTO `sub_sector` (`id`, `created_on`, `last_modified_on`, `trash`, `name`, `status`, `sector`, `expert_technical_weight`, `expert_economical_weight`, `expert_creative_weight`) VALUES
+	(1, '2016-04-23 02:33:11', '0000-00-00 00:00:00', NULL, 'sub1', 'Active', 1, 0.1, 0.3, 0.05),
+	(2, '2016-04-23 02:31:23', '0000-00-00 00:00:00', NULL, 'sub2', 'Active', 1, 0.1, 0, 0),
+	(3, '2016-04-11 17:56:32', '0000-00-00 00:00:00', NULL, 'da', 'Active', 2, 0, 0, 0),
+	(4, '2016-04-15 11:00:18', '0000-00-00 00:00:00', NULL, 'das', 'Active', 3, 0, 0, 0),
+	(5, '2016-04-15 11:00:20', '0000-00-00 00:00:00', NULL, 'dab', 'Active', 3, 0, 0, 0);
 /*!40000 ALTER TABLE `sub_sector` ENABLE KEYS */;
 
 

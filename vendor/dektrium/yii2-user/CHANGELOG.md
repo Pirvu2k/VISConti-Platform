@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.9.6 [27 March 2016]
+
+- `enh` Added new method to Profile model to get avatar url (dmeroff)
+- `fix` Fixed translations sourceLanguage (thezilla-)
+- `enh` Added ability to grant access to admin part via roles (Talwoasc)
+- `fix` Fixed postgresql migrations (kfreiman, drxwat)
+- `enh` Improved login widget (dmeroff)
+- `enh` Support for custom `admin` role via access control rule out of the box #510 (dmeroff)
+- `fix` Removed ability to register a new account via social network when registration is disabled #512 (dmeroff)
+- `fix` Added check if profile model exists in Settings controller #497 (dmeroff)
+- `enh` Added event triggers to most of actions #411 (dmeroff)
+- `enh` Added LinkedIn client #496 (SamMousa)
+
 ## 0.9.5 [27 September 2015]
 
 - `fix` Don't set mailer subject in bootstrap #451 (dmeroff)

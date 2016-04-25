@@ -11,7 +11,7 @@
 
 namespace dektrium\user\models;
 
-use dektrium\user\Module;
+use dektrium\user\traits\ModuleTrait;
 use Yii;
 use yii\base\Model;
 
@@ -21,16 +21,8 @@ use yii\base\Model;
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class RegistrationForm extends Model
-{   
-    /**
-     * @var string
-     */
-    public $captcha;
-
-    /**
-     * @var string Expert checkbox
-     */
-    public $is_expert=false;
+{
+    use ModuleTrait;
     /**
      * @var string User email address
      */
@@ -47,19 +39,6 @@ class RegistrationForm extends Model
     public $password;
 
     /**
-     * @var Module
-     */
-    protected $module;
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        $this->module = Yii::$app->getModule('user');
-    }
-
-    /**
      * @inheritdoc
      */
     public function rules()
@@ -71,7 +50,7 @@ class RegistrationForm extends Model
             'usernameLength'   => ['username', 'string', 'min' => 3, 'max' => 255],
             'usernameTrim'     => ['username', 'filter', 'filter' => 'trim'],
             'usernamePattern'  => ['username', 'match', 'pattern' => $user::$usernameRegexp],
-            //'usernameRequired' => ['username', 'required'],
+            'usernameRequired' => ['username', 'required'],
             'usernameUnique'   => [
                 'username',
                 'unique',
@@ -91,11 +70,6 @@ class RegistrationForm extends Model
             // password rules
             'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->enableGeneratingPassword],
             'passwordLength'   => ['password', 'string', 'min' => 6],
-            // expert check
-            'expertCheck'   => ['is_expert','boolean'],
-            //captcha
-            'captcha' => ['captcha','captcha'],
-            'captchaRequired' => ['captcha','required'],
         ];
     }
 
@@ -105,10 +79,9 @@ class RegistrationForm extends Model
     public function attributeLabels()
     {
         return [
-            'email'    => Yii::t('user', 'E-mail'),
+            'email'    => Yii::t('user', 'Email'),
             'username' => Yii::t('user', 'Username'),
             'password' => Yii::t('user', 'Password'),
-            'is_expert'=> Yii::t('user', 'I am an expert'),
         ];
     }
 
@@ -130,7 +103,7 @@ class RegistrationForm extends Model
         if (!$this->validate()) {
             return false;
         }
-        
+
         /** @var User $user */
         $user = Yii::createObject(User::className());
         $user->setScenario('register');
@@ -138,17 +111,6 @@ class RegistrationForm extends Model
 
         if (!$user->register()) {
             return false;
-        }
-
-        if($this->is_expert == true)
-        {
-                $auth = Yii::$app->authManager;
-                $expertRole = $auth->getRole('expert');
-                $auth->assign($expertRole, $this->getId($user));
-        } else {
-                 $auth = Yii::$app->authManager;
-                 $studentRole = $auth->getRole('student');
-                 $auth->assign($studentRole, $this->getId($user));
         }
 
         Yii::$app->session->setFlash(
@@ -171,10 +133,5 @@ class RegistrationForm extends Model
     protected function loadAttributes(User $user)
     {
         $user->setAttributes($this->attributes);
-    }
-
-    protected function getId(User $user)
-    {
-        return $user->getAttribute('id');
     }
 }

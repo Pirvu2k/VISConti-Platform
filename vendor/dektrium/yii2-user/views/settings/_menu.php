@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 
+use yii\helpers\Html;
 use yii\widgets\Menu;
 
 /** @var dektrium\user\models\User $user */
@@ -20,7 +21,10 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <img src="../web/images/avatar.png" class="img-rounded" alt="<?= $user->username ?>" />
+            <?= Html::img($user->profile->getAvatarUrl(24), [
+                'class' => 'img-rounded',
+                'alt'   => $user->username,
+            ]) ?>
             <?= $user->username ?>
         </h3>
     </div>
@@ -31,7 +35,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
             ],
             'items' => [
                 ['label' => Yii::t('user', 'Profile'), 'url' => ['/user/settings/profile']],
-                ['label' => Yii::t('user', 'Change Password'), 'url' => ['/user/settings/account']],
+                ['label' => Yii::t('user', 'Account'), 'url' => ['/user/settings/account']],
                 ['label' => Yii::t('user', 'Networks'), 'url' => ['/user/settings/networks'], 'visible' => $networksVisible],
             ],
         ]) ?>
