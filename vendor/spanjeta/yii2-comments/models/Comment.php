@@ -61,6 +61,14 @@ class Comment extends ActiveRecord
 		{
 				if ( !isset( $this->create_time )) $this->create_time = date( 'Y-m-d H:i:s');
 				if ( !isset( $this->create_user_id )) $this->create_user_id = Yii::$app->user->id;
+<<<<<<< HEAD
+=======
+				if(Yii::$app->user->identity->type=='e')
+					$this->type_user = 1; // Expert
+				else
+					$this->type_user = 2; // Student
+            
+>>>>>>> c9579b21655241726d9f05fe4c86b60466b84d15
 			}else{
 				}
 		return parent::beforeValidate();
@@ -84,6 +92,10 @@ class Comment extends ActiveRecord
             [['model_type', 'model_id'], 'required'],
             [['model_id', 'state_id', 'create_user_id'], 'integer'],
             [['comment'], 'string'],
+<<<<<<< HEAD
+=======
+            [['type_user'], 'integer'],
+>>>>>>> c9579b21655241726d9f05fe4c86b60466b84d15
             [['create_time'], 'safe'],
             [['model_type'], 'string', 'max' => 128]
         ];
@@ -102,6 +114,10 @@ class Comment extends ActiveRecord
 				    'state_id' => Yii::t('app', 'State ID'),
 				    'create_time' => Yii::t('app', 'Create Time'),
 				    'create_user_id' => Yii::t('app', 'Create User ID'),
+<<<<<<< HEAD
+=======
+				    'type_user' => Yii::t('app', 'User Type'),
+>>>>>>> c9579b21655241726d9f05fe4c86b60466b84d15
 				];
 	}
 	
