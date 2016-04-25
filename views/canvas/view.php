@@ -109,5 +109,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </main>
     </div>
-
+<?=   \spanjeta\comments\CommentsWidget::widget(['model'=>$model]); ?>
 </div>

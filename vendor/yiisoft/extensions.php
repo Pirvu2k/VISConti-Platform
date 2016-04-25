@@ -158,4 +158,13 @@ return array (
       '@kartik/depdrop' => $vendorDir . '/kartik-v/yii2-widget-depdrop',
     ),
   ),
+  'spanjeta/yii2-comments' => 
+  array (
+    'name' => 'spanjeta/yii2-comments',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@spanjeta/comments' => $vendorDir . '/spanjeta/yii2-comments',
+    ),
+  ),
 );

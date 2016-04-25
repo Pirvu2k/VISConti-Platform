@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aee1b1550bc7480af45046936d315df8",
-    "content-hash": "f918252ab861f41c1e9205b01ec7b58d",
+    "hash": "6c2b222660a73f8319c792012d6662cb",
+    "content-hash": "f0442f8061868bf4254bfbf1d5de34d6",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -327,7 +327,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/cd06b74f9284dbfbf9a535e6004f5f6b9b9d0b9f",
+                "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/a0b237b81e06b802a031a85c767b7e949b30e327",
                 "reference": "a0b237b81e06b802a031a85c767b7e949b30e327",
                 "shasum": ""
             },
@@ -896,6 +896,47 @@
                 "yii"
             ],
             "time": "2015-11-26 15:24:53"
+        },
+        {
+            "name": "spanjeta/yii2-comments",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spanjeta/yii2-comments.git",
+                "reference": "ed0e21b3d687b497f4a400dc5e62f90295b52540"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spanjeta/yii2-comments/zipball/ed0e21b3d687b497f4a400dc5e62f90295b52540",
+                "reference": "ed0e21b3d687b497f4a400dc5e62f90295b52540",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "spanjeta\\comments\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Shiv Charan Panjeta",
+                    "email": "shivcharan.panjeta@gmail.com"
+                }
+            ],
+            "description": "Comments Widget adds comment box for any view",
+            "keywords": [
+                "comments",
+                "extension",
+                "yii2"
+            ],
+            "time": "2015-06-05 06:21:47"
         },
         {
             "name": "swiftmailer/swiftmailer",
