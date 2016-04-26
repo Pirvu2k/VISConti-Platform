@@ -18,9 +18,13 @@ class CommentsWidget extends \yii\base\Widget
         if ($this->model == null)
             return null;
 		
-		$query = Comment::find()->where(['model_id' => $_GET["id"]]);
+		$query = Comment::find()->where(['model_id' => $_GET["id"]])->orderBy(['id' => SORT_DESC]);
 
-        return new ActiveDataProvider(['query' =>$query]);
+        return new ActiveDataProvider(['query' =>$query,
+									   'pagination' => [
+											'pageSize' => 10,
+										]
+									   ]);
     }
 
     protected function formModel()
