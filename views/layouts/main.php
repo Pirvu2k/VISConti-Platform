@@ -17,6 +17,11 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Visconti" />
+    <meta property="og:type" content="Community of Practice" />
+    <meta property="og:url" content="http://cop.viscontiproject.eu/" />
+    <meta property="og:image" content="../web/images/avatar_big.png" />
+    <meta property="og:description"  content="VISConti Project, a Community of Practice where students can have their ideas and projects evaluated by true experts." />
     <?= Html::csrfMetaTags() ?>
 	<link rel="icon" type="image/png" href="../images/icon.png?v=1" />
     <title><?= Html::encode($this->title) ?></title>

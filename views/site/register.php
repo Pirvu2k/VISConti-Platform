@@ -23,6 +23,8 @@ use yii\captcha\CaptchaAction;
 
 $this->title = 'Register';
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 
 
@@ -80,3 +82,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a('Already registered? Sign in!', ['/site/login']) ?>
         </p>
     </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<?php
+$js = <<<JS
+       $('#registrationform-captcha-image').trigger('click');
+JS;
+$this->registerJs($js, $this::POS_READY);
+?>
