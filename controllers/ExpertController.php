@@ -264,6 +264,12 @@ class ExpertController extends Controller
 
         $ed_records = \app\models\ExpertEducation::find()->where(['user_id' => Yii::$app->user->id])->all(); // get ed records
 
+        if(empty($ed_records))
+        {
+            Yii::$app->getSession()->setFlash('error', 'You need at least one educational record to determine role.');
+            return $this->redirect(['update' , 'id'=>Yii::$app->user->id]);
+        }
+
         foreach($ed_records as $ed) 
         {   
             $degree = \app\models\Degrees::find()->where(['code'=>$ed->degree])->one(); // get degree weights
@@ -274,6 +280,12 @@ class ExpertController extends Controller
         }
 
         $exp_records = \app\models\ExpertExperience::find()->where(['user_id' => Yii::$app->user->id])->all();
+
+        if(empty($exp_records))
+        {
+            Yii::$app->getSession()->setFlash('error', 'You need at least one experience record to determine role.');
+            return $this->redirect(['update' , 'id'=>Yii::$app->user->id]);
+        }
 
         foreach($exp_records as $exp)
         {   
@@ -286,9 +298,27 @@ class ExpertController extends Controller
 
         $sectors = \app\models\ExpertSector::find()->where(['expert' => Yii::$app->user->id])->all();
 
+        if(empty($sectors))
+        {
+            Yii::$app->getSession()->setFlash('error', 'You need at least one sector to determine role.');
+            return $this->redirect(['update' , 'id'=>Yii::$app->user->id]);
+        }
+
         foreach($sectors as $s)
         {   
             $sector = \app\models\Sector::find()->where(['id'=> $s->sector_id])->one();
+
+            $subs = \app\models\SubSector::find()->where(['sector' => $s->sector_id])->all(); //get all subsectors of sector
+
+            foreach($subs as $sub)
+            {
+                $check= \app\models\ExpertSubSector::find()->where(['subsector' => $sub->id , 'expert'=>Yii::$app->user->id])->one(); //check if expert has at least one checked
+                if($check == NULL)
+                {
+                    Yii::$app->getSession()->setFlash('error', 'You need at least one subsector for each sector to determine role.');
+                    return $this->redirect(['update' , 'id'=>Yii::$app->user->id]);
+                } else break;
+            }
 
             $tw+= $sector->expert_technical_weight * 0.1;
             $ew+= $sector->expert_economical_weight * 0.1;
@@ -300,6 +330,18 @@ class ExpertController extends Controller
         foreach($subsectors as $s)
         {   
             $subsector = \app\models\SubSector::find()->where(['id'=> $s->subsector])->one();
+
+            $specs = \app\models\Specialization::find()->where(['subsector' => $s->subsector])->all(); //get all specializations of subsector
+
+            foreach($specs as $spec)
+            {
+                $check= \app\models\ExpertSpecialization::find()->where(['specialization' => $spec->id , 'expert'=>Yii::$app->user->id])->one(); //check if expert has at least one checked
+                if($check == NULL)
+                {
+                    Yii::$app->getSession()->setFlash('error', 'You need at least one specialization for each subsector to determine role.');
+                    return $this->redirect(['update' , 'id'=>Yii::$app->user->id]);
+                } else break;
+            }
 
             $tw+= $subsector->expert_technical_weight * 0.2;
             $ew+= $subsector->expert_economical_weight * 0.2;
@@ -348,6 +390,7 @@ class ExpertController extends Controller
 
         return $this->render('update', [
                 'model' => $this->findModel($id),
+                'role' => $expert->role,
             ]);
     }
 }

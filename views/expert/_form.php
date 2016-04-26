@@ -242,23 +242,40 @@ use app\models\ExpertInterest;
 
 			</div>
 			<br>
-
-		<?php
+		<div class="row">
+		<div class="col-sm-3">
+		<p> Before firing role determination , please press 'Update Profile'. The following data should be filled in order for the role to be determined: </p>
+		</div>
+		<div class="col-sm-6">
+		<ul class="list-group">
+			<li class="list-group-item">At least one experience record.</li>
+			<li class="list-group-item">At least one educational record.</li>
+			<li class="list-group-item">At least one sector.</li>
+			<li class="list-group-item">For each sector, at least one sub-sector.</li>
+			<li class="list-group-item">For each sub-sector, at least one specialization.</li>
+		</ul>
+		</div>
+		</div>
+       
+   		 <?php
 		 	if(empty($model->role))
-		 		{echo Html::a('Find my role', ['/expert/role','id'=>Yii::$app->user->id], ['class'=>'btn orange']);}
+		 		{echo Html::a('Find my role', ['/expert/role','id'=>Yii::$app->user->id], ['class'=>'btn orange text-center']);}
 		 	else
 		 		{echo '<div class="alert alert-info">
   						<strong>Role:</strong> '.$model->role.'.
 						</div><br>';}  
 		 ?>
+		
 		</div>
 		
 
 	</div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success pull-right' , 'style' => 'margin-right:50%']) ?>
-    </div>
+    	
+			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success pull-right' , 'style' => 'margin-right:50%;']) ?>
+		</div>
+
     <?php ActiveForm::end(); ?>
 
 </div>
@@ -287,6 +304,14 @@ $('.controlled').each(function(){
         });
     }
 }); //show childs of checked items
+
+$('.sector').each(function(){
+    var $this=$(this);
+    if($this.prop('checked') == true) { 
+                $($(this).data('container')).show();
+                $($(this).data('target')).show();
+        };
+});
 
 $('.controller').click(function () { 
     var $this = $(this),
