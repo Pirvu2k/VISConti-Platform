@@ -116,21 +116,21 @@ class SiteController extends Controller
                 {
                     $student->save();
                     $email = \Yii::$app->mailer->compose()
-                    ->setTo($student->email)
-                    ->setFrom(['admin@visconti.com'])
-                    ->setSubject('Signup Confirmation')
-                    ->setTextBody("
-                    Click this link ".\yii\helpers\Html::a('confirm',
-                    Yii::$app->urlManager->createAbsoluteUrl(
-                    ['site/confirm','id'=>$student->id,'key'=>$student->auth_key,'type'=>'s']
-                    ))
-                    )
-                    ->send();
+                        ->setTo($student->email)
+                        ->setFrom(['mailer@cop.viscontiproject.eu'])
+                        ->setSubject('Signup Confirmation')
+                        ->setTextBody("
+                            In order to confirm your e-mail , please click the following link : ".
+                                Yii::$app->urlManager->createAbsoluteUrl(
+                                    ['site/confirm','id'=>$student->id,'key'=>$student->auth_key,'type'=>'s']
+                                )
+                            )
+                        ->send();
                     if($email){
-                    Yii::$app->getSession()->setFlash('success','Check Your email!');
+                    Yii::$app->getSession()->setFlash('success','A confirmation e-mail was sent to the address you provided.');
                     }
                     else{
-                    Yii::$app->getSession()->setFlash('warning','Failed, contact Admin!');
+                    Yii::$app->getSession()->setFlash('warning','Registration failed , please contact admin.');
                     }
                     return $this->redirect('index.php?r=site/confirmation');
                 }
@@ -149,21 +149,19 @@ class SiteController extends Controller
                 {   
                     $expert->save();
                     $email = \Yii::$app->mailer->compose()
-                    ->setTo($expert->email)
-                    ->setFrom('admin@visconti.com')
-                    ->setSubject('Signup Confirmation')
-                    ->setTextBody("
-                    Click this link ".\yii\helpers\Html::a('confirm',
-                    Yii::$app->urlManager->createAbsoluteUrl(
-                    ['site/confirm','id'=>$expert->id,'key'=>$expert->auth_key,'type'=>'e']
-                    ))
-                    )
-                    ->send();
+                        ->setTo($expert->email)
+                        ->setFrom('mailer@cop.viscontiproject.eu')
+                        ->setSubject('Signup Confirmation')
+                        ->setTextBody("
+                            In order to confirm your e-mail , please click the following link :  ".
+                            Yii::$app->urlManager->createAbsoluteUrl(
+                            ['site/confirm','id'=>$expert->id,'key'=>$expert->auth_key,'type'=>'e']))
+                        ->send();
                     if($email){
-                    Yii::$app->getSession()->setFlash('success','A confirmation message has been sent to your email address.');
+                    Yii::$app->getSession()->setFlash('success','A confirmation e-mail was sent to the address you provided.');
                     }
                     else{
-                    Yii::$app->getSession()->setFlash('warning','Failed, contact Admin!');
+                    Yii::$app->getSession()->setFlash('warning','Registration failed , please contact admin.');
                     }
                     return $this->redirect('index.php?r=site/confirmation');
                 }
@@ -262,6 +260,5 @@ class SiteController extends Controller
         }
         return $this->render('confirmation');
     }
-
-    
+ 
 }

@@ -103,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php  } ?>
                         <?php if (!empty($model->sub_sector)) { $spec_check=true; ?>
                         <p style="margin-left:10px;"><i class="glyphicon glyphicon-arrow-right text-muted"></i> Sub-Sector : <?= $model->getSubSector() ?> </p>
-                        <?php  } ?>
+                        <?php  } if($spec_check == false) echo '<p>Nothing here.</p>'; ?>
 					</div>
 				  </div>
 				</div>

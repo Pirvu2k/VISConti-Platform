@@ -23,9 +23,9 @@ class Student extends User
         return $rules;
     }
     
-    public function findByEmail() 
+    public static function findByEmail($email) 
     {
-        $student = Student::find()->where(['email' => $this->email])->one();
+        $student = Student::find()->where(['email' => $email , 'confirmed' => 'Yes'])->one();
         
         if($student != null)
         {

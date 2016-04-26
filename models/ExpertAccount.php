@@ -59,7 +59,7 @@ class ExpertAccount extends \yii\db\ActiveRecord
             [['trash', 'terms', 'confirmed'], 'string'],
             [['birth_year', 'active_projects'], 'integer'],
             [['title', 'given_name', 'family_name'], 'string', 'max' => 20],
-            [['email'], 'string', 'max' => 30],
+            [['email'], 'string', 'max' => 50],
             [['password'], 'string', 'max' => 255],
             [['mobile' , 'phone'] , 'integer' , 'message' => 'Please enter a valid number.'],
             [['zip'] , 'integer' , 'message' => 'Please enter a valid zip code.'],

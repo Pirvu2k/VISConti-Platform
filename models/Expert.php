@@ -23,9 +23,9 @@ class Expert extends User
         return $rules;
     }
     
-    public function findByEmail() 
+    public static function findByEmail($email) 
     {
-        $expert = Expert::find()->where(['email' => $this->email])->one();
+        $expert = Expert::find()->where(['email' => $email , 'confirmed' => 'Yes'])->one();
         
         if($expert != null)
         {

@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?php 
                     $items=[];
-                    for($i=1900;$i<=2016;$i++)
+                    for($i=1940;$i<=2016;$i++)
                         $items[$i]=$i;
 
                     echo $form->field($model, 'from')->dropDownList($items,['prompt'=>'Select start year.' ]);
@@ -28,7 +28,9 @@ use yii\widgets\ActiveForm;
                 ?>
 
     <?php 
-
+                    $items=[];
+                    for($i=1940;$i<=2030;$i++)
+                        $items[$i]=$i;
                     echo $form->field($model, 'to')->dropDownList($items,['prompt'=>'Select end year.' ]);
 
                 ?>

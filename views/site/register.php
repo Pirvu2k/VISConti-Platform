@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					
 					<?= $form->field($model, 'password', ['inputOptions' => ['placeholder' => 'Password', 'autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1']])->passwordInput() ?>
 
-					<?= $form->field($model, 'captcha')->widget(Captcha::className(),['captchaAction' => '/site/captcha', 'options' => ['placeholder' => 'Captcha', 'autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1'],
+					<?= $form->field($model, 'captcha')->widget(Captcha::className(),['captchaAction' => 'site/captcha', 'options' => ['placeholder' => 'Captcha', 'autofocus' => 'autofocus', 'class' => 'form-control input-lg', 'tabindex' => '1'],
 						'template' => '<div class="row">
                             <div class="col-xs-12 col-sm-3 col-md-3">
                                 <div class="form-group">
