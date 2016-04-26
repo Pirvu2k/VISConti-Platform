@@ -454,11 +454,12 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `type_user` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table yii2basic.comment: ~0 rows (approximately)
+-- Dumping data for table yii2basic.comment: ~2 rows (approximately)
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
 INSERT INTO `comment` (`id`, `comment`, `model_type`, `model_id`, `state_id`, `type_id`, `create_time`, `create_user_id`, `type_user`) VALUES
 	(0, NULL, 'app\\models\\Canvas', 62, NULL, NULL, '2016-04-25 23:57:51', 90, 1),
-	(0, NULL, 'app\\models\\Canvas', 62, NULL, NULL, '2016-04-26 00:00:14', 90, 1);
+	(0, NULL, 'app\\models\\Canvas', 62, NULL, NULL, '2016-04-26 00:00:14', 90, 1),
+	(0, 'gsgfgsgfsgfs', 'app\\models\\Canvas', 63, NULL, NULL, '2016-04-26 00:50:04', 90, 2);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 
 
@@ -596,12 +597,12 @@ CREATE TABLE IF NOT EXISTS `expert` (
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.expert: ~9 rows (approximately)
 /*!40000 ALTER TABLE `expert` DISABLE KEYS */;
 INSERT INTO `expert` (`id`, `created_on`, `last_modified_on`, `trash`, `last_login_activity`, `title`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `reset_pass_exp_date`, `website`, `bio`, `country`, `zip`, `city`, `address`, `state`, `mobile`, `phone`, `fax`, `terms`, `confirmed`, `active_projects`, `sectors`, `auth_key`, `role`) VALUES
-	(13, '2016-04-25 19:48:51', '2016-04-11 12:32:54', NULL, '2016-04-10 22:31:29', 'Mr.', 'Mihai', 'Pirvulet', 'expert@test.com', 1915, '$2y$13$e6kmM5uEnX/E.1dtV9zSL./rOwvGamfzcUKU97luaWXw8MvXRjyIm', '0000-00-00 00:00:00', 'http://fomrad.com', 'dadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadada', 'Romania', '223945', 'Balesti', 'Str.2 Ap. 5', 'Gorj', '312312312', '443243242', '', 'Yes', 'No', 0, '1,2', '', 'Creative'),
+	(13, '2016-04-26 13:39:07', '2016-04-11 12:32:54', NULL, '2016-04-10 22:31:29', 'Mr.', 'Mihai', 'Pirvulet', 'expert@test.com', 1915, '$2y$13$e6kmM5uEnX/E.1dtV9zSL./rOwvGamfzcUKU97luaWXw8MvXRjyIm', '0000-00-00 00:00:00', 'http://fomrad.com', 'dadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadada', 'Romania', '223945', 'Balesti', 'Str.2 Ap. 5', 'Gorj', '312312312', '443243242', '', 'Yes', 'No', 0, '1,2', '', ''),
 	(14, '2016-04-13 20:24:28', '2016-04-13 20:24:28', NULL, '2016-04-13 20:24:28', '', '', '', 'da@test.com', 0, '$2y$13$Ik8umC88ANX7NdNOypQAFu1ENzKlmfSurC3niupUfwptGvhu6N6Y2', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, '', ''),
 	(16, '2016-04-23 01:03:49', '2016-04-23 01:03:49', NULL, '2016-04-23 01:03:49', '', '', '', 'dada@da.com', 0, '$2y$13$0S08CmBpN0kuWUZgYu300O9wF9.FZliGb7RU5nxaAghfE9/YJzoOG', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'H8e_ovQl-oIumyKkoZYnMlG2q7yswMj-', ''),
 	(17, '2016-04-23 01:14:59', '2016-04-23 01:14:59', NULL, '2016-04-23 01:14:59', '', '', '', 'mdsam@mdsam.com', 0, '$2y$13$jfAFsK2R9OEJyosEnSoR0ueD6cNnRl6DjsOMJpRTjm1K2QYPs8M2O', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, '_tWpjnpv0trNnNtIkxlayLzSmIQuHzvS', ''),
@@ -609,7 +610,8 @@ INSERT INTO `expert` (`id`, `created_on`, `last_modified_on`, `trash`, `last_log
 	(19, '2016-04-23 01:19:19', '2016-04-23 01:19:19', NULL, '2016-04-23 01:19:19', '', '', '', 'sadsada@hdsaui.com', 0, '$2y$13$KtvDUSlIFvL7DOXdaZpJ0utrAxTzmIrh5Fa4i2QtVLKrlKkbVKzE6', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'wLHejrb8Sy_FGAkq0zGsXDmJbK9dSwLM', ''),
 	(20, '2016-04-23 01:19:48', '2016-04-23 01:19:48', NULL, '2016-04-23 01:19:48', '', '', '', 'dsadsaddas@jdins.com', 0, '$2y$13$qQww75oGG8kwrJMbFbxJbuv1vLwg8CGCQfltUxbXDSbZyJO/MVJUi', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'znS4keiShZ8zgBBD1P34LB88APD95DHK', ''),
 	(21, '2016-04-23 01:21:43', '2016-04-23 01:21:43', NULL, '2016-04-23 01:21:43', '', '', '', 'dsaddsaddas@jdins.com', 0, '$2y$13$zTwgnRZ44IZtUriI9.BzY./b5j3YMDgQUK2clMJZU2BoK4T6gZkW2', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'Vs9T8MAfA9QOWvh4YeLUTcyaq5p7BbuC', ''),
-	(22, '2016-04-23 01:41:29', '2016-04-23 01:26:30', NULL, '2016-04-23 01:26:30', '', '', '', 'dsfsdf@jidj.cin', 0, '$2y$13$1WGmaVzFiU5wqebp39p3E.mKGr9bmLSaeVsw.SErrjhMWpQnF53Di', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'Yes', 0, NULL, 'nVgyiPvHL8sto7rMScC6LrgtVHQhxluG', '');
+	(22, '2016-04-23 01:41:29', '2016-04-23 01:26:30', NULL, '2016-04-23 01:26:30', '', '', '', 'dsfsdf@jidj.cin', 0, '$2y$13$1WGmaVzFiU5wqebp39p3E.mKGr9bmLSaeVsw.SErrjhMWpQnF53Di', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'Yes', 0, NULL, 'nVgyiPvHL8sto7rMScC6LrgtVHQhxluG', ''),
+	(23, '2016-04-26 01:14:47', '2016-04-26 01:14:47', NULL, '2016-04-26 01:14:47', '', '', '', 'dsiajdasidj@dasidji.com', 0, '$2y$13$sGlKkVXSzpFmka7zgiLBqO0uKl/Kr.4lB7AiQMgxD21unual1VSyy', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'k13d00XiCQ8-M_zc74dQgybHjUd1ASyY', '');
 /*!40000 ALTER TABLE `expert` ENABLE KEYS */;
 
 
@@ -623,13 +625,10 @@ CREATE TABLE IF NOT EXISTS `expert_education` (
   `degree_details` varchar(1024) NOT NULL DEFAULT '0',
   `to` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table yii2basic.expert_education: ~2 rows (approximately)
 /*!40000 ALTER TABLE `expert_education` DISABLE KEYS */;
-INSERT INTO `expert_education` (`id`, `user_id`, `degree`, `institution`, `from`, `degree_details`, `to`) VALUES
-	(11, '13', 'dsada', 'dsadsa', '1917', 'dasdsad', '1918'),
-	(12, '13', 'fdaf', 'dsadsa', '1910', 'dsadsad', '1917');
 /*!40000 ALTER TABLE `expert_education` ENABLE KEYS */;
 
 
@@ -647,9 +646,6 @@ CREATE TABLE IF NOT EXISTS `expert_experience` (
 
 -- Dumping data for table yii2basic.expert_experience: ~2 rows (approximately)
 /*!40000 ALTER TABLE `expert_experience` DISABLE KEYS */;
-INSERT INTO `expert_experience` (`id`, `user_id`, `job_title`, `institution`, `from`, `to`, `job_description`) VALUES
-	(5, '13', 'da', 'dasdas', '1902', '1906', 'dsadsa'),
-	(6, '13', 'nu', 'teqtet', '1916', '1918', 'dwqdwqeqwe');
 /*!40000 ALTER TABLE `expert_experience` ENABLE KEYS */;
 
 
@@ -666,7 +662,7 @@ CREATE TABLE IF NOT EXISTS `expert_interest` (
   KEY `FK_expert_interest_interest` (`interest`),
   CONSTRAINT `FK_expert_interest_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_interest_interest` FOREIGN KEY (`interest`) REFERENCES `interest` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table yii2basic.expert_interest: ~0 rows (approximately)
 /*!40000 ALTER TABLE `expert_interest` DISABLE KEYS */;
@@ -728,9 +724,9 @@ CREATE TABLE IF NOT EXISTS `expert_sector` (
   KEY `FK_expert_sector_sector` (`sector_id`),
   CONSTRAINT `FK_expert_sector_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_sector_sector` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.expert_sector: ~0 rows (approximately)
+-- Dumping data for table yii2basic.expert_sector: ~2 rows (approximately)
 /*!40000 ALTER TABLE `expert_sector` DISABLE KEYS */;
 /*!40000 ALTER TABLE `expert_sector` ENABLE KEYS */;
 
@@ -748,9 +744,9 @@ CREATE TABLE IF NOT EXISTS `expert_specialization` (
   KEY `FK_expert_specialization_specialization` (`specialization`),
   CONSTRAINT `FK_expert_specialization_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_specialization_specialization` FOREIGN KEY (`specialization`) REFERENCES `specialization` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.expert_specialization: ~0 rows (approximately)
+-- Dumping data for table yii2basic.expert_specialization: ~1 rows (approximately)
 /*!40000 ALTER TABLE `expert_specialization` DISABLE KEYS */;
 /*!40000 ALTER TABLE `expert_specialization` ENABLE KEYS */;
 
@@ -768,9 +764,9 @@ CREATE TABLE IF NOT EXISTS `expert_sub_sector` (
   KEY `FK_expert_sub_sector_sub_sector` (`subsector`),
   CONSTRAINT `FK_expert_sub_sector_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_sub_sector_sub_sector` FOREIGN KEY (`subsector`) REFERENCES `sub_sector` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.expert_sub_sector: ~1 rows (approximately)
+-- Dumping data for table yii2basic.expert_sub_sector: ~3 rows (approximately)
 /*!40000 ALTER TABLE `expert_sub_sector` DISABLE KEYS */;
 /*!40000 ALTER TABLE `expert_sub_sector` ENABLE KEYS */;
 
@@ -1361,7 +1357,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `auth_key` varchar(32) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8 COMMENT='Student entity holds data about students that are submitting project canvas to experts to be evaluated.';
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8 COMMENT='Student entity holds data about students that are submitting project canvas to experts to be evaluated.';
 
 -- Dumping data for table yii2basic.student: ~4 rows (approximately)
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
@@ -1370,7 +1366,8 @@ INSERT INTO `student` (`id`, `created_on`, `last_modified_on`, `last_login_activ
 	(91, '2016-04-10 22:30:07', '2016-04-10 22:30:07', '2016-04-10 22:30:07', NULL, '', '', 'test@test.com', 0, '$2y$13$0lcGlk9Ajp/z9GYxOKRqje3Nyp5PPNo2unMhyHKs69YHqcjkmfVF6', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', ''),
 	(92, '2016-04-13 19:11:38', '2016-04-13 19:06:20', '2016-04-13 19:06:20', NULL, 'dasdas', 'adsadsda', 'skype@test.com', 1915, '$2y$13$KapwikJhUvr8py08bvy3AuABOsQPyymQW2bmeds00RJlxmT4Vnqhi', '0000-00-00 00:00:00', '123123', '312312312', '', 'Yes', 'No', '', 'http://dasdasda.com', '', '', '', '', '312321', '1', '1', ''),
 	(93, '2016-04-13 19:07:27', '2016-04-13 19:07:27', '2016-04-13 19:07:27', NULL, '', '', 'sykpe@test.com', 0, '$2y$13$bz681r9Vj3MAk0WsOZKC1.82J7vKX58ZzuNPv4/7jepXSUbhLUUou', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', ''),
-	(94, '2016-04-23 00:24:34', '2016-04-23 00:24:34', '2016-04-23 00:24:34', NULL, '', '', 'blabla@blabla.com', 0, '$2y$13$YMhPvHcmotZGg2Mhx4XxfeCcftt2kwjT3ANujbGWZS/4tonWjUiYu', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', 'cxdjYeCH1Z9Vk5UcQjuqihKFTGV5Ct3d');
+	(94, '2016-04-23 00:24:34', '2016-04-23 00:24:34', '2016-04-23 00:24:34', NULL, '', '', 'blabla@blabla.com', 0, '$2y$13$YMhPvHcmotZGg2Mhx4XxfeCcftt2kwjT3ANujbGWZS/4tonWjUiYu', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', 'cxdjYeCH1Z9Vk5UcQjuqihKFTGV5Ct3d'),
+	(95, '2016-04-26 01:15:13', '2016-04-26 01:15:13', '2016-04-26 01:15:13', NULL, '', '', 'dsfjdsjfds@dksiaj.co', 0, '$2y$13$oJ4.L53fuiPJnpkTZ5cI1OhaQV8FeUunPpH2wzZs1kpZxnyk/u3Du', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', 'YNwo2x5DjHKWVtDqLZFLtMJBGecGldAe');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 
 
