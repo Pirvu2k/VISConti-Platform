@@ -19,3 +19,11 @@ $this->params['breadcrumbs'][] = 'Update';
     ]) ?>
 
 </div>
+<?php
+
+if(!empty($error))
+{
+	echo '<script> alert("'. $error .'"); </script>';
+}
+
+?>

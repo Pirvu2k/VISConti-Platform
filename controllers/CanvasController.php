@@ -17,6 +17,8 @@ use yii\web\UploadedFile;
 use app\models\Expert;
 use app\models\ExpertSector;
 use app\models\ExpertCanvas;
+use app\models\Student;
+
 /**
  * CanvasController implements the CRUD actions for Canvas model.
  */
@@ -86,8 +88,37 @@ class CanvasController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $student = Student::find()->where(['id' => $model->created_by])->one();
+
+        $canvas_experts = ExpertCanvas::find()->where(['project' => $model->id])->all();
+
+        $experts=[];
+
+        foreach($canvas_experts as $e)
+        {
+            $expert= Expert::find()->where(['id' => $e->expert])->one();
+
+            if(!empty($expert->given_name) && !empty($expert->family_name))
+            {
+                $expert = $expert->given_name . ' ' . $expert->family_name;
+            }
+            else $expert = $expert->email;
+            
+            array_push($experts, $expert);
+        }
+
+        if(!empty($student->given_name) && !empty($student->family_name))
+            $student = $student->given_name . ' ' . $student->family_name;
+        else $student = $student->email;
+
+
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'student' => $student,
+            'experts' => $experts,
         ]);
     }
 
@@ -108,13 +139,12 @@ class CanvasController extends Controller
 
            if ($model->save()) {
               if(!$this->findExperts($model)) {
-                    $model->status ='Draft';
-                    $model->save();
                     return $this->render('create', [
                         'model' => $model,
                         'error' => 'Sorry, we could not find experts available to review your project at this time. Please try again later.'
                     ]);
                 }
+                else {$model->status = 'Expert evaluation requested';$model->update();}
 
              return $this->redirect(['view', 'id' => $model->id]);             
            } 
@@ -136,11 +166,22 @@ class CanvasController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
           $model->date_modified = new Expression('NOW()');
-           if ($model->save()) {             
+           if ($model->save()) {        
+
+             if(!$this->findExperts($model)) {
+                    return $this->render('create', [
+                        'model' => $model,
+                        'error' => 'Sorry, we could not find experts available to review your project at this time. Please try again later.'
+                    ]);
+                }
+
+                else {$model->status = 'Expert evaluation requested';$model->update();}
+
+
              return $this->redirect(['view', 'id' => $model->id]);             
            } 
         } 
-        return $this->render('create', [
+        return $this->render('update', [
             'model' => $model,
         ]);
     }

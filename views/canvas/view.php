@@ -17,14 +17,17 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <h3><?= $model->title ?>
                          <div class="pull-right">
-                         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
-                        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-                            'class' => 'btn btn-danger',
-                            'data' => [
-                                'confirm' => 'Are you sure you want to delete this item?',
-                                'method' => 'post',
-                            ],
-                        ]) ?>
+
+                         <?php
+                        
+                            if($model->status == 'Submitted')
+                            {
+
+                            echo Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-success']);
+
+                            }
+                        ?>
+                            
                             <div>
                 </h3> 
                 
@@ -34,14 +37,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h3>Project status</h3>
                 <div class="row">
                     <div class="col-xs-6 col-md-2">
-                        <b>Students</b>
+                        <b>Student</b>
                         </br>
-                        <?= $model->created_by ?>
+                        <?= $student ?>
                     </div>
                     <div class="col-xs-6 col-md-2">
                         <b>Evaluators</b>
                         </br>
-                        <?= $model->assigned_to ?>
+                        <?php
+                            foreach($experts as $e)
+                            {
+                                echo '<p>' . $e . '</p>';
+                            }
+                         ?>
                     </div>
                     <div class="col-xs-6 col-md-2">
                         <b>Attachments</b>
@@ -52,10 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <b>Stage</b>
                         </br>
                         <div class="pull-left">
-                            <?= $model->requested ?>
-                        </div>
-                        <div class="pull-right">
-                            No
+                            <?= $model->status ?>
                         </div>
                     </div>
                 </div>
