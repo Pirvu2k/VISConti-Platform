@@ -87,13 +87,13 @@ use yii\helpers\ArrayHelper;
 				 echo $form->field($model, 'sub_sector')->dropDownList($items,['prompt'=>'Please select your sub-sector.'  ]);
 			?>
 
-			<iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studenteducation/index');?>" frameBorder="0"></iframe>
+			<iframe width="100%" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studenteducation/index');?>" frameBorder="0"></iframe>
 
 		</div>
 		<div class="tab-pane" id="4">
 			<h3> Experience </h3>
 			<hr class="colorgraph"> 
-			<iframe width="975" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studentexperience/index');?>" frameBorder="0"></iframe>
+			<iframe width="100%" height="300" src="<?php echo Yii::$app->urlManager->createUrl('studentexperience/index');?>" frameBorder="0"></iframe>
 
 		</div>
 
