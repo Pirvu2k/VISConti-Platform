@@ -7,59 +7,39 @@ $this->title = 'Visconti';
 
 ?>
 
-<div class="row">
-    <h2>Recent activities</h2>
+<?php if(!Yii::$app->user->isGuest && Yii::$app->user->identity->type == 'e') {?>
 
+<div class="row">
+    <h2>Accepted projects</h2>
     <ul class="col-md-10 col-sm-9 feed">
-        <!--<li>
-            <h2 class="col-sm-12"><a href="#">Project 1</a></h2>
-            <div class="col-sm-12 clearfix">
-                <data><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</b>
-                </data>
-            </div>
-            <time>Two hours ago by <a href="">Student 1</a>
-            </time>
-            </br>
-        </li>
+        <?php foreach($acceptedProjects as $project): ?>
         <li>
-            <h2 class="col-sm-12"><a href="#">Project 2</a></h2>
+            <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $project->getProject()->id ?> "><?= $project->getProject()->title ?></a></h2>
             <div class="col-sm-12 clearfix">
-                <data><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</b>
+                <data><b><?= $project->getProject()->eng_summary ?></b>
                 </data>
             </div>
-            <time>Two hours ago by <a href="">Student 1</a>
-            </time>
-            </br>
-        </li> -->
-        <?php foreach ($projects as $project): ?>
-            <li>
-            <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $project->id ?>"><?= $project->title ?></a></h2>
-            <div class="col-sm-12 clearfix">
-                <data><b><?= $project->eng_summary ?></b>
-                </data>
-            </div>
-            <time><?= $project->date_added ?> by <a href=""><?= $project->created_by ?></a></time>
+            <time><?= $project->getProject()->date_added ?></a></time>
             <div class="clearfix visible-*"></div>
-             </li>
+        </li>
         <?php endforeach; 
-          if(empty($projects))
+        if(empty($acceptedProjects))
             echo "<p> Nothing here. </p>";
         ?>
-
     </ul>
 </div>
-<?php if(!Yii::$app->user->isGuest && Yii::$app->user->identity->type == 'e') {?>
+
 <div class="row">
     <h2>Invitations</h2>
     <ul class="col-md-10 col-sm-9 feed">
         <?php foreach($invitations as $invitation): ?>
         <li>
-            <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $invitation->id ?> "><?= $invitation->title ?></a></h2>
+            <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $invitation->getProject()->id ?> "><?= $invitation->getProject()->title ?></a></h2>
             <div class="col-sm-12 clearfix">
-                <data><b><?= $invitation->eng_summary ?></b>
+                <data><b><?= $invitation->getProject()->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $invitation->date_added ?> by <a href=""><?= $invitation->created_by ?></a></time>
+            <time><?= $invitation->getProject()->date_added ?></a></time>
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
@@ -68,28 +48,30 @@ $this->title = 'Visconti';
             echo "<p> Nothing here. </p>";
         ?>
     </ul></div>
+    <?php } else { ?>
+
     <div class="row">
-    <h2>Declined Projects</h2>
+        <h2>Your currently in review projects </h2>
     <ul class="col-md-10 col-sm-9 feed">
-        <?php foreach($blockedProjects as $project): ?>
+        <?php foreach($studentAcceptedProjects as $project): ?>
         <li>
             <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $project->id ?> "><?= $project->title ?></a></h2>
             <div class="col-sm-12 clearfix">
                 <data><b><?= $project->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $project->date_added ?> by <a href=""><?= $project->created_by ?></a></time>
+            <time><?= $project->date_added ?></a></time>
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
-        if(empty($blockedProjects))
+        if(empty($studentAcceptedProjects))
             echo "<p> Nothing here. </p>";
         ?>
     </ul>
-</div>
-    <?php } else { ?>
+    </div>
+
     <div class="row">
-        <h2>Your Projects</h2>
+        <h2>Your Submitted Projects</h2>
     <ul class="col-md-10 col-sm-9 feed">
         <?php foreach($ownProjects as $project): ?>
         <li>
@@ -98,7 +80,7 @@ $this->title = 'Visconti';
                 <data><b><?= $project->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $project->date_added ?> by <a href=""><?= $project->created_by ?></a></time>
+            <time><?= $project->date_added ?></a></time>
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
@@ -106,4 +88,7 @@ $this->title = 'Visconti';
             echo "<p> Nothing here. </p>";
         ?>
     </ul>
+    </div>
+
+    
     <?php } ?>

@@ -8,7 +8,7 @@ if(!empty(Yii::$app->session->getFlash('warning'))){
 
 ?>
 	<div class="alert alert-danger">
-  		<strong>Danger!</strong> <?= Yii::$app->session->getFlash('warning'); ?>
+  		<strong>Warning!</strong> <?= Yii::$app->session->getFlash('warning'); ?>
 	</div>
 <?php
 } else if(!empty(Yii::$app->session->getFlash('success'))) {
@@ -20,4 +20,15 @@ if(!empty(Yii::$app->session->getFlash('warning'))){
 
 <?php
 } else return Yii::$app->response->redirect('index.php?r=site/login');
+
+if(!empty(Yii::$app->session->getFlash('link'))) {
+	?>
+
+<div class="alert alert-info">
+  		<strong>Link: </strong> <?= Yii::$app->session->getFlash('link') ?>
+	</div>
+
+<?php	
+}
+
 ?>

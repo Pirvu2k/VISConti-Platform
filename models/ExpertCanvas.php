@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use app\models\Canvas;
 /**
  * This is the model class for table "expert_project_canvas_assignation".
  *
@@ -62,6 +62,10 @@ class ExpertCanvas extends \yii\db\ActiveRecord
             'notes' => 'Notes',
             'score' => 'Score',
         ];
+    }
+
+    public function getProject(){
+        return Canvas::find()->where(['id'=>$this->project])->one();
     }
 
 }

@@ -12,7 +12,17 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="canvas-update">
 
+
+
     <h1><?= Html::encode($this->title) ?></h1>
+
+    <?php
+                    if($model->status == 'Submitted'){
+                        echo '<div class="alert alert-info">
+                                <strong>Hey!</strong> Before your project gets reviewed, you can still update any information. When you\'re ready , just press \'Update\' at the bottom of the page and we\'ll try to find an evaluator for you as soon as possible! 
+                            </div>';
+                    }
+                ?>
 
     <?= $this->render('_form', [
         'model' => $model,

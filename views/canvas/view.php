@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\bootstrap\Button;
+use app\models\ExpertCanvas;
 /* @var $this yii\web\View */
 /* @var $model app\models\Canvas */
 
@@ -19,18 +20,34 @@ $this->params['breadcrumbs'][] = $this->title;
                          <div class="pull-right">
 
                          <?php
-                        
-                            if($model->status == 'Submitted')
+                            
+                            $record = ExpertCanvas::find()->where(['expert'=>Yii::$app->user->id , 'project' => $model->id , 'status' => 'Pending'])->one(); 
+
+                            if(Yii::$app->user->identity->type == 'e' && !is_null($record))
+                            {
+                                
+                                echo Html::a('Accept Project', ['confirm', 'id' => openssl_encrypt($record->id, 'AES-128-ECB', '12345678abcdefgh')], ['class' => 'btn btn-info']);
+                            }
+
+                             if($model->status == 'Submitted' && Yii::$app->user->identity->type == 's' )
                             {
 
-                            echo Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-success']);
-
+                                echo Html::a('Find Evaluators', ['update', 'id' => $model->id], ['class' => 'btn btn-success']);
+    
                             }
+
+                            
                         ?>
                             
                             <div>
                 </h3> 
-                
+                <?php
+                    if($model->status == 'Submitted' && Yii::$app->user->identity->type == 's'){
+                        echo '<div class="alert alert-danger">
+                                <strong>Attention!</strong> Your project is not evaluated on all domains! Press the \'Find Evaluators \' button to search for available experts and do your last-minute changes on the project.
+                            </div>';
+                    }
+                ?>
                 <hr class="colorgraph">
                 <?= $model->content ?>
                 <hr class="colorgraph">
@@ -61,6 +78,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         </br>
                         <div class="pull-left">
                             <?= $model->status ?>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="pull-left">
+                           <p> <b>Sector:</b> <?= $sector ?> </p>
+                           <p> <b>Sub-sector:</b> <?= $subsector ?> </p>
                         </div>
                     </div>
                 </div>

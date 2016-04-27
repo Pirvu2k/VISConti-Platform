@@ -17,7 +17,7 @@ use app\models\Expert;
 use yii\db\Expression;
 use kartik\widgets\DepDrop;
 use app\models\SubSector;
-
+use app\models\ExpertCanvas;
 class SiteController extends Controller
 {   
     public function behaviors()
@@ -57,30 +57,20 @@ class SiteController extends Controller
 
     public function actionIndex()
     {   
-        $query=Project::find()->where(['requested' => '0']);
 
-        $pagination = new Pagination([
-            'defaultPageSize' => 5,
-            'totalCount' => $query->count(),
-        ]);
+        $invitations=ExpertCanvas::find()->where(['expert' => Yii::$app->user->id , 'status' => 'Pending'])->orderBy(['created_on' => SORT_DESC])->all();
 
-        $projects = $query->orderBy('date_added')
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
+        $ownProjects=Project::find()->where(['created_by'=>Yii::$app->user->id ,'status'=>'Submitted'])->orderBy(['date_added' => SORT_DESC])->all();
 
-        $invitations=Project::find()->where(['requested' => '1']) -> all();
+        $acceptedProjects=ExpertCanvas::find()->where(['expert' => Yii::$app->user->id , 'status' => 'Active'])->orderBy(['created_on' => SORT_DESC])->all();
 
-        $ownProjects=Project::find()->where(['created_by'=>Yii::$app->user->id]) -> all();
-
-        $blockedProjects=Project::find()->where(['requested' => '2']) -> all();
+        $studentAcceptedProjects = Project::find()->where(['status' => 'Expert evaluation in progress'])->andWhere(['created_by' => Yii::$app->user->id])->orderBy(['date_added' => SORT_DESC])->all();
 
         return $this->render('index', [
-            'projects' => $projects,
-            'pagination' => $pagination,
             'invitations' => $invitations,
             'ownProjects' => $ownProjects,
-            'blockedProjects' => $blockedProjects,
+            'acceptedProjects' => $acceptedProjects,
+            'studentAcceptedProjects' => $studentAcceptedProjects,
         ]);
     }
 

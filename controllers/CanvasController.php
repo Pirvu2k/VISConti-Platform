@@ -6,6 +6,7 @@ use Yii;
 use app\models\Canvas;
 use app\models\CanvasSearch;
 use app\models\File;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -18,6 +19,8 @@ use app\models\Expert;
 use app\models\ExpertSector;
 use app\models\ExpertCanvas;
 use app\models\Student;
+use app\models\Sector;
+use app\models\SubSector;
 
 /**
  * CanvasController implements the CRUD actions for Canvas model.
@@ -39,6 +42,11 @@ class CanvasController extends Controller
                 'only' => ['create', 'index','update','delete','view'],
                 'rules' => [
                     [
+                        'allow' => false,
+                        'actions' => ['create', 'index','update','delete','view'],
+                        'roles' => ['?'],
+                    ],
+                    [
                         'allow' => true,
                         'actions' => ['create','view','update'],
                         'matchCallback' => function ($rule, $action) {
@@ -54,13 +62,9 @@ class CanvasController extends Controller
                     ],
                     [
                         'allow' => false,
-                        'actions' => ['create', 'index','update','delete','view'],
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => false,
                         'actions' => ['delete'],
                     ],
+
                 ],
             ],
         ];
@@ -94,6 +98,10 @@ class CanvasController extends Controller
 
         $canvas_experts = ExpertCanvas::find()->where(['project' => $model->id])->all();
 
+        $sector = Sector::find()->where(['id' => $model->sector])->one()->name;
+
+        $subsector = SubSector::find()->where(['id' => $model->subsector])->one()->name;
+
         $experts=[];
 
         foreach($canvas_experts as $e)
@@ -119,6 +127,8 @@ class CanvasController extends Controller
             'model' => $model,
             'student' => $student,
             'experts' => $experts,
+            'sector' => $sector,
+            'subsector' => $subsector
         ]);
     }
 
@@ -139,7 +149,7 @@ class CanvasController extends Controller
 
            if ($model->save()) {
               if(!$this->findExperts($model)) {
-                    return $this->render('create', [
+                    return $this->render('update', [
                         'model' => $model,
                         'error' => 'Sorry, we could not find experts available to review your project at this time. Please try again later.'
                     ]);
@@ -169,7 +179,7 @@ class CanvasController extends Controller
            if ($model->save()) {        
 
              if(!$this->findExperts($model)) {
-                    return $this->render('create', [
+                    return $this->render('update', [
                         'model' => $model,
                         'error' => 'Sorry, we could not find experts available to review your project at this time. Please try again later.'
                     ]);
@@ -240,6 +250,24 @@ class CanvasController extends Controller
                                 $record->role = 'Technical';
                                 $record->expiry_date = new Expression('DATE_ADD(NOW(), INTERVAL 14 DAY)');
                                 $record->save();
+
+                                $id = openssl_encrypt($record->id, 'AES-128-ECB', '12345678abcdefgh');
+
+                                Yii::$app->mailer->compose()
+                                    ->setTo($expert->email)
+                                    ->setFrom('mailer@cop.viscontiproject.eu')
+                                    ->setSubject('New Project Invitation')
+                                    ->setHtmlBody("
+                                        <h3>You received an invitation for a project!</h3>  <br><br>".
+                                        'Project title:' . $model->title . '<br>' .
+                                        'Project summary:' . $model->eng_summary . '<br>' .
+                                        'More information: <a href="' . Yii::$app->urlManager->createAbsoluteUrl(
+                                        ['canvas/view','id'=>$record->project]) . '"> Here </a> <br><br>' .
+                                        'In order to accept the invitation, please click the following link: <a href="'.
+                                        Yii::$app->urlManager->createAbsoluteUrl(
+                                        ['canvas/confirm','id'=>$id]) . '"> Accept </a>')
+                                    ->send();
+
                                 break;
                             } 
                         else $exist = false;
@@ -267,6 +295,25 @@ class CanvasController extends Controller
                                     $record->role = 'Economical';
                                     $record->expiry_date = new Expression('DATE_ADD(NOW(), INTERVAL 14 DAY)');
                                     $record->save();
+
+                                    $id = openssl_encrypt($record->id, 'AES-128-ECB', '12345678abcdefgh');
+
+                                    Yii::$app->mailer->compose()
+                                    ->setTo($expert->email)
+                                    ->setFrom('mailer@cop.viscontiproject.eu')
+                                    ->setSubject('New Project Invitation')
+                                    ->setHtmlBody("
+                                        <h3>You received an invitation for a project!</h3>  <br><br>".
+                                        'Project title:' . $model->title . '<br>' .
+                                        'Project summary:' . $model->eng_summary . '<br>' .
+                                        'More information: <a href="' . Yii::$app->urlManager->createAbsoluteUrl(
+                                        ['canvas/view','id'=>$record->project]) . '"> Here </a> <br><br>' .
+                                        'In order to accept the invitation, please click the following link: <a href="'.
+                                        Yii::$app->urlManager->createAbsoluteUrl(
+                                        ['canvas/confirm','id'=>$id]) . '"> Accept </a>')
+                                    ->send();
+
+
                                     break;
                                 }
                             else $exist=false; 
@@ -294,11 +341,76 @@ class CanvasController extends Controller
                                 $record->role = 'Creative';
                                 $record->expiry_date = new Expression('DATE_ADD(NOW(), INTERVAL 14 DAY)');
                                 $record->save();
+
+                                $id = openssl_encrypt($record->id, 'AES-128-ECB', '12345678abcdefgh');
+                                
+                                Yii::$app->mailer->compose()
+                                    ->setTo($expert->email)
+                                    ->setFrom('mailer@cop.viscontiproject.eu')
+                                    ->setSubject('New Project Invitation')
+                                    ->setHtmlBody("
+                                        <h3>You received an invitation for a project!</h3>  <br><br>".
+                                        'Project title:' . $model->title . '<br>' .
+                                        'Project summary:' . $model->eng_summary . '<br>' .
+                                        'More information: <a href="' . Yii::$app->urlManager->createAbsoluteUrl(
+                                        ['canvas/view','id'=>$record->project]) . '"> Here </a> <br><br>' .
+                                        'In order to accept the invitation, please click the following link: <a href="'.
+                                        Yii::$app->urlManager->createAbsoluteUrl(
+                                        ['canvas/confirm','id'=>$id]) . '"> Accept </a>')
+                                    ->send();
+
                                 break;
                             }
                         else $exist=false; 
                     }
             }
             return $exist;
+    }
+
+    public function actionConfirm($id){ // $e - expert , $c - canvas
+
+        $record = ExpertCanvas::find()->where(['id' => openssl_decrypt($id, 'AES-128-ECB', '12345678abcdefgh') , 'status' => 'Pending' ])->one();
+
+        if($record == NULL)
+        {
+            Yii::$app->getSession()->setFlash('warning','Invalid confirmation link or link already accessed.');
+            return $this->redirect('index.php?r=site/confirmation');
+        }
+
+        else {
+            $transaction=ExpertCanvas::getDb()->beginTransaction();
+            try {
+                $record->status = 'Active';
+                $record->update();
+
+                $pending_expert = ExpertCanvas::find()->where(['project' => $record->project , 'status' => 'Pending'])->one();
+
+                $experts_on_project = ExpertCanvas::find()->where(['project' => $record->project])->count();
+
+                if(is_null($pending_expert) && $experts_on_project == 3) // all experts accepted, need to change state of project
+                {
+                    $canvas_record=Canvas::find()->where(['id' => $record->project])->one(); // get canvas record
+                    $canvas_record->status = 'Expert evaluation in progress';  
+                    $update = $canvas_record->update();
+                    if (!empty($canvas_record->errors)) {
+                        throw new Exception("Could not update canvas");
+                    }
+                }
+
+                $expert_record = Expert::find()->where(['id' => $record->expert])->one();
+                $expert_record->active_projects++;
+                $expert_record->update();
+                $transaction->commit();
+            } catch (Exception $e) {
+                $transaction->rollback();
+            }
+
+
+            Yii::$app->getSession()->setFlash('success','Project accepted successfully.');
+            Yii::$app->getSession()->setFlash('link',Html::a('Click to go to project' , Yii::$app->urlManager->createAbsoluteUrl(
+                                        ['canvas/view','id'=>$record->project]) ));
+            return $this->redirect('index.php?r=site/confirmation');
+        }
+
     }
 }

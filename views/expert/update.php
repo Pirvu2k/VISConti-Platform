@@ -12,8 +12,6 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="expert-account-update">
 
-	
-
     <h1><?= Html::encode($this->title) ?> </h1>
     <p class="text-center"> Note : Press 'Update Profile' at the bottom of the page to save changes. </p>
     <?= $this->render('_form', [
