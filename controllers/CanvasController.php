@@ -14,7 +14,9 @@ use yii\db\Expression;
 use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\UploadedFile;
-
+use app\models\Expert;
+use app\models\ExpertSector;
+use app\models\ExpertCanvas;
 /**
  * CanvasController implements the CRUD actions for Canvas model.
  */
@@ -103,7 +105,17 @@ class CanvasController extends Controller
           $model->date_modified = new Expression('NOW()');
           $model->created_by= Yii::$app->user->id;
           $model->status = 'Submitted';
-           if ($model->save()) {             
+
+           if ($model->save()) {
+              if(!$this->findExperts($model)) {
+                    $model->status ='Draft';
+                    $model->save();
+                    return $this->render('create', [
+                        'model' => $model,
+                        'error' => 'Sorry, we could not find experts available to review your project at this time. Please try again later.'
+                    ]);
+                }
+
              return $this->redirect(['view', 'id' => $model->id]);             
            } 
         } 
@@ -160,5 +172,92 @@ class CanvasController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function findExperts($model)
+    {       
+            $technical_experts = Expert::find()->where(['role' => 'Technical', 'confirmed' => 'Yes'])->orderBy('active_projects')->all();
+
+            if($technical_experts == NULL) $exist=false;
+
+            $exist = true;
+
+            $tech_exist = ExpertCanvas::find()->where([ 'role' => 'Technical' , 'project' => $model->id])->one(); // check if there's already a technical expert for this canvas
+
+            if($tech_exist == NULL) {
+
+                foreach($technical_experts as $expert)
+                    {      
+                        $sector_check = ExpertSector::find()->where(['sector_id' => $model->sector , 'expert' => $expert->id])->one();
+
+                        if($sector_check != NULL)
+                            {   
+                                $record = new ExpertCanvas();
+                                $record->project = $model->id;
+                                $record->expert = $expert->id;
+                                $record->status = 'Pending';
+                                $record->role = 'Technical';
+                                $record->expiry_date = new Expression('DATE_ADD(NOW(), INTERVAL 14 DAY)');
+                                $record->save();
+                                break;
+                            } 
+                        else $exist = false;
+                    }
+            }
+
+            $economical_experts = Expert::find()->where(['role' => 'Economical', 'confirmed' => 'Yes'])->orderBy('active_projects')->all();
+
+            if($economical_experts == NULL) $exist=false;
+
+            $econ_exist = ExpertCanvas::find()->where([ 'role' => 'Economical' , 'project' => $model->id])->one(); // check if canvas has economical expert already assigned
+
+            if($econ_exist == NULL) {
+
+                    foreach($economical_experts as $expert)
+                        {      
+                            $sector_check = ExpertSector::find()->where(['sector_id' => $model->sector , 'expert' => $expert->id])->one();
+
+                            if($sector_check != NULL)
+                                {   
+                                    $record = new ExpertCanvas();
+                                    $record->project = $model->id;
+                                    $record->expert = $expert->id;
+                                    $record->status = 'Pending';
+                                    $record->role = 'Economical';
+                                    $record->expiry_date = new Expression('DATE_ADD(NOW(), INTERVAL 14 DAY)');
+                                    $record->save();
+                                    break;
+                                }
+                            else $exist=false; 
+                        }
+            }
+
+            $creative_experts = Expert::find()->where(['role' => 'Creative', 'confirmed' => 'Yes'])->orderBy('active_projects')->all();
+
+            $creative_exist = ExpertCanvas::find()->where([ 'role' => 'Creative' , 'project' => $model->id])->one(); // check if canvas has creative expert already assigned
+
+            if($creative_experts == NULL) $exist=false;
+
+            if($creative_exist == NULL) {
+
+                foreach($creative_experts as $expert)
+                    {      
+                        $sector_check = ExpertSector::find()->where(['sector_id' => $model->sector , 'expert' => $expert->id])->one();
+
+                        if($sector_check != NULL)
+                            {   
+                                $record = new ExpertCanvas();
+                                $record->project = $model->id;
+                                $record->expert = $expert->id;
+                                $record->status = 'Pending';
+                                $record->role = 'Creative';
+                                $record->expiry_date = new Expression('DATE_ADD(NOW(), INTERVAL 14 DAY)');
+                                $record->save();
+                                break;
+                            }
+                        else $exist=false; 
+                    }
+            }
+            return $exist;
     }
 }

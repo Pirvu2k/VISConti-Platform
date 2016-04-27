@@ -7,6 +7,8 @@ use yii\captcha\CaptchaValidator;
 use yii\captcha\CaptchaAction;
 use app\models\Languages;
 use yii\helpers\ArrayHelper;
+use app\models\Sector;
+use app\models\SubSector;
 /* @var $this yii\web\View */
 /* @var $model app\models\Canvas */
 /* @var $form yii\widgets\ActiveForm */
@@ -38,6 +40,14 @@ use yii\helpers\ArrayHelper;
             ?>
 
     <?= $form->field($model, 'eng_summary')->textarea(['rows' => 2])->textInput(['placeholder' => '10-120 Characters']) ?>
+
+    <?php 
+                $items = ArrayHelper::map(Sector::find()->all(), 'id', 'name');
+                 echo $form->field($model, 'sector')->dropDownList($items,['prompt'=>'Please select your sector.' , 'onchange' => '$.post ("index.php?r=site/lists&id=' . '"+$(this).val(), function(data) { $("select#canvas-subsector").html(data); });' ]);
+
+                 $items = ArrayHelper::map(SubSector::find()->all(), 'id', 'name');
+                 echo $form->field($model, 'subsector')->dropDownList($items,['prompt'=>'Please select your sub-sector.'  ]);
+            ?>
 
     <?php
 
