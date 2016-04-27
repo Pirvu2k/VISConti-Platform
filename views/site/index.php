@@ -39,7 +39,7 @@ $this->title = 'Visconti';
                 </data>
             </div>
             <time><?= $project->date_added ?> by <a href=""><?= $project->created_by ?></a></time>
-            </br>
+            <div class="clearfix visible-*"></div>
              </li>
         <?php endforeach; 
           if(empty($projects))
@@ -60,7 +60,7 @@ $this->title = 'Visconti';
                 </data>
             </div>
             <time><?= $invitation->date_added ?> by <a href=""><?= $invitation->created_by ?></a></time>
-            <br>
+            <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
 
@@ -79,7 +79,7 @@ $this->title = 'Visconti';
                 </data>
             </div>
             <time><?= $project->date_added ?> by <a href=""><?= $project->created_by ?></a></time>
-            <br>
+            <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
         if(empty($blockedProjects))
@@ -99,7 +99,7 @@ $this->title = 'Visconti';
                 </data>
             </div>
             <time><?= $project->date_added ?> by <a href=""><?= $project->created_by ?></a></time>
-            <br>
+            <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
         if(empty($ownProjects))

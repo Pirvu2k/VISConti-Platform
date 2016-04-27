@@ -60,20 +60,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
                 </br>
-                <div class="col-xs-6 col-md-10">
-                    <span class="menu pull-right">
-  <a class="btn silver" data-target="#" href="">Comments <span class="caret"></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="#">TBI</a>
-                        </li>
-                        <li>
-                            <a href="#">TBI </a>
-                        </li>
-                    </ul>
-                    </span>
-                </div>
 
             </div>
             <div class="row">
@@ -83,25 +69,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 <ul class="col-md-10 col-sm-9 feed">
                     <li>
                         <h2 class="col-sm-12"><a href="#">Project 1</a></h2>
-                        <div class="col-sm-12 clearfix">
+                        <div class="col-sm-12">
                             <data><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</b>
                             </data>
                         </div>
                         <time>Two hours ago by <a href="">Student 1</a>
                         </time>
-                        </br>
+						<div class="clearfix visible-*"></div>
                     </li>
                     <li>
                         <h2 class="col-sm-12"><a href="#">Project 2</a></h2>
-                        <div class="col-sm-12 clearfix">
+                        <div class="col-sm-12">
                             <data><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</b>
                             </data>
                         </div>
                         <time>Two hours ago by <a href="">Student 1</a>
                         </time>
-                        </br>
+                        <div class="clearfix visible-*"></div>
                     </li>
-
+					</br>
                     <button class="btn orange">Log activity/action</button>
 
                 </ul>

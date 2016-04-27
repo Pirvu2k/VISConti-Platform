@@ -72,7 +72,7 @@ AppAsset::register($this);
     </div>
 </header>
 
-<section id="home-header" class="hero in">
+<section id="home-header" class="hero">
 	<div class="container">
 		<div class="row">
 			</br></br>
@@ -135,7 +135,7 @@ echo Nav::widget([
     <main id="new" class="container">
         <?= $content ?>
     </main>
-	<hr>
+	<div class="clearfix visible-*"></div>
 	<footer>
 		<div class="container">
 			<small class="row">&copy; VISConti <?= date('Y') ?></small>
