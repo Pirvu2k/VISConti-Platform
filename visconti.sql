@@ -418,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `canvases` (
   `assigned_to` tinytext NOT NULL,
   `language` tinytext NOT NULL,
   `eng_summary` text NOT NULL,
-  `status` enum('Draft','Submitted','Expert evaluation requested','Expert evaluation in progress','Industry evaluation requested','Industry evaluation in progress','Evalution complete') NOT NULL DEFAULT 'Draft',
+  `status` enum('Draft','Submitted','Expert evaluation requested','Expert evaluation in progress','Industry evaluation requested','Industry evaluation in progress','Evaluation complete') NOT NULL DEFAULT 'Draft',
   `overall_technical` float NOT NULL COMMENT '0-100',
   `overall_economical` float NOT NULL COMMENT '0-100',
   `overall_creative` float NOT NULL COMMENT '0-100',
@@ -429,12 +429,50 @@ CREATE TABLE IF NOT EXISTS `canvases` (
   KEY `subsector` (`subsector`),
   CONSTRAINT `FK_canvases_sector` FOREIGN KEY (`sector`) REFERENCES `sector` (`id`),
   CONSTRAINT `FK_canvases_sub_sector` FOREIGN KEY (`subsector`) REFERENCES `sub_sector` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=179 DEFAULT CHARSET=latin1;
 
--- Dumping data for table yii2basic.canvases: ~67 rows (approximately)
+-- Dumping data for table yii2basic.canvases: ~39 rows (approximately)
 /*!40000 ALTER TABLE `canvases` DISABLE KEYS */;
 INSERT INTO `canvases` (`id`, `title`, `content`, `created_by`, `requested`, `date_added`, `date_modified`, `assigned_to`, `language`, `eng_summary`, `status`, `overall_technical`, `overall_economical`, `overall_creative`, `sector`, `subsector`) VALUES
-	(140, 'jsaiojfasiuhfsauhfsa', '<p>kfjdasokfjsdfisdjfsdiofjsdio</p>', '90', '', '2016-04-27 18:25:21', '2016-04-27 18:26:11', '', 'English', 'fdsiojfsdi0ojfdsiojfsdiuo', 'Expert evaluation requested', 0, 0, 0, 1, 1);
+	(140, 'jsaiojfasiuhfsauhfsa', '<p>kfjdasokfjsdfisdjfsdiofjsdio</p>', '90', '', '2016-04-27 18:25:21', '2016-04-27 18:26:11', '', 'English', 'fdsiojfsdi0ojfdsiojfsdiuo', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(141, 'fsdfjdsiofjsdio', '<p>fsfjdisfjufhquiofql</p>', '90', '', '2016-04-27 19:14:47', '2016-04-27 19:14:47', '', 'Afar', 'fsd;fjdsoifjsdio', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(142, 'fdsiofsjdfisdojfiosdj', '<p>jdsioajfdiosfjdsoifjsdoifds</p>', '90', '', '2016-04-27 19:15:26', '2016-04-27 20:06:52', '', 'Afar', 'fsdposdjfi9dasjf89sduf89sdu', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(143, 'fsdfsdkfjsdkfjd', '<p>kpoasjdaiojfdsiofjdsio</p>', '90', '', '2016-04-27 19:35:44', '2016-04-27 19:37:24', '', 'Afar', 'fsdgfdsgfdsgsdfgfds', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(144, 'gdfkgdfgjdfopgfkdgpodfk', '<p>kpofdksopfsdfopsdkfopfdskpofsd</p>', '90', '', '2016-04-27 19:59:10', '2016-04-27 19:59:10', '', 'English', 'sdaokdasopdkaso', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(145, 'dijasidojsaiodjas', '<p>jidjasiodjsaiodjasiod</p>', '90', '', '2016-04-27 20:07:08', '2016-04-27 20:07:08', '', 'English', 'dasdsakpodksaodksaop', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(146, 'ifjdsiofjsdifsdjio', '<p>ijfdsiojfsdiofjsdifjsdifsdj</p>', '90', '', '2016-04-27 20:07:41', '2016-04-27 20:07:41', '', 'Russian', 'dsadlsap[dlsap[dlp[asl', 'Submitted', 0, 0, 0, 1, 1),
+	(147, 'sdfdsfsfsgsfgdfgdf', '<p>sdfdsfsfsgsfgdfgdfsdfdsfsfsgsfgdfgdf</p>', '90', '', '2016-04-27 20:08:22', '2016-04-27 20:08:22', '', 'Afar', 'sdfdsfsfsgsfgdfgdf', 'Submitted', 0, 0, 0, 1, 1),
+	(148, 'fsdfsdlfpsd[lfs[pdfp[lsd', '<p>sdfdsfsfsgsfgdfgdfsdfdsfsfsgsfgdfgdf</p>', '90', '', '2016-04-27 20:08:47', '2016-04-27 20:08:47', '', 'Breton', 'sdfdsfsfsgsfgdfgdfsdfdsfsfsgsfgdfgdf', 'Submitted', 0, 0, 0, 1, 1),
+	(149, 'fsdfsdlfpsd[lfs[pdfp[lsd', '<p>sdfdsfsfsgsfgdfgdfsdfdsfsfsgsfgdfgdf</p>', '90', '', '2016-04-27 20:08:57', '2016-04-27 20:10:26', '', 'Breton', 'sdfdsfsfsgsfgdfgdfsdfdsfsfsgsfgdfgdf', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(150, 'fsdiojfsdiojfisdojfsdoi', '<p>jiofdjsifsdjfiodsjfisdo</p>', '90', '', '2016-04-27 20:26:56', '2016-04-27 20:26:56', '', 'English', 'dsapokdopsakdopak', 'Submitted', 0, 0, 0, 1, 1),
+	(151, 'fsd[kfsdopfksdopfksdop', '<p>kopfsdkfopdskfsofsdkop</p>', '90', '', '2016-04-27 20:28:00', '2016-04-27 20:28:00', '', 'English', 'fafdfdsfsdfewefsdfwe', 'Submitted', 0, 0, 0, 1, 1),
+	(152, 'fsdijfdshfsduihfsuifhsdui', '<p>ijfiudshfdsuifhsduifshfsdiufsd</p>', '90', '', '2016-04-27 20:32:21', '2016-04-27 20:32:21', '', 'English', 'fjsdijfdsiofjdsiofjdsoi', 'Submitted', 0, 0, 0, 1, 1),
+	(153, 'fsdijfdshfsduihfsuifhsdui', '<p>ijfiudshfdsuifhsduifshfsdiufsd</p>', '90', '', '2016-04-27 20:33:52', '2016-04-27 20:33:52', '', 'English', 'fjsdijfdsiofjdsiofjdsoi', 'Submitted', 0, 0, 0, 1, 1),
+	(154, 'fsdijfdshfsduihfsuifhsdui', '<p>ijfiudshfdsuifhsduifshfsdiufsd</p>', '90', '', '2016-04-27 20:36:46', '2016-04-27 20:40:08', '', 'English', 'fjsdijfdsiofjdsiofjdsoi', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(155, 'fsdfmdsiofjdsjfdsiojio', '<p>ijdsaiojdsaiodjasdoiasj</p>', '90', '', '2016-04-27 20:49:27', '2016-04-27 20:49:27', '', 'English', 'feqfje09qujf98qefj8q9ej', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(156, 'fodsjkfopsdijfdiosjfsdio', '<p>jifosdjfiosdjfsdiofjsdio</p>', '90', '', '2016-04-27 20:53:01', '2016-04-27 20:53:01', '', 'English', 'dsaodkasodkasop', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(157, 'dashdashdsauidhasiudsha', '<p>uihifudhfdisuhfsduifhsdi</p>', '90', '', '2016-04-27 20:55:20', '2016-04-27 20:55:20', '', 'English', 'dsakdosiahdudas', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(158, 'fsdfjdsoifjsdofisdj', '<p>jiosdjiosdfjsdifsjdo</p>', '90', '', '2016-04-27 21:51:53', '2016-04-27 21:51:53', '', 'Afar', 'ifjsoifjdsiofjiosd', 'Submitted', 0, 0, 0, 1, 1),
+	(159, 'fsdfjdsoifjsdofisdj', '<p>jiosdjiosdfjsdifsjdo</p>', '90', '', '2016-04-27 21:52:40', '2016-04-27 23:41:50', '', 'Afar', 'ifjsoifjdsiofjiosd', 'Expert evaluation in progress', 0, 0, 0, 1, 1),
+	(160, 'fgsdgsfdgsfdsgsfd', '<p>werwerwefsfsdfa</p>', '90', '', '2016-04-27 23:45:25', '2016-04-27 23:45:25', '', 'Catalan', 'rwefafdsfdafdasfsda', 'Submitted', 0, 0, 0, 1, 1),
+	(161, 'fgsdgsfdgsfdsgsfd', '<p>werwerwefsfsdfa</p>', '90', '', '2016-04-27 23:52:06', '2016-04-27 23:52:06', '', 'Catalan', 'rwefafdsfdafdasfsda', 'Submitted', 0, 0, 0, 1, 1),
+	(162, 'fgsdgsfdgsfdsgsfd', '<p>werwerwefsfsdfa</p>', '90', '', '2016-04-27 23:52:21', '2016-04-27 23:52:21', '', 'Catalan', 'rwefafdsfdafdasfsda', 'Expert evaluation in progress', 0, 0, 0, 1, 1),
+	(163, 'fgsdgsfdgsfdsgsfd', '<p>werwerwefsfsdfa</p>', '90', '', '2016-04-27 23:54:03', '2016-04-28 00:05:16', '', 'Catalan', 'rwefafdsfdafdasfsda', 'Expert evaluation in progress', 0, 0, 0, 1, 1),
+	(164, 'buna amicilor', '<p>ijdsiaojdsaiojdsaio</p>', '90', '', '2016-04-28 01:07:41', '2016-04-28 01:07:41', '', 'English', 'fsodkfdospkfdsop', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(165, 'acesta este un test', '<p>dsoakdsaodjsaihjdasudhsai</p>', '90', '', '2016-04-28 01:09:20', '2016-04-28 01:09:20', '', 'English', 'kgifdjgifdjgiodf', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(166, 'acesta este inca un test', '<p>dkjsaidjasdhasj8dsahudas</p>', '90', '', '2016-04-28 01:17:28', '2016-04-28 01:17:28', '', 'English', 'fdsfdskfdisjfisdo', 'Expert evaluation in progress', 0, 0, 0, 1, 1),
+	(167, 'fallalalal', '<p>lpfaslfps[afkasfjkoifjsd</p>', '90', '', '2016-04-28 01:21:04', '2016-04-28 01:21:04', '', 'English', 'fdjsfodisjfdoisjfdios', 'Expert evaluation in progress', 0, 0, 0, 1, 1),
+	(168, 'fjsdiofdjsiofjsdio', '<p>jiodasjiodsajdioasjiodas</p>', '90', '', '2016-04-28 01:47:24', '2016-04-28 01:47:24', '', 'Afrikaans', 'fsdfjdsiofjiosd', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(169, 'jfsdiofjdsiofjosdi', '<p>iojdsaiodjsaoidjioas</p>', '90', '', '2016-04-28 01:52:17', '2016-04-28 01:52:17', '', 'English', 'fsdfjdsoifjdsoi', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(170, 'fjsdjfdsiuhfdsuih', '<p>uidhsauidhasiudhuias</p>', '90', '', '2016-04-28 01:55:04', '2016-04-28 01:55:04', '', 'English', 'dsadasdsadsadsadas', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(171, 'mdsaiodsaij', '<p>mdsaiodsaijmdsaiodsaijmdsaiodsaij</p>', '90', '', '2016-04-28 01:55:37', '2016-04-28 01:55:37', '', 'English', 'mdsaiodsaijmdsaiodsaijmdsaiodsaijmdsaiodsaij', 'Submitted', 0, 0, 0, 1, 1),
+	(172, 'mdsaiodsaij', '<p>mdsaiodsaijmdsaiodsaijmdsaiodsaij</p>', '90', '', '2016-04-28 01:55:44', '2016-04-28 01:55:44', '', 'English', 'mdsaiodsaijmdsaiodsaijmdsaiodsaijmdsaiodsaij', 'Submitted', 0, 0, 0, 1, 1),
+	(173, 'The final scoring test', '<p>Let\'s try it out.</p>', '90', '', '2016-04-28 14:40:57', '2016-04-28 14:40:57', '', 'English', 'Hope this works.', '', 0, 0, 0, 1, 1),
+	(174, 'oidfjhsiodfhdsuihfd', '<p>oidfjhsiodfhdsuihfdoidfjhsiodfhdsuihfdoidfjhsiodfhdsuihfdoidfjhsiodfhdsuihfd</p>', '90', '', '2016-04-28 16:51:51', '2016-04-28 16:51:51', '', 'Abkhazian', 'oidfjhsiodfhdsuihfdoidfjhsiodfhdsuihfdoidfjhsiodfhdsuihfd', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(175, 'Y u no work you lil bich', '<p>dasodjsaiojdasiodjasiodsadjasio</p>', '90', '', '2016-04-28 17:42:10', '2016-04-28 17:42:10', '', 'English', 'fsdfdsfsdfdsfsfsfds', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(176, 'fsdfdspkjfsduiofhsduifh', '<p>iuhuihdfuisdhfuidshfsdiufhsdfuisdfsd</p>', '90', '', '2016-04-28 17:49:07', '2016-04-28 17:49:07', '', 'English', 'dsfdsfsdfdsfdsfsdfsd', 'Expert evaluation requested', 0, 0, 0, 1, 1),
+	(177, 'Inca un test frate', '<p>Inca un test frateInca un test frateInca un test frateInca un test frateInca un test frate</p>', '90', '', '2016-04-28 17:52:19', '2016-04-28 17:54:13', '', 'English', 'Inca un test frateInca un test frateInca un test frateInca un test frate', '', 0, 0, 0, 1, 1),
+	(178, 'fsdfdsifjdsiofjdsio', '<p>fkpdokfdspofksdopfksdopfsd</p>', '90', '', '2016-04-28 18:05:03', '2016-04-28 18:05:03', '', 'English', 'fsdfdsfdsfsdfdsfsdfds', 'Evaluation complete', 54, 0, 0, 1, 1);
 /*!40000 ALTER TABLE `canvases` ENABLE KEYS */;
 
 
@@ -450,14 +488,18 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `create_user_id` int(11) DEFAULT NULL,
   `type_user` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
--- Dumping data for table yii2basic.comment: ~3 rows (approximately)
+-- Dumping data for table yii2basic.comment: ~7 rows (approximately)
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
 INSERT INTO `comment` (`id`, `comment`, `model_type`, `model_id`, `state_id`, `type_id`, `create_time`, `create_user_id`, `type_user`) VALUES
 	(1, NULL, 'app\\models\\Canvas', 62, NULL, NULL, '2016-04-25 23:57:51', 90, 1),
 	(2, NULL, 'app\\models\\Canvas', 62, NULL, NULL, '2016-04-26 00:00:14', 90, 1),
-	(3, 'gsgfgsgfsgfs', 'app\\models\\Canvas', 63, NULL, NULL, '2016-04-26 00:50:04', 90, 2);
+	(3, 'gsgfgsgfsgfs', 'app\\models\\Canvas', 63, NULL, NULL, '2016-04-26 00:50:04', 90, 2),
+	(4, 'cacat', 'app\\models\\Canvas', 178, NULL, NULL, '2016-04-28 17:41:41', 13, 1),
+	(5, 'cacat', 'app\\models\\Canvas', 178, NULL, NULL, '2016-04-28 17:42:04', 13, 1),
+	(6, 'dsadsa', 'app\\models\\Canvas', 178, NULL, NULL, '2016-04-28 18:09:59', 13, 1),
+	(7, 'dsadsadasdsa', 'app\\models\\Canvas', 178, NULL, NULL, '2016-04-28 18:10:55', 13, 1);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 
 
@@ -573,7 +615,7 @@ CREATE TABLE IF NOT EXISTS `expert` (
   `title` varchar(20) NOT NULL,
   `given_name` varchar(20) NOT NULL,
   `family_name` varchar(20) NOT NULL,
-  `email` varchar(30) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `birth_year` int(11) NOT NULL,
   `password` varchar(255) NOT NULL COMMENT 'shall be hashed in the db',
   `reset_pass_exp_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'once an expert member request reset of password, this field stores the expiry date of the reset password request',
@@ -600,10 +642,10 @@ CREATE TABLE IF NOT EXISTS `expert` (
 -- Dumping data for table yii2basic.expert: ~11 rows (approximately)
 /*!40000 ALTER TABLE `expert` DISABLE KEYS */;
 INSERT INTO `expert` (`id`, `created_on`, `last_modified_on`, `trash`, `last_login_activity`, `title`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `reset_pass_exp_date`, `website`, `bio`, `country`, `zip`, `city`, `address`, `state`, `mobile`, `phone`, `fax`, `terms`, `confirmed`, `active_projects`, `sectors`, `auth_key`, `role`) VALUES
-	(13, '2016-04-27 16:11:10', '2016-04-11 12:32:54', NULL, '2016-04-10 22:31:29', 'Mr.', 'Mihai', 'Pirvulet', 'expert@test.com', 1915, '$2y$13$e6kmM5uEnX/E.1dtV9zSL./rOwvGamfzcUKU97luaWXw8MvXRjyIm', '0000-00-00 00:00:00', 'http://fomrad.com', 'dadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadada', 'Romania', '223945', 'Balesti', 'Str.2 Ap. 5', 'Gorj', '312312312', '443243242', '', 'Yes', 'Yes', 0, '1,2', '', 'Technical'),
-	(14, '2016-04-27 17:58:29', '2016-04-13 20:24:28', NULL, '2016-04-13 20:24:28', '', '', '', 'da@test.com', 0, '$2y$13$Ik8umC88ANX7NdNOypQAFu1ENzKlmfSurC3niupUfwptGvhu6N6Y2', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'Yes', 0, NULL, '', 'Economical'),
-	(16, '2016-04-27 16:36:00', '2016-04-23 01:03:49', NULL, '2016-04-23 01:03:49', '', '', '', 'dada@da.com', 0, '$2y$13$0S08CmBpN0kuWUZgYu300O9wF9.FZliGb7RU5nxaAghfE9/YJzoOG', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'Yes', 0, NULL, 'H8e_ovQl-oIumyKkoZYnMlG2q7yswMj-', 'Creative'),
-	(17, '2016-04-23 01:14:59', '2016-04-23 01:14:59', NULL, '2016-04-23 01:14:59', '', '', '', 'mdsam@mdsam.com', 0, '$2y$13$jfAFsK2R9OEJyosEnSoR0ueD6cNnRl6DjsOMJpRTjm1K2QYPs8M2O', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, '_tWpjnpv0trNnNtIkxlayLzSmIQuHzvS', ''),
+	(13, '2016-04-28 18:08:49', '2016-04-11 12:32:54', NULL, '2016-04-10 22:31:29', 'Mr.', 'Mihai', 'Pirvulet', 'mitapirvuet@yahoo.com', 1915, '$2y$13$e6kmM5uEnX/E.1dtV9zSL./rOwvGamfzcUKU97luaWXw8MvXRjyIm', '0000-00-00 00:00:00', 'http://fomrad.com', 'dadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadada', 'Romania', '223945', 'Balesti', 'Str.2 Ap. 5', 'Gorj', '312312312', '443243242', '', 'Yes', 'Yes', 16, '1,2', '', 'Technical'),
+	(14, '2016-04-28 18:09:15', '2016-04-13 20:24:28', NULL, '2016-04-13 20:24:28', '', '', '', 'blabla@test.com', 0, '$2y$13$Ik8umC88ANX7NdNOypQAFu1ENzKlmfSurC3niupUfwptGvhu6N6Y2', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'Yes', 6, NULL, '', 'Economical'),
+	(16, '2016-04-28 18:09:54', '2016-04-23 01:03:49', NULL, '2016-04-23 01:03:49', '', '', '', 'testut@test.com', 0, '$2y$13$0S08CmBpN0kuWUZgYu300O9wF9.FZliGb7RU5nxaAghfE9/YJzoOG', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'Yes', 5, NULL, 'H8e_ovQl-oIumyKkoZYnMlG2q7yswMj-', 'Creative'),
+	(17, '2016-04-28 14:39:25', '2016-04-23 01:14:59', NULL, '2016-04-23 01:14:59', '', '', '', 'expert@test.com', 0, '$2y$13$jfAFsK2R9OEJyosEnSoR0ueD6cNnRl6DjsOMJpRTjm1K2QYPs8M2O', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 8, NULL, '_tWpjnpv0trNnNtIkxlayLzSmIQuHzvS', 'Economical'),
 	(18, '2016-04-23 01:17:33', '2016-04-23 01:17:33', NULL, '2016-04-23 01:17:33', '', '', '', 'msdsam@mdsam.com', 0, '$2y$13$oCPhhP9gdEj8pNkTWmugiO/vmj6skZdIN7V6lKNo9OLEdm.qydOS.', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'L0J1mVcnGPdP1swnivqs6NlxGlwxKCYB', ''),
 	(19, '2016-04-23 01:19:19', '2016-04-23 01:19:19', NULL, '2016-04-23 01:19:19', '', '', '', 'sadsada@hdsaui.com', 0, '$2y$13$KtvDUSlIFvL7DOXdaZpJ0utrAxTzmIrh5Fa4i2QtVLKrlKkbVKzE6', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'wLHejrb8Sy_FGAkq0zGsXDmJbK9dSwLM', ''),
 	(20, '2016-04-23 01:19:48', '2016-04-23 01:19:48', NULL, '2016-04-23 01:19:48', '', '', '', 'dsadsaddas@jdins.com', 0, '$2y$13$qQww75oGG8kwrJMbFbxJbuv1vLwg8CGCQfltUxbXDSbZyJO/MVJUi', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', 'Yes', 'No', 0, NULL, 'znS4keiShZ8zgBBD1P34LB88APD95DHK', ''),
@@ -681,18 +723,114 @@ CREATE TABLE IF NOT EXISTS `expert_project_canvas_assignation` (
   `notes` tinytext NOT NULL,
   `score` float NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `Index 4` (`project`,`expert`),
   KEY `FK_expert_project_canvas_assignation_expert` (`expert`),
   KEY `FK_expert_project_canvas_assignation_project_canvas` (`project`),
   CONSTRAINT `FK_expert_project_canvas_assignation_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_project_canvas_assignation_project_canvas` FOREIGN KEY (`project`) REFERENCES `canvases` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=179 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.expert_project_canvas_assignation: ~36 rows (approximately)
+-- Dumping data for table yii2basic.expert_project_canvas_assignation: ~98 rows (approximately)
 /*!40000 ALTER TABLE `expert_project_canvas_assignation` DISABLE KEYS */;
 INSERT INTO `expert_project_canvas_assignation` (`id`, `created_on`, `last_modified_on`, `expert`, `project`, `role`, `status`, `expiry_date`, `notes`, `score`) VALUES
-	(62, '2016-04-27 18:25:22', '0000-00-00 00:00:00', 13, 140, 'Technical', 'Pending', '2016-05-11 18:25:22', '', 0),
-	(63, '2016-04-27 18:25:22', '0000-00-00 00:00:00', 14, 140, 'Economical', 'Pending', '2016-05-11 18:25:22', '', 0),
-	(64, '2016-04-27 18:25:22', '0000-00-00 00:00:00', 16, 140, 'Creative', 'Pending', '2016-05-11 18:25:22', '', 0);
+	(71, '2016-04-27 19:33:38', '0000-00-00 00:00:00', 13, 142, 'Technical', 'Pending', '2016-05-11 19:33:38', '', 0),
+	(72, '2016-04-27 19:33:39', '0000-00-00 00:00:00', 14, 142, 'Economical', 'Pending', '2016-05-11 19:33:39', '', 0),
+	(73, '2016-04-27 19:33:39', '0000-00-00 00:00:00', 16, 142, 'Creative', 'Pending', '2016-05-11 19:33:39', '', 0),
+	(74, '2016-04-27 19:35:44', '0000-00-00 00:00:00', 13, 143, 'Technical', 'Pending', '2016-05-11 19:35:44', '', 0),
+	(75, '2016-04-27 19:35:45', '0000-00-00 00:00:00', 16, 143, 'Creative', 'Pending', '2016-05-11 19:35:45', '', 0),
+	(76, '2016-04-27 19:37:24', '0000-00-00 00:00:00', 14, 143, 'Economical', 'Pending', '2016-05-11 19:37:24', '', 0),
+	(77, '2016-04-27 19:59:10', '0000-00-00 00:00:00', 13, 144, 'Technical', 'Pending', '2016-05-11 19:59:10', '', 0),
+	(78, '2016-04-27 19:59:10', '0000-00-00 00:00:00', 14, 144, 'Economical', 'Pending', '2016-05-11 19:59:10', '', 0),
+	(79, '2016-04-27 19:59:11', '0000-00-00 00:00:00', 16, 144, 'Creative', 'Pending', '2016-05-11 19:59:11', '', 0),
+	(80, '2016-04-27 20:07:08', '0000-00-00 00:00:00', 13, 145, 'Technical', 'Pending', '2016-05-11 20:07:08', '', 0),
+	(81, '2016-04-27 20:07:09', '0000-00-00 00:00:00', 14, 145, 'Economical', 'Pending', '2016-05-11 20:07:09', '', 0),
+	(82, '2016-04-27 20:07:09', '0000-00-00 00:00:00', 16, 145, 'Creative', 'Pending', '2016-05-11 20:07:09', '', 0),
+	(83, '2016-04-27 20:07:41', '0000-00-00 00:00:00', 13, 146, 'Technical', 'Pending', '2016-05-11 20:07:41', '', 0),
+	(84, '2016-04-27 20:07:41', '0000-00-00 00:00:00', 16, 146, 'Creative', 'Pending', '2016-05-11 20:07:41', '', 0),
+	(85, '2016-04-27 20:08:23', '0000-00-00 00:00:00', 13, 147, 'Technical', 'Pending', '2016-05-11 20:08:23', '', 0),
+	(86, '2016-04-27 20:08:23', '0000-00-00 00:00:00', 16, 147, 'Creative', 'Pending', '2016-05-11 20:08:23', '', 0),
+	(87, '2016-04-27 20:08:47', '0000-00-00 00:00:00', 13, 148, 'Technical', 'Pending', '2016-05-11 20:08:47', '', 0),
+	(88, '2016-04-27 20:08:48', '0000-00-00 00:00:00', 16, 148, 'Creative', 'Pending', '2016-05-11 20:08:48', '', 0),
+	(89, '2016-04-27 20:08:57', '0000-00-00 00:00:00', 13, 149, 'Technical', 'Pending', '2016-05-11 20:08:57', '', 0),
+	(90, '2016-04-27 20:08:57', '0000-00-00 00:00:00', 16, 149, 'Creative', 'Pending', '2016-05-11 20:08:57', '', 0),
+	(91, '2016-04-27 20:10:26', '0000-00-00 00:00:00', 14, 149, 'Economical', 'Pending', '2016-05-11 20:10:26', '', 0),
+	(92, '2016-04-27 20:26:56', '0000-00-00 00:00:00', 13, 150, 'Technical', 'Pending', '2016-05-11 20:26:56', '', 0),
+	(93, '2016-04-27 20:26:57', '0000-00-00 00:00:00', 16, 150, 'Creative', 'Pending', '2016-05-11 20:26:57', '', 0),
+	(94, '2016-04-27 20:28:00', '0000-00-00 00:00:00', 13, 151, 'Technical', 'Pending', '2016-05-11 20:28:00', '', 0),
+	(95, '2016-04-27 20:28:01', '0000-00-00 00:00:00', 16, 151, 'Creative', 'Pending', '2016-05-11 20:28:01', '', 0),
+	(96, '2016-04-27 20:32:21', '0000-00-00 00:00:00', 13, 152, 'Technical', 'Pending', '2016-05-11 20:32:21', '', 0),
+	(97, '2016-04-27 20:32:22', '0000-00-00 00:00:00', 16, 152, 'Creative', 'Pending', '2016-05-11 20:32:22', '', 0),
+	(98, '2016-04-27 20:33:52', '0000-00-00 00:00:00', 13, 153, 'Technical', 'Pending', '2016-05-11 20:33:52', '', 0),
+	(99, '2016-04-27 20:33:53', '0000-00-00 00:00:00', 16, 153, 'Creative', 'Pending', '2016-05-11 20:33:53', '', 0),
+	(100, '2016-04-27 20:36:46', '0000-00-00 00:00:00', 13, 154, 'Technical', 'Pending', '2016-05-11 20:36:46', '', 0),
+	(102, '2016-04-27 20:36:48', '0000-00-00 00:00:00', 16, 154, 'Creative', 'Pending', '2016-05-11 20:36:48', '', 0),
+	(103, '2016-04-27 20:40:09', '0000-00-00 00:00:00', 14, 154, 'Economical', 'Pending', '2016-05-11 20:40:09', '', 0),
+	(104, '2016-04-27 20:49:28', '0000-00-00 00:00:00', 13, 155, 'Technical', 'Pending', '2016-05-11 20:49:28', '', 0),
+	(105, '2016-04-27 20:49:29', '0000-00-00 00:00:00', 14, 155, 'Economical', 'Pending', '2016-05-11 20:49:29', '', 0),
+	(106, '2016-04-27 20:49:29', '0000-00-00 00:00:00', 16, 155, 'Creative', 'Pending', '2016-05-11 20:49:29', '', 0),
+	(107, '2016-04-27 20:53:02', '0000-00-00 00:00:00', 13, 156, 'Technical', 'Pending', '2016-05-11 20:53:02', '', 0),
+	(108, '2016-04-27 20:53:03', '0000-00-00 00:00:00', 14, 156, 'Economical', 'Pending', '2016-05-11 20:53:03', '', 0),
+	(109, '2016-04-27 20:53:03', '0000-00-00 00:00:00', 16, 156, 'Creative', 'Pending', '2016-05-11 20:53:03', '', 0),
+	(110, '2016-04-27 20:55:20', '0000-00-00 00:00:00', 13, 157, 'Technical', 'Pending', '2016-05-11 20:55:20', '', 0),
+	(112, '2016-04-27 20:55:21', '0000-00-00 00:00:00', 16, 157, 'Creative', 'Pending', '2016-05-11 20:55:21', '', 0),
+	(113, '2016-04-27 21:51:53', '0000-00-00 00:00:00', 13, 158, 'Technical', 'Pending', '2016-05-11 21:51:53', '', 0),
+	(114, '2016-04-27 21:51:54', '0000-00-00 00:00:00', 14, 158, 'Economical', 'Pending', '2016-05-11 21:51:54', '', 0),
+	(115, '2016-04-27 21:51:55', '0000-00-00 00:00:00', 16, 158, 'Creative', 'Pending', '2016-05-11 21:51:55', '', 0),
+	(118, '2016-04-27 22:11:54', '0000-00-00 00:00:00', 16, 159, 'Creative', 'Active', '2016-05-11 21:52:42', '', 0),
+	(121, '2016-04-27 23:41:50', '0000-00-00 00:00:00', 13, 159, 'Technical', 'Pending', '2016-05-11 23:41:50', '', 0),
+	(122, '2016-04-28 00:47:25', '0000-00-00 00:00:00', 17, 159, 'Economical', 'Active', '2016-05-11 23:41:55', '', 0),
+	(123, '2016-04-27 23:45:26', '0000-00-00 00:00:00', 13, 160, 'Technical', 'Pending', '2016-05-11 23:45:26', '', 0),
+	(124, '2016-04-27 23:45:27', '0000-00-00 00:00:00', 17, 160, 'Economical', 'Pending', '2016-05-11 23:45:27', '', 0),
+	(125, '2016-04-28 14:34:36', '0000-00-00 00:00:00', 13, 161, 'Technical', 'Active', '2016-05-11 23:52:07', 'doaspkdopaskdopasdoaspkdopaskdopasdoaspkdopaskdopasdoaspkdopaskdopas', 0),
+	(126, '2016-04-27 23:52:08', '0000-00-00 00:00:00', 17, 161, 'Economical', 'Pending', '2016-05-11 23:52:08', '', 0),
+	(127, '2016-04-27 23:52:21', '0000-00-00 00:00:00', 13, 162, 'Technical', 'Pending', '2016-05-11 23:52:21', '', 0),
+	(128, '2016-04-28 01:05:58', '0000-00-00 00:00:00', 17, 162, 'Economical', 'Active', '2016-05-11 23:52:22', '', 0),
+	(129, '2016-04-27 23:54:03', '0000-00-00 00:00:00', 13, 163, 'Technical', 'Pending', '2016-05-11 23:54:03', '', 0),
+	(131, '2016-04-27 23:54:05', '0000-00-00 00:00:00', 16, 163, 'Creative', 'Pending', '2016-05-11 23:54:05', '', 0),
+	(135, '2016-04-28 01:04:24', '0000-00-00 00:00:00', 17, 163, 'Economical', 'Active', '2016-05-12 00:05:16', '', 0),
+	(136, '2016-04-28 01:07:42', '0000-00-00 00:00:00', 13, 164, 'Technical', 'Pending', '2016-05-12 01:07:42', '', 0),
+	(137, '2016-04-28 01:07:43', '0000-00-00 00:00:00', 14, 164, 'Economical', 'Pending', '2016-05-12 01:07:43', '', 0),
+	(138, '2016-04-28 01:07:43', '0000-00-00 00:00:00', 16, 164, 'Creative', 'Pending', '2016-05-12 01:07:43', '', 0),
+	(139, '2016-04-28 01:14:23', '0000-00-00 00:00:00', 13, 165, 'Technical', 'Active', '2016-05-12 01:09:20', '', 0),
+	(140, '2016-04-28 01:09:21', '0000-00-00 00:00:00', 14, 165, 'Economical', 'Pending', '2016-05-12 01:09:21', '', 0),
+	(141, '2016-04-28 01:09:21', '0000-00-00 00:00:00', 16, 165, 'Creative', 'Pending', '2016-05-12 01:09:21', '', 0),
+	(142, '2016-04-28 01:20:14', '0000-00-00 00:00:00', 13, 166, 'Technical', 'Active', '2016-05-12 01:17:29', '', 0),
+	(143, '2016-04-28 01:18:20', '0000-00-00 00:00:00', 14, 166, 'Economical', 'Active', '2016-05-12 01:17:30', '', 0),
+	(144, '2016-04-28 01:17:56', '0000-00-00 00:00:00', 16, 166, 'Creative', 'Active', '2016-05-12 01:17:31', '', 0),
+	(145, '2016-04-28 01:23:32', '0000-00-00 00:00:00', 13, 167, 'Technical', 'Active', '2016-05-12 01:21:05', '', 0),
+	(146, '2016-04-28 01:24:55', '0000-00-00 00:00:00', 14, 167, 'Economical', 'Active', '2016-05-12 01:21:06', '', 0),
+	(147, '2016-04-28 01:24:47', '0000-00-00 00:00:00', 16, 167, 'Creative', 'Active', '2016-05-12 01:21:07', '', 0),
+	(148, '2016-04-28 01:47:24', '0000-00-00 00:00:00', 13, 168, 'Technical', 'Pending', '2016-05-12 01:47:24', '', 0),
+	(149, '2016-04-28 01:47:25', '0000-00-00 00:00:00', 14, 168, 'Economical', 'Pending', '2016-05-12 01:47:25', '', 0),
+	(150, '2016-04-28 01:47:26', '0000-00-00 00:00:00', 16, 168, 'Creative', 'Pending', '2016-05-12 01:47:26', '', 0),
+	(151, '2016-04-28 01:52:17', '0000-00-00 00:00:00', 13, 169, 'Technical', 'Pending', '2016-05-12 01:52:17', '', 0),
+	(152, '2016-04-28 01:52:18', '0000-00-00 00:00:00', 14, 169, 'Economical', 'Pending', '2016-05-12 01:52:18', '', 0),
+	(153, '2016-04-28 01:52:19', '0000-00-00 00:00:00', 16, 169, 'Creative', 'Pending', '2016-05-12 01:52:19', '', 0),
+	(154, '2016-04-28 01:55:04', '0000-00-00 00:00:00', 13, 170, 'Technical', 'Pending', '2016-05-12 01:55:04', '', 0),
+	(155, '2016-04-28 01:55:05', '0000-00-00 00:00:00', 14, 170, 'Economical', 'Pending', '2016-05-12 01:55:05', '', 0),
+	(156, '2016-04-28 01:55:06', '0000-00-00 00:00:00', 16, 170, 'Creative', 'Pending', '2016-05-12 01:55:06', '', 0),
+	(157, '2016-04-28 01:55:37', '0000-00-00 00:00:00', 13, 171, 'Technical', 'Pending', '2016-05-12 01:55:37', '', 0),
+	(158, '2016-04-28 01:55:38', '0000-00-00 00:00:00', 14, 171, 'Economical', 'Pending', '2016-05-12 01:55:38', '', 0),
+	(159, '2016-04-28 01:55:44', '0000-00-00 00:00:00', 13, 172, 'Technical', 'Pending', '2016-05-12 01:55:44', '', 0),
+	(160, '2016-04-28 01:55:45', '0000-00-00 00:00:00', 14, 172, 'Economical', 'Pending', '2016-05-12 01:55:45', '', 0),
+	(161, '2016-04-28 17:35:34', '0000-00-00 00:00:00', 13, 173, 'Technical', 'Active', '2016-05-12 14:40:57', 'dsfsdfsdfsdfdsfsdfsdfsdfdsfsdfsdfsdfdsfsdfsdfsdfdsfsdfsdfsdf', 0),
+	(162, '2016-04-28 14:43:16', '0000-00-00 00:00:00', 14, 173, 'Economical', 'Active', '2016-05-12 14:40:59', '', 23),
+	(163, '2016-04-28 14:43:13', '0000-00-00 00:00:00', 16, 173, 'Creative', 'Active', '2016-05-12 14:40:59', '', 45),
+	(164, '2016-04-28 17:04:06', '0000-00-00 00:00:00', 13, 174, 'Technical', 'Active', '2016-05-12 16:51:51', 'asjdosaijdsaiodjsaiodjasidajsdoiajdsioa', 0),
+	(165, '2016-04-28 16:51:53', '0000-00-00 00:00:00', 14, 174, 'Economical', 'Pending', '2016-05-12 16:51:53', '', 0),
+	(166, '2016-04-28 16:51:53', '0000-00-00 00:00:00', 16, 174, 'Creative', 'Pending', '2016-05-12 16:51:53', '', 0),
+	(167, '2016-04-28 17:42:10', '0000-00-00 00:00:00', 13, 175, 'Technical', 'Pending', '2016-05-12 17:42:10', '', 0),
+	(168, '2016-04-28 17:42:12', '0000-00-00 00:00:00', 14, 175, 'Economical', 'Pending', '2016-05-12 17:42:12', '', 0),
+	(169, '2016-04-28 17:42:13', '0000-00-00 00:00:00', 16, 175, 'Creative', 'Pending', '2016-05-12 17:42:13', '', 0),
+	(170, '2016-04-28 17:49:07', '0000-00-00 00:00:00', 13, 176, 'Technical', 'Pending', '2016-05-12 17:49:07', '', 0),
+	(171, '2016-04-28 17:49:08', '0000-00-00 00:00:00', 14, 176, 'Economical', 'Pending', '2016-05-12 17:49:08', '', 0),
+	(172, '2016-04-28 17:49:08', '0000-00-00 00:00:00', 16, 176, 'Creative', 'Pending', '2016-05-12 17:49:08', '', 0),
+	(173, '2016-04-28 18:01:57', '0000-00-00 00:00:00', 13, 177, 'Technical', 'Active', '2016-05-12 17:52:20', 'dkasidjsaiodjasdioasdkasidjsaiodjasdioasdkasidjsaiodjasdioas', 76),
+	(174, '2016-04-28 17:55:11', '0000-00-00 00:00:00', 14, 177, 'Economical', 'Active', '2016-05-12 17:52:21', 'dsadsadsaldksaodjkasdjasodjasiodsadsadsaldksaodjkasdjasodjasiodsadsadsaldksaodjkasdjasodjasio', 54),
+	(175, '2016-04-28 17:59:45', '0000-00-00 00:00:00', 16, 177, 'Creative', 'Active', '2016-05-12 17:54:14', 'fsdijfdsiofjodsfsdijfdsiofjodsfsdijfdsiofjodsfsdijfdsiofjodsfsdijfdsiofjodsfsdijfdsiofjods', 45),
+	(176, '2016-04-28 18:32:01', '0000-00-00 00:00:00', 13, 178, 'Technical', 'Active', '2016-05-12 18:05:03', 'dasdijsaodjasiodasjdoiasjdasoi', 54),
+	(177, '2016-04-28 18:09:31', '0000-00-00 00:00:00', 14, 178, 'Economical', 'Active', '2016-05-12 18:05:05', 'dsaopkdsaodkasodsaopkdsaodkasodsaopkdsaodkasodsaopkdsaodkaso', 43),
+	(178, '2016-04-28 18:10:07', '0000-00-00 00:00:00', 16, 178, 'Creative', 'Active', '2016-05-12 18:05:05', 'fewfejwoifjwiofjofwejiofjwiofejwiofwejifoewjfiowejfweifjweiofjweiofwej', 43);
 /*!40000 ALTER TABLE `expert_project_canvas_assignation` ENABLE KEYS */;
 
 
@@ -725,14 +863,15 @@ CREATE TABLE IF NOT EXISTS `expert_sector` (
   KEY `FK_expert_sector_sector` (`sector_id`),
   CONSTRAINT `FK_expert_sector_expert` FOREIGN KEY (`expert`) REFERENCES `expert` (`id`),
   CONSTRAINT `FK_expert_sector_sector` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.expert_sector: ~3 rows (approximately)
+-- Dumping data for table yii2basic.expert_sector: ~4 rows (approximately)
 /*!40000 ALTER TABLE `expert_sector` DISABLE KEYS */;
 INSERT INTO `expert_sector` (`id`, `created_on`, `last_modified_on`, `trash`, `sector_id`, `expert`) VALUES
 	(1, '2016-04-27 14:51:48', '0000-00-00 00:00:00', NULL, 1, 13),
 	(6, '2016-04-27 16:19:38', '0000-00-00 00:00:00', NULL, 1, 14),
-	(7, '2016-04-27 16:19:38', '0000-00-00 00:00:00', NULL, 1, 16);
+	(7, '2016-04-27 16:19:38', '0000-00-00 00:00:00', NULL, 1, 16),
+	(8, '2016-04-27 16:19:38', '0000-00-00 00:00:00', NULL, 1, 17);
 /*!40000 ALTER TABLE `expert_sector` ENABLE KEYS */;
 
 
@@ -1198,23 +1337,40 @@ CREATE TABLE IF NOT EXISTS `project_canvas_activity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `last_modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `activity_text` varchar(30) NOT NULL,
+  `activity_text` varchar(256) NOT NULL,
   `trash` enum('Yes','No') DEFAULT NULL,
   `added_by` int(11) NOT NULL,
   `added_by_type` enum('Expert','Student','Industry') NOT NULL,
-  `reply_to` int(11) NOT NULL COMMENT 'Lookup to Activities',
   `canvas` int(11) NOT NULL COMMENT 'Lookup to Canvas',
-  `action_type` enum('Comment','Note','Rejection','Acceptance','Appeal','Evaluation Completion') NOT NULL,
-  `scope` enum('User','All') NOT NULL,
+  `action_type` varchar(256) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_project_canvas_activity_project_canvas_activity` (`reply_to`),
   KEY `FK_project_canvas_activity_project_canvas` (`canvas`),
-  CONSTRAINT `FK_project_canvas_activity_project_canvas` FOREIGN KEY (`canvas`) REFERENCES `project_canvas` (`ID`),
-  CONSTRAINT `FK_project_canvas_activity_project_canvas_activity` FOREIGN KEY (`reply_to`) REFERENCES `project_canvas_activity` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_project_canvas_activity_project_canvas` FOREIGN KEY (`canvas`) REFERENCES `canvases` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
--- Dumping data for table yii2basic.project_canvas_activity: ~0 rows (approximately)
+-- Dumping data for table yii2basic.project_canvas_activity: ~20 rows (approximately)
 /*!40000 ALTER TABLE `project_canvas_activity` DISABLE KEYS */;
+INSERT INTO `project_canvas_activity` (`id`, `created_on`, `last_modified_on`, `activity_text`, `trash`, `added_by`, `added_by_type`, `canvas`, `action_type`) VALUES
+	(9, '2016-04-28 16:44:23', '0000-00-00 00:00:00', 'Final review score: 87. <br>Review Notes: dsadasdasdasdsadasdasdasdsadasdasdasdsadasdasdas', NULL, 13, 'Expert', 173, 'Evaluation Completion'),
+	(10, '2016-04-28 16:52:25', '0000-00-00 00:00:00', 'Invitation for project review accepted.', NULL, 13, 'Expert', 174, 'Acceptance'),
+	(11, '2016-04-28 16:53:18', '0000-00-00 00:00:00', 'Final review score: 45. <br>Review Notes: asjdosaijdsaiodjsaiodjasidajsdoiajdsioa', NULL, 13, 'Expert', 174, 'Evaluation Completion'),
+	(12, '2016-04-28 17:09:43', '0000-00-00 00:00:00', 'Final review score: 23. <br>Review Notes: dsfsdfsdfsdfdsfsdfsdfsdfdsfsdfsdfsdfdsfsdfsdfsdfdsfsdfsdfsdf', NULL, 13, 'Expert', 173, 'Evaluation Completion'),
+	(13, '2016-04-28 17:32:05', '0000-00-00 00:00:00', 'Hi, this is derperino bla bla bla', NULL, 90, 'Student', 174, 'Note'),
+	(14, '2016-04-28 17:53:01', '0000-00-00 00:00:00', 'Invitation for project review accepted.', NULL, 13, 'Expert', 177, 'Acceptance'),
+	(15, '2016-04-28 17:54:44', '0000-00-00 00:00:00', 'Invitation for project review accepted.', NULL, 14, 'Expert', 177, 'Acceptance'),
+	(16, '2016-04-28 17:55:12', '0000-00-00 00:00:00', 'Final review score: 54. <br>Review Notes: dsadsadsaldksaodjkasdjasodjasiodsadsadsaldksaodjkasdjasodjasiodsadsadsaldksaodjkasdjasodjasio', NULL, 14, 'Expert', 177, 'Evaluation Completion'),
+	(17, '2016-04-28 17:56:35', '0000-00-00 00:00:00', 'Pretty nice project\r\n', NULL, 14, 'Expert', 177, 'Note'),
+	(18, '2016-04-28 17:57:15', '0000-00-00 00:00:00', 'Invitation for project review accepted.', NULL, 16, 'Expert', 177, 'Acceptance'),
+	(19, '2016-04-28 17:59:45', '0000-00-00 00:00:00', 'Final review score: 45. <br>Review Notes: fsdijfdsiofjodsfsdijfdsiofjodsfsdijfdsiofjodsfsdijfdsiofjodsfsdijfdsiofjodsfsdijfdsiofjods', NULL, 16, 'Expert', 177, 'Evaluation Completion'),
+	(20, '2016-04-28 18:01:57', '0000-00-00 00:00:00', 'Final review score: 76. <br>Review Notes: dkasidjsaiodjasdioasdkasidjsaiodjasdioasdkasidjsaiodjasdioas', NULL, 13, 'Expert', 177, 'Evaluation Completion - Technical'),
+	(21, '2016-04-28 18:08:49', '0000-00-00 00:00:00', 'Invitation for project review accepted.', NULL, 13, 'Expert', 178, 'Acceptance'),
+	(22, '2016-04-28 18:09:14', '0000-00-00 00:00:00', 'Invitation for project review accepted.', NULL, 14, 'Expert', 178, 'Acceptance'),
+	(23, '2016-04-28 18:09:31', '0000-00-00 00:00:00', 'Final review score: 43. <br>Review Notes: dsaopkdsaodkasodsaopkdsaodkasodsaopkdsaodkasodsaopkdsaodkaso', NULL, 14, 'Expert', 178, 'Evaluation Completion - Economical'),
+	(24, '2016-04-28 18:09:54', '0000-00-00 00:00:00', 'Invitation for project review accepted.', NULL, 16, 'Expert', 178, 'Acceptance'),
+	(25, '2016-04-28 18:10:07', '0000-00-00 00:00:00', 'Final review score: 43. <br>Review Notes: fewfejwoifjwiofjofwejiofjwiofejwiofwejifoewjfiowejfweifjweiofjweiofwej', NULL, 16, 'Expert', 178, 'Evaluation Completion - Creative'),
+	(26, '2016-04-28 18:11:00', '0000-00-00 00:00:00', 'Final review score: 54. <br>Review Notes: adsadasadsadasadsadasadsadasadsadas', NULL, 13, 'Expert', 178, 'Evaluation Completion - Technical'),
+	(27, '2016-04-28 18:32:01', '0000-00-00 00:00:00', 'Final review score: 54. <br>Review Notes: dasdijsaodjasiodasjdoiasjdasoi', NULL, 13, 'Expert', 178, 'Evaluation Completion - Technical'),
+	(28, '2016-04-28 18:42:22', '0000-00-00 00:00:00', 'fdsfsdkfiodsjfsdiofjdsiofjsdiofjsd', NULL, 13, 'Expert', 178, 'Note');
 /*!40000 ALTER TABLE `project_canvas_activity` ENABLE KEYS */;
 
 
@@ -1341,7 +1497,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `trash` enum('Yes','No') DEFAULT NULL,
   `given_name` varchar(20) NOT NULL,
   `family_name` varchar(20) NOT NULL,
-  `email` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `birth_year` int(11) NOT NULL,
   `password` varchar(255) NOT NULL,
   `password_exp_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -1368,13 +1524,13 @@ CREATE TABLE IF NOT EXISTS `student` (
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
 INSERT INTO `student` (`id`, `created_on`, `last_modified_on`, `last_login_activity`, `trash`, `given_name`, `family_name`, `email`, `birth_year`, `password`, `password_exp_date`, `mobile`, `phone`, `fax`, `agreed_terms`, `confirmed`, `bio`, `website`, `country`, `state`, `city`, `address`, `zip`, `sector`, `sub_sector`, `auth_key`) VALUES
 	(90, '2016-04-26 22:59:40', '2016-04-10 15:51:50', '2016-04-10 15:51:50', NULL, 'Mihaid', 'Da', 'student@test.com', 1910, '$2y$13$TTFP5hdvlVcS5CvugI9PROth/TCcyKHASFdKDN9N1hJ.goRW.M.LG', '0000-00-00 00:00:00', '321312', '312312', '', 'Yes', 'Yes', 'dsadsa', 'http://fomrad.com', '', '', '', '', '', '2', '2', ''),
-	(91, '2016-04-10 22:30:07', '2016-04-10 22:30:07', '2016-04-10 22:30:07', NULL, '', '', 'test@test.com', 0, '$2y$13$0lcGlk9Ajp/z9GYxOKRqje3Nyp5PPNo2unMhyHKs69YHqcjkmfVF6', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', ''),
-	(92, '2016-04-13 19:11:38', '2016-04-13 19:06:20', '2016-04-13 19:06:20', NULL, 'dasdas', 'adsadsda', 'skype@test.com', 1915, '$2y$13$KapwikJhUvr8py08bvy3AuABOsQPyymQW2bmeds00RJlxmT4Vnqhi', '0000-00-00 00:00:00', '123123', '312312312', '', 'Yes', 'No', '', 'http://dasdasda.com', '', '', '', '', '312321', '1', '1', ''),
+	(91, '2016-04-28 13:22:58', '2016-04-10 22:30:07', '2016-04-10 22:30:07', NULL, '', '', 'test@test.com', 0, '$2y$13$0lcGlk9Ajp/z9GYxOKRqje3Nyp5PPNo2unMhyHKs69YHqcjkmfVF6', '0000-00-00 00:00:00', '', '', '', 'Yes', 'Yes', '', '', '', '', '', '', '', '', '', ''),
+	(92, '2016-04-28 13:23:00', '2016-04-13 19:06:20', '2016-04-13 19:06:20', NULL, 'dasdas', 'adsadsda', 'skype@test.com', 1915, '$2y$13$KapwikJhUvr8py08bvy3AuABOsQPyymQW2bmeds00RJlxmT4Vnqhi', '0000-00-00 00:00:00', '123123', '312312312', '', 'Yes', 'Yes', '', 'http://dasdasda.com', '', '', '', '', '312321', '1', '1', ''),
 	(93, '2016-04-13 19:07:27', '2016-04-13 19:07:27', '2016-04-13 19:07:27', NULL, '', '', 'sykpe@test.com', 0, '$2y$13$bz681r9Vj3MAk0WsOZKC1.82J7vKX58ZzuNPv4/7jepXSUbhLUUou', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', ''),
 	(94, '2016-04-23 00:24:34', '2016-04-23 00:24:34', '2016-04-23 00:24:34', NULL, '', '', 'blabla@blabla.com', 0, '$2y$13$YMhPvHcmotZGg2Mhx4XxfeCcftt2kwjT3ANujbGWZS/4tonWjUiYu', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', 'cxdjYeCH1Z9Vk5UcQjuqihKFTGV5Ct3d'),
 	(95, '2016-04-26 01:15:13', '2016-04-26 01:15:13', '2016-04-26 01:15:13', NULL, '', '', 'dsfjdsjfds@dksiaj.co', 0, '$2y$13$oJ4.L53fuiPJnpkTZ5cI1OhaQV8FeUunPpH2wzZs1kpZxnyk/u3Du', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', 'YNwo2x5DjHKWVtDqLZFLtMJBGecGldAe'),
 	(96, '2016-04-26 20:12:51', '2016-04-26 20:12:51', '2016-04-26 20:12:51', NULL, '', '', 'adasd@adasd.ede', 0, '$2y$13$DEF3ukPQAhXb6sjNRk8JXOArQ4ZGViEY.pZbry5euNM2tqphQwQ6u', '0000-00-00 00:00:00', '', '', '', 'Yes', 'No', '', '', '', '', '', '', '', '', '', 'Pz77J2SO--45-XubfBG5vdzOsa8hj2ND'),
-	(97, '2016-04-26 20:47:14', '2016-04-26 20:46:51', '2016-04-26 20:46:51', NULL, '', '', 'mitapirvuet@yahoo.co', 0, '$2y$13$flisY333W2qDaeNvmF8cFu0IEg7TbHCVvlG2Fx6XQHy12aEccBr/W', '0000-00-00 00:00:00', '', '', '', 'Yes', 'Yes', '', '', '', '', '', '', '', '', '', '5VZNTcD858J-MzP1lsjTp-hjlfblnIQI');
+	(97, '2016-04-28 13:23:02', '2016-04-28 13:22:32', '2016-04-28 13:22:32', NULL, '', '', 'canvas@test.com', 0, '$2y$13$8qVRXC91a02Sal8j6.xmU.MoxwFy42x8ab3I/0fHNgzHVgxYuwKPq', '0000-00-00 00:00:00', '', '', '', 'Yes', 'Yes', '', '', '', '', '', '', '', '', '', '88nZsIFrXkfbJCHITLDc8Dx9r5-vwbnD');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 
 
