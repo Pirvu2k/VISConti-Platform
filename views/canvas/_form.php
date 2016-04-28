@@ -16,7 +16,7 @@ use app\models\SubSector;
 
 <div class="canvas-form">
 
-    <?php $form = ActiveForm::begin(['enableClientValidation' => false],['enctype' => 'multipart/form-data']); ?>
+    <?php $form = ActiveForm::begin(['enableClientValidation' => false , 'options' => ['enctype'=>'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textarea(['rows' => 1])->textInput(['placeholder' => '5-50 Characters']) ?>
 
@@ -49,21 +49,7 @@ use app\models\SubSector;
                  echo $form->field($model, 'subsector')->dropDownList($items,['prompt'=>'Please select your sub-sector.'  ]);
             ?>
 
-    <?php
-
-	echo \kato\DropZone::widget([  
-		'options' => [
-			'url' => 'uploads',
-			'maxFilesize' => '2',
-			'clientEvents' => [
-				'complete' => "function(file){console.log(file)}",
-				'removedfile' => "function(file){alert(file.name + ' is removed')}"
-		]
-		],
-	]);
-	   
-	   echo '</br>';
-	?>
+    <?= $form->field($model, 'files[]')->fileInput(['multiple' => true]) ?>
 
     <?php if(Yii::$app->user->identity->type == 'e')
     {

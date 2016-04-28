@@ -86,9 +86,9 @@ class Comment extends ActiveRecord
 	public function rules()
 	{
 		return [
-            [['model_type', 'model_id'], 'required'],
+            [['model_type', 'model_id' , 'comment'], 'required'],
             [['model_id', 'state_id', 'create_user_id'], 'integer'],
-            [['comment'], 'string'],
+            [['comment'], 'string' ,'max' => 140],
             [['type_user'], 'integer'],
             [['create_time'], 'safe'],
             [['model_type'], 'string', 'max' => 128]

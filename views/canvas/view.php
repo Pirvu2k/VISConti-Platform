@@ -137,7 +137,7 @@ $checkUser = (Yii::$app->user->identity->type == 's' && ($student == Yii::$app->
             ?>
             
                 <h2> Add score </h2>
-                <?php $form=ActiveForm::begin([]); ?>
+                <?php $form=ActiveForm::begin(['enableClientValidation' => true]); ?>
 
                 <?= $form->field($scoreModel , 'score')->textInput(['placeholder' => '1-100']); ?>
 
@@ -168,7 +168,7 @@ $checkUser = (Yii::$app->user->identity->type == 's' && ($student == Yii::$app->
 
                     <h2> Add note </h2>
 
-                    <?php $form=ActiveForm::begin([]); ?>
+                    <?php $form=ActiveForm::begin(['enableClientValidation' => true]); ?>
 
                     <?= $form->field($noteModel, 'note')->textArea(['placeholder' => '10-255 Characters' , 'rows' => 3]); ?>
 

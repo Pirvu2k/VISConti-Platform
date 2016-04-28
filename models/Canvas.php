@@ -17,6 +17,8 @@ use yii\web\UploadedFile;
  */
 class Canvas extends \yii\db\ActiveRecord
 {   
+    public $files;
+
     /**
      * @inheritdoc
      */
@@ -39,7 +41,8 @@ class Canvas extends \yii\db\ActiveRecord
             ['title','string','max'=>50,'min'=>5],
             ['content','string','max'=>2999],
             [['sector','subsector'],'integer'],
-            [['sector','subsector'],'required']
+            [['sector','subsector'],'required'],
+            [['files'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, doc, docx , pdf , ppt, pptx ,xls ,xlsx', 'maxFiles' => 10]
         ];
     }
 
@@ -56,36 +59,16 @@ class Canvas extends \yii\db\ActiveRecord
             'date_modified' => 'Date Modified',
             'requested' => 'Project Status',
             'eng_summary' => 'Summary (in English)',
-            'language' => 'Language'
+            'language' => 'Language',
+            'files' => 'Files ( maximum 10 , allowed file types: png, jpg, doc, docx , pdf , ppt, pptx ,xls ,xlsx)'
         ];
     }
 
-	public function actionUpload()  
-	{
-		$fileName = 'file';
-		$uploadPath = 'uploads';
-
-		if (isset($_FILES[$fileName])) {
-			$file = \yii\web\UploadedFile::getInstanceByName($fileName);
-
-			//Print file data
-			//print_r($file);
-
-			if ($file->saveAs($uploadPath . '/' . $file->name)) {
-				//Now save file data to database
-
-				echo \yii\helpers\Json::encode($file);
-			}
-		}
-
-		return false;
-	}
-	
-    public function upload()
+     public function upload()
     {
         if ($this->validate()) { 
             foreach ($this->files as $file) {
-                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                $file->saveAs('uploads/'. $this->id . $file->baseName . '.' . $file->extension);
             }
             return true;
         } else {
