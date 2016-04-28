@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 use yii\bootstrap\Button;
 use app\models\ExpertCanvas;
 use yii\widgets\ActiveForm;
+use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 /* @var $model app\models\Canvas */
 
@@ -202,7 +203,11 @@ $checkUser = (Yii::$app->user->identity->type == 's' && ($student == Yii::$app->
 						<div class="clearfix visible-*"></div>
                     </li>
                     <?php
-                    } if (empty($activities)) echo 'No activities/actions to show.';
+                    }
+					echo LinkPager::widget([
+						'pagination' => $activities_pages,
+					]);
+					if (empty($activities)) echo 'No activities/actions to show.';
                     ?>
                     
                     <!-- <button class="btn orange">Log activity/action</button> -->
