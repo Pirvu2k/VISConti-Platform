@@ -145,14 +145,17 @@ class CanvasController extends Controller
             if($targetExpert->role == 'Technical')
             {
                 $model->overall_technical+=$scoreModel->score; //update overall scores based on expert role
+                $model->update();
             }
             else if($targetExpert->role == 'Economical')
             {
                 $model->overall_economical+=$scoreModel->score;
+                $model->update();
             }
             else if($targetExpert->role == 'Creative')
             {
                 $model->overall_creative+=$scoreModel->score;
+                $model->update();
             }
 
             $activity=new CanvasActivity(); //create new activity
