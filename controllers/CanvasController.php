@@ -94,6 +94,10 @@ class CanvasController extends Controller
     {
         $model = $this->findModel($id);
 
+        $expertCanvasRecord='';
+
+        $scoreModel = new \app\models\ScoreForm();
+
         $student = Student::find()->where(['id' => $model->created_by])->one();
 
         $canvas_experts = ExpertCanvas::find()->where(['project' => $model->id])->all();
@@ -108,6 +112,11 @@ class CanvasController extends Controller
         {
             $expert= Expert::find()->where(['id' => $e->expert])->one();
 
+            if($e->expert == Yii::$app->user->id)
+            {
+                $expertCanvasRecord = $e;
+            }
+
             if(!empty($expert->given_name) && !empty($expert->family_name))
             {
                 $expert = $expert->given_name . ' ' . $expert->family_name;
@@ -121,14 +130,31 @@ class CanvasController extends Controller
             $student = $student->given_name . ' ' . $student->family_name;
         else $student = $student->email;
 
+        if ($scoreModel->load(Yii::$app->request->post()) && $scoreModel->validate()){
 
+            $targetExpert = ExpertCanvas::find()->where(['project' => $model->id , 'expert' => Yii::$app->user->id])->one();
+            $targetExpert->score = $scoreModel->score;
+            $targetExpert->notes = $scoreModel->note;
+            $targetExpert->update();
+
+            $checkEvaluation = ExpertCanvas::find()->where(['project' => $model->id , 'score' => 0])->one();
+
+            if(is_null($checkEvaluation))
+            {
+                $model->status = 'Evaluation complete';
+                $model->update();
+            }
+
+        }
 
         return $this->render('view', [
             'model' => $model,
             'student' => $student,
             'experts' => $experts,
             'sector' => $sector,
-            'subsector' => $subsector
+            'subsector' => $subsector,
+            'formModel' => $scoreModel,
+            'expertCanvasRecord' => $expertCanvasRecord,
         ]);
     }
 

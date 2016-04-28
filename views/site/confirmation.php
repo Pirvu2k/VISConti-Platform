@@ -25,7 +25,7 @@ if(!empty(Yii::$app->session->getFlash('link'))) {
 	?>
 
 <div class="alert alert-info">
-  		<strong>Link: </strong> <?= Yii::$app->session->getFlash('link') ?>
+  		<?= Yii::$app->session->getFlash('link') ?>
 	</div>
 
 <?php	

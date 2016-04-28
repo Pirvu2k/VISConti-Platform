@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\bootstrap\Button;
 use app\models\ExpertCanvas;
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Canvas */
 
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div id="content">
         <main id="new" class="container">
             <div class="row">
-                <h3><?= $model->title ?>
+                <h3><?= $model->title ?> 
                          <div class="pull-right">
 
                          <?php
@@ -29,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 echo Html::a('Accept Project', ['confirm', 'id' => openssl_encrypt($record->id, 'AES-128-ECB', '12345678abcdefgh')], ['class' => 'btn btn-info']);
                             }
 
-                             if($model->status == 'Submitted' && Yii::$app->user->identity->type == 's' )
+                             if($model->status == 'Submitted' && Yii::$app->user->identity->type == 's' && $model->created_by == Yii::$app->user->id)
                             {
 
                                 echo Html::a('Find Evaluators', ['update', 'id' => $model->id], ['class' => 'btn btn-success']);
@@ -39,10 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             
                         ?>
                             
-                            <div>
-                </h3> 
+                            </div>
+                    </h3>
+                 
                 <?php
-                    if($model->status == 'Submitted' && Yii::$app->user->identity->type == 's'){
+                    if($model->status == 'Submitted' && Yii::$app->user->identity->type == 's' && $model->created_by == Yii::$app->user->id){
                         echo '<div class="alert alert-danger">
                                 <strong>Attention!</strong> Your project is not evaluated on all domains! Press the \'Find Evaluators \' button to search for available experts and do your last-minute changes on the project.
                             </div>';
@@ -89,6 +91,35 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 </br>
 
+            </div>
+            <div class="row">
+            <?php 
+                if(!empty($expertCanvasRecord) && empty($expertCanvasRecord->score) && empty($formModel->score) && $expertCanvasRecord->status == 'Active')
+                {
+            ?>
+            
+                <h2> Add score </h2>
+                <?php $form=ActiveForm::begin([]); ?>
+
+                <?= $form->field($formModel , 'score')->textInput(['placeholder' => '1-100']); ?>
+
+                <p> Please provide some arguments/notes along with your score. </p>
+
+                <?= $form->field($formModel, 'note')->textArea(['placeholder' => '50-300 Characters' , 'rows' => 3]); ?>
+
+                <div class="form-group">
+                     <?= Html::submitButton('Add Score', ['class' => 'btn btn-info' , 'data-confirm' => 'Are you sure you want to finish evaluation for this project and add score? THIS ACTION IS IRREVERSIBLE! ']); ?>
+                </div>
+
+                <?php ActiveForm::end(); ?>
+            
+            <?php } else if(!empty($expertCanvasRecord)&& $expertCanvasRecord->status == 'Active') {
+
+                            echo '<h4> Your score for this project:<b> '. (!empty($expertCanvasRecord->score) ? $expertCanvasRecord->score : $formModel->score) .'</b></h4>'; 
+                            echo  '<p><b> Your notes: </b>' . (!empty($expertCanvasRecord->notes) ? $expertCanvasRecord->notes : $formModel->note) . '</p>';
+
+                        }
+            ?>
             </div>
             <div class="row">
 
