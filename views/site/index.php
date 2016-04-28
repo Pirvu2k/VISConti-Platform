@@ -32,6 +32,9 @@ $this->title = 'Visconti';
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
+		echo LinkPager::widget([
+			'pagination' => $acceptedProjects_pages,
+		]);
         if(empty($acceptedProjects))
             echo "<p> Nothing here. </p>";
         ?>
@@ -52,7 +55,9 @@ $this->title = 'Visconti';
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
-
+		echo LinkPager::widget([
+			'pagination' => $invitations_pages,
+		]);
         if(empty($invitations))
             echo "<p> Nothing here. </p>";
         ?>
@@ -73,6 +78,9 @@ $this->title = 'Visconti';
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
+		echo LinkPager::widget([
+			'pagination' => $studentAcceptedProjects_pages,
+		]);
         if(empty($studentAcceptedProjects))
             echo "<p> Nothing here. </p>";
         ?>
@@ -93,6 +101,9 @@ $this->title = 'Visconti';
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
+		echo LinkPager::widget([
+			'pagination' => $ownProjects_pages,
+		]);
         if(empty($ownProjects))
             echo "<p> Nothing here. </p>";
         ?>
