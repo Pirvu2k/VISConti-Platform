@@ -22,7 +22,7 @@ class ScoreForm extends Model
         return [
             [['score','note'], 'required'],
             ['score' , 'number' , 'min' => 1 , 'max' => 100],
-            ['note' , 'string' , 'min' => 50 , 'max' => 300]
+            ['note' , 'string' , 'min' => 25 , 'max' => 255]
             
         ];
     }

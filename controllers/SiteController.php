@@ -64,7 +64,7 @@ class SiteController extends Controller
 
         $acceptedProjects=ExpertCanvas::find()->where(['expert' => Yii::$app->user->id , 'status' => 'Active'])->orderBy(['created_on' => SORT_DESC])->all();
 
-        $studentAcceptedProjects = Project::find()->where(['status' => 'Expert evaluation in progress'])->andWhere(['created_by' => Yii::$app->user->id])->orderBy(['date_added' => SORT_DESC])->all();
+        $studentAcceptedProjects = Project::find()->where(['not',['status' => 'Submitted']])->andWhere(['created_by' => Yii::$app->user->id])->orderBy(['date_added' => SORT_DESC])->all();
 
         return $this->render('index', [
             'invitations' => $invitations,

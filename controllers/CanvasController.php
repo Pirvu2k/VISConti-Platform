@@ -21,6 +21,7 @@ use app\models\ExpertCanvas;
 use app\models\Student;
 use app\models\Sector;
 use app\models\SubSector;
+use app\models\CanvasActivity;
 
 /**
  * CanvasController implements the CRUD actions for Canvas model.
@@ -91,12 +92,16 @@ class CanvasController extends Controller
      * @return mixed
      */
     public function actionView($id)
-    {
+    {   
         $model = $this->findModel($id);
+
+        $activities = CanvasActivity::find()->where(['canvas' => $model->id])->orderBy(['created_on' => SORT_DESC])->all();
 
         $expertCanvasRecord='';
 
         $scoreModel = new \app\models\ScoreForm();
+
+        $noteModel = new \app\models\NoteForm();
 
         $student = Student::find()->where(['id' => $model->created_by])->one();
 
@@ -130,20 +135,57 @@ class CanvasController extends Controller
             $student = $student->given_name . ' ' . $student->family_name;
         else $student = $student->email;
 
-        if ($scoreModel->load(Yii::$app->request->post()) && $scoreModel->validate()){
+        if ($scoreModel->load(Yii::$app->request->post()) && $scoreModel->validate()){ // add score 
 
             $targetExpert = ExpertCanvas::find()->where(['project' => $model->id , 'expert' => Yii::$app->user->id])->one();
             $targetExpert->score = $scoreModel->score;
             $targetExpert->notes = $scoreModel->note;
-            $targetExpert->update();
+            $targetExpert->update(); //update expert-canvas record
 
-            $checkEvaluation = ExpertCanvas::find()->where(['project' => $model->id , 'score' => 0])->one();
+            if($targetExpert->role == 'Technical')
+            {
+                $model->overall_technical+=$scoreModel->score; //update overall scores based on expert role
+            }
+            else if($targetExpert->role == 'Economical')
+            {
+                $model->overall_economical+=$scoreModel->score;
+            }
+            else if($targetExpert->role == 'Creative')
+            {
+                $model->overall_creative+=$scoreModel->score;
+            }
+
+            $activity=new CanvasActivity(); //create new activity
+            $activity->added_by = Yii::$app->user->id;
+            $activity->added_by_type = 'Expert';
+            $activity->canvas = $model->id;
+            $activity->activity_text = 'Final review score: ' . $targetExpert->score . '. <br>Review Notes: ' . $targetExpert->notes ;
+            $activity->action_type = 'Evaluation Completion - ' . Yii::$app->user->identity->role ;
+            $activity->save();
+
+            $checkEvaluation = ExpertCanvas::find()->where(['project' => $model->id , 'score' => 0])->one(); //check if all experts submitted scores
 
             if(is_null($checkEvaluation))
             {
                 $model->status = 'Evaluation complete';
                 $model->update();
             }
+
+            return $this->refresh();
+
+        }
+
+        if ($noteModel->load(Yii::$app->request->post()) && $noteModel->validate()){ // add note
+
+            $activity=new CanvasActivity();
+            $activity->added_by = Yii::$app->user->id;
+            $activity->added_by_type = (Yii::$app->user->identity->type=='s' ? 'Student' : 'Expert');
+            $activity->canvas = $model->id;
+            $activity->activity_text = $noteModel->note ;
+            $activity->action_type = 'Note';
+            $activity->save();
+
+            return $this->refresh();
 
         }
 
@@ -153,8 +195,10 @@ class CanvasController extends Controller
             'experts' => $experts,
             'sector' => $sector,
             'subsector' => $subsector,
-            'formModel' => $scoreModel,
+            'scoreModel' => $scoreModel,
+            'noteModel' => $noteModel,
             'expertCanvasRecord' => $expertCanvasRecord,
+            'activities' => $activities
         ]);
     }
 
@@ -393,7 +437,7 @@ class CanvasController extends Controller
             return $exist;
     }
 
-    public function actionConfirm($id){ // $e - expert , $c - canvas
+    public function actionConfirm($id){ // $id - id of project-canvas record
 
         $record = ExpertCanvas::find()->where(['id' => openssl_decrypt($id, 'AES-128-ECB', '12345678abcdefgh') , 'status' => 'Pending' ])->one();
 
@@ -408,6 +452,14 @@ class CanvasController extends Controller
             try {
                 $record->status = 'Active';
                 $record->update();
+
+                $activity=new CanvasActivity();
+                $activity->added_by = $record->expert;
+                $activity->added_by_type = 'Expert';
+                $activity->canvas = $record->project;
+                $activity->activity_text = 'Invitation for project review accepted.' ;
+                $activity->action_type = 'Acceptance';
+                $activity->save();
 
                 $pending_expert = ExpertCanvas::find()->where(['project' => $record->project , 'status' => 'Pending'])->one();
 

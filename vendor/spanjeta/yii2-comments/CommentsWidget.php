@@ -50,8 +50,10 @@ class CommentsWidget extends \yii\base\Widget
             $comment->model_id = $this->model->id;
 
             $comment->save();
+
+            header("Refresh:0");
         }
-        
+
         echo $this->render('comments', [
             'comments' => $this->getRecentComments(),
             'model' => $this->formModel()
