@@ -22,6 +22,7 @@ use app\models\Student;
 use app\models\Sector;
 use app\models\SubSector;
 use app\models\CanvasActivity;
+use yii\data\Pagination;
 
 /**
  * CanvasController implements the CRUD actions for Canvas model.
@@ -95,7 +96,14 @@ class CanvasController extends Controller
     {   
         $model = $this->findModel($id);
 
-        $activities = CanvasActivity::find()->where(['canvas' => $model->id])->orderBy(['created_on' => SORT_DESC])->all();
+        $activities = CanvasActivity::find()->where(['canvas' => $model->id]);
+		
+		$activities_pages = new Pagination(['totalCount' => $activities->count(), 'pageSize'=>5, 'pageParam' => 'activities']);
+		
+		$activities = $activities->offset($activities_pages->offset)
+			->orderBy(['created_on' => SORT_DESC])
+			->limit($activities_pages->limit)
+			->all();
 
         $expertCanvasRecord='';
 
@@ -201,7 +209,8 @@ class CanvasController extends Controller
             'scoreModel' => $scoreModel,
             'noteModel' => $noteModel,
             'expertCanvasRecord' => $expertCanvasRecord,
-            'activities' => $activities
+            'activities' => $activities,
+            'activities_pages' => $activities_pages
         ]);
     }
 
