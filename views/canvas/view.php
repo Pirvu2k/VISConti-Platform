@@ -332,13 +332,11 @@ $economical_check=false;
                         foreach($activities as $activity) {
                     ?>
                     <li>
-                        <h2 class="col-sm-12"><a href="#"><?= $activity->action_type ?></a></h2>
+                        <h2 class="col-sm-12"><a href="#"><?= $activity->action_type ?></a></h2>												<span class="pull-right"><time>At <?= $activity->created_on ?> by <a href=""><?= $activity->getName() ?> </a></time></span>
                         <div class="col-sm-12">
                             <data style="word-break:break-all;"><b><?= $activity->activity_text ?></b>
                             </data>
                         </div>
-                        <time>At <?= $activity->created_on ?> by <a href=""><?= $activity->getName() ?> </a>
-                        </time>
 						<div class="clearfix visible-*"></div>
                     </li>
                     <?php
