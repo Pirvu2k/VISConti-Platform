@@ -16,7 +16,7 @@ use app\models\SubSector;
 
 <div class="canvas-form">
 
-    <?php $form = ActiveForm::begin(['enableClientValidation' => false , 'options' => ['enctype'=>'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['enableClientValidation' => false , 'enableAjaxValidation' => false, 'options' => ['enctype'=>'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textarea(['rows' => 1])->textInput(['placeholder' => '5-50 Characters']) ?>
 
@@ -32,6 +32,81 @@ use app\models\SubSector;
         ],
 
     ]) ?>
+    <hr class="colorgraph">
+    <h3> Creativity - Value proposition </h3>
+    <hr class="colorgraph">
+    <ul style="list-style-type:lower-latin;">
+        <li>
+            <p> What is my project selling? </p>
+
+            <?= $form->field($model, 'selling')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+        <li>
+            <p> Why is it outstanding? </p>
+
+            <?= $form->field($model, 'outstanding')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+        <li>
+            <p> What are the benefits for users? </p>
+
+            <?= $form->field($model, 'benefits')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+        <li>
+            <p> How will it be marketed? </p>
+
+            <?= $form->field($model, 'marketed')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+    </ul>
+    <hr class="colorgraph">
+    <h3> Technical viability – key activities </h3>
+    <hr class="colorgraph">
+    <ul style="list-style-type:lower-latin;">
+        <li>
+            <p> Who might be the key partners in developing my project? </p>
+
+            <?= $form->field($model, 'partners')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+        <li>
+            <p> What technical resources/key activities would be required? </p>
+
+            <?= $form->field($model, 'tech_resources')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+        <li>
+            <p> What could go wrong? </p>
+
+            <?= $form->field($model, 'risk')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+        <li>
+            <p> Does it have any social or environmntal impact? </p>
+
+            <?= $form->field($model, 'impact')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+    </ul>
+    <hr class="colorgraph">
+    <h3> Financial viability - Revenue streams </h3>
+    <hr class="colorgraph">
+    <ul style="list-style-type:lower-latin;">
+        <li>
+            <p> What financial resources would be needed to develop the project? </p>
+
+            <?= $form->field($model, 'fin_resources')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+        <li>
+            <p> Who are the customers? </p>
+
+            <?= $form->field($model, 'customers')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+        <li>
+            <p> How would revenue be generated? </p>
+
+            <?= $form->field($model, 'generate')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+        <li>
+            <p> What are the costs involved? </p>
+
+            <?= $form->field($model, 'costs')->textarea(['rows' => 2])->label(false) ?>
+        </li>
+    </ul>
 
     <?php 
                 $items = ArrayHelper::map(Languages::find()->all(), 'name', 'name');
@@ -49,12 +124,14 @@ use app\models\SubSector;
                  echo $form->field($model, 'subsector')->dropDownList($items,['prompt'=>'Please select your sub-sector.'  ]);
             ?>
 
+    <?php if($model->isNewRecord) { ?>
+
     <?= $form->field($model, 'files[]')->fileInput(['multiple' => true]) ?>
 
-    <?php if(Yii::$app->user->identity->type == 'e')
-    {
-    	echo $form->field($model,'requested')->radioList(['Accepted'=>'Accepted' , 'In queue'=>'In queue' ,'Declined'=>'Declined']);
-    }
+    <p> Maximum number of files : 3 . Allowed formats: png, jpg, doc, docx , pdf , ppt, pptx ,xls ,xlsx . File name must be no more than 50 characters.</p>
+
+    <?php
+        }
     ?>
 
     <div class="form-group">

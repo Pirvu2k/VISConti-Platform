@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="canvas-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <hr class="colorgraph">
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

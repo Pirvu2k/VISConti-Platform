@@ -22,6 +22,7 @@ use app\models\Student;
 use app\models\Sector;
 use app\models\SubSector;
 use app\models\CanvasActivity;
+use app\models\ProjectAttachment;
 use yii\data\Pagination;
 
 /**
@@ -50,14 +51,14 @@ class CanvasController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['create','view','update'],
+                        'actions' => ['update' , 'view' , 'create'],
                         'matchCallback' => function ($rule, $action) {
                             return Yii::$app->user->identity->type == 's';
                         },
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['index','view','update'],
+                        'actions' => ['index','view'],
                         'matchCallback' => function ($rule, $action) {
                             return Yii::$app->user->identity->type == 'e';
                         },
@@ -71,6 +72,8 @@ class CanvasController extends Controller
             ],
         ];
     }
+
+    
 
     /**
      * Lists all Canvas models.
@@ -95,6 +98,8 @@ class CanvasController extends Controller
     public function actionView($id)
     {   
         $model = $this->findModel($id);
+
+        $attachments = ProjectAttachment::find()->where(['project' => $model->id])->all();
 
         $activities = CanvasActivity::find()->where(['canvas' => $model->id]);
 		
@@ -210,7 +215,8 @@ class CanvasController extends Controller
             'noteModel' => $noteModel,
             'expertCanvasRecord' => $expertCanvasRecord,
             'activities' => $activities,
-            'activities_pages' => $activities_pages
+            'activities_pages' => $activities_pages,
+            'attachments' => $attachments,
         ]);
     }
 
@@ -229,9 +235,10 @@ class CanvasController extends Controller
           $model->created_by= Yii::$app->user->id;
           $model->status = 'Submitted';
           $model->files = UploadedFile::getInstances($model, 'files');
-          $model->upload();
-          $model->files = null;
+          
            if ($model->save()) {
+                  $model->upload();
+                  $model->files = null;
               if(!$this->findExperts($model)) {
                     return $this->render('update', [
                         'model' => $model,
@@ -257,6 +264,11 @@ class CanvasController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        if(is_null(Canvas::find()->where(['created_by' => Yii::$app->user->id , 'id' => $model->id ,'status' => 'Submitted'])->one()))
+            {
+                return $this->render('/site/error', ['message' => 'This project is currently evaluated or you are not part of it.' , 'name' => 'Error']);
+            }
 
         if ($model->load(Yii::$app->request->post())) {
           $model->date_modified = new Expression('NOW()');

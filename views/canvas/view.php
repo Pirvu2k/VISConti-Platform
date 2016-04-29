@@ -15,6 +15,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $checkUser = (Yii::$app->user->identity->type == 's' && ($student == Yii::$app->user->identity->email || $student == Yii::$app->user->identity->given_name . ' ' . Yii::$app->user->identity->family_name)) || (Yii::$app->user->identity->type == 'e' && !empty($expertCanvasRecord)); // checks if current user is part of project
 
+$tech_check=false;
+$creative_check=false;
+$economical_check=false;
+
 ?>
 <div class="canvas-view">
     
@@ -77,7 +81,14 @@ $checkUser = (Yii::$app->user->identity->type == 's' && ($student == Yii::$app->
                     <div class="col-xs-6 col-md-2">
                         <b>Attachments</b>
                         </br>
-                        TBI
+                        <?php
+                            foreach($attachments as $attachment)
+                            {
+                        ?>
+                                <a href="uploads/<?= $attachment->attachment_name ?>" target="_blank"> <p style="word-break:break-all;"> <?= $attachment->attachment_name ?></p> </a>
+                        <?php
+                            } if (empty($attachments)) echo '<p> No attachments. </p>';
+                        ?>
                     </div>
                     <div class="col-xs-6 col-md-3">
                         <b>Stage</b>
@@ -108,15 +119,15 @@ $checkUser = (Yii::$app->user->identity->type == 's' && ($student == Yii::$app->
                 <div class="row">
 
                 <div class="col-xs-6 col-md-4">
-                        <p> Overall Technical Score: <b><?= ($model->overall_technical == 0 ? 'Not set' : $model->overall_technical) ?></b></p> 
+                        <h4> Overall Technical Score: <b><?= ($model->overall_technical == 0 ? 'Not set' : $model->overall_technical) ?></b></h4> 
                 </div>
 
                 <div class="col-xs-6 col-md-4">
-                        <p> Overall Economical Score: <b><?= ($model->overall_economical == 0 ? 'Not set' : $model->overall_economical) ?></b></p> 
+                        <h4> Overall Economical Score: <b><?= ($model->overall_economical == 0 ? 'Not set' : $model->overall_economical) ?></b></h4> 
                 </div>
 
                 <div class="col-xs-6 col-md-4">
-                        <p> Overall Creative Score: <b><?= ($model->overall_creative == 0 ? 'Not set' : $model->overall_creative) ?></b></p> 
+                        <h4> Overall Creative Score: <b><?= ($model->overall_creative == 0 ? 'Not set' : $model->overall_creative) ?></b></h4> 
                 </div>
             
                 </div>
@@ -126,6 +137,134 @@ $checkUser = (Yii::$app->user->identity->type == 's' && ($student == Yii::$app->
                 </div>
 
 
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <h3> Creativity - Value Proposition </h3>
+                    <br>
+                    <ul style="list-style-type:none;margin-left:-30px;">
+                        <?php if(!empty($model->selling)) { $creative_check=true; ?>
+                        <li>
+                            <h4><b>What is my project selling?</b></h4>
+
+                            <p style="word-break:break-all"> <?= $model->selling ?> </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php if(!empty($model->outstanding)) { $creative_check=true; ?>
+                        <li>
+                            <h4><b> Why is it outstanding? </b></h4>
+
+                            <p style="word-break:break-all"> <?= $model->outstanding ?> </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php if(!empty($model->benefits)) { $creative_check=true; ?>
+                        <li>
+                            <h4><b>  What are the benefits for users?</b> </h4>
+
+                            <p style="word-break:break-all"> <?= $model->benefits ?> </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php if(!empty($model->marketed)) { $creative_check=true; ?>
+                        <li>
+                            <h4><b>  How will it be marketed? </b></h4>
+
+                            <p style="word-break:break-all"> <?= $model->marketed ?> </p>
+                        </li>
+                        <?php
+                            } if (!$creative_check) echo '<h4> Not completed by student. </h4>';
+                        ?>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <h3> Technical – Key Activities </h3>
+                    <br>
+                    <ul style="list-style-type:none;margin-left:-30px;">
+                        <?php if(!empty($model->partners)) { $tech_check=true; ?>
+                        <li>
+                            <h4><b>Who might be the key partners in developing my project?</b></h4>
+
+                            <p style="word-break:break-all"> <?= $model->partners ?> </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php if(!empty($model->tech_resources)) { $tech_check=true; ?>
+                        <li>
+                            <h4><b> What technical resources/key activities would be required? </b></h4>
+
+                            <p style="word-break:break-all"> <?= $model->tech_resources?> </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php if(!empty($model->risk)) { $tech_check=true; ?>
+                        <li>
+                            <h4><b> What could go wrong? </b> </h4>
+
+                            <p style="word-break:break-all"> <?= $model->risk ?> </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php if(!empty($model->impact)) { $tech_check=true; ?>
+                        <li>
+                            <h4><b>  Does it have any social or environmntal impact? </b></h4>
+
+                            <p style="word-break:break-all"> <?= $model->impact ?> </p>
+                        </li>
+                        <?php
+                            } if (!$tech_check) echo '<h4> Not completed by student. </h4>';
+                        ?>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <h3> Financial - Revenue streams </h3>
+                    <br>
+                    <ul style="list-style-type:none;margin-left:-30px;">
+                        <?php if(!empty($model->fin_resources)) { $economical_check=true; ?>
+                        <li>
+                            <h4><b>What financial resources would be needed to develop the project?</b></h4>
+
+                            <p style="word-break:break-all"> <?= $model->fin_resources ?> </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php if(!empty($model->customers)) { $economical_check=true; ?>
+                        <li>
+                            <h4><b> Who are the customers? </b></h4>
+
+                            <p style="word-break:break-all"> <?= $model->customers ?> </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php if(!empty($model->generate)) { $economical_check=true; ?>
+                        <li>
+                            <h4><b> How would revenue be generated? </b> </h4>
+
+                            <p style="word-break:break-all"> <?= $model->generate ?> </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php if(!empty($model->costs)) { $economical_check=true; ?>
+                        <li>
+                            <h4><b> What are the costs involved? </b></h4>
+
+                            <p style="word-break:break-all"> <?= $model->costs ?> </p>
+                        </li>
+                        <?php
+                            } if (!$economical_check) echo '<h4> Not completed by student. </h4>';
+                        ?>
+                    </ul>
+                </div>
+            </div>
 
             <?php
                 }
@@ -217,5 +356,10 @@ $checkUser = (Yii::$app->user->identity->type == 's' && ($student == Yii::$app->
             </div>
         </main>
     </div>
-<?=   \spanjeta\comments\CommentsWidget::widget(['model'=>$model]); ?>
+<?php if($checkUser) {
+
+        echo \spanjeta\comments\CommentsWidget::widget(['model'=>$model]); 
+
+        }
+?>
 </div>
