@@ -135,18 +135,16 @@ class CanvasController extends Controller
                 $expertCanvasRecord = $e;
             }
 
-            if(!empty($expert->given_name) && !empty($expert->family_name))
+            /* if(!empty($expert->given_name) && !empty($expert->family_name))
             {
                 $expert = $expert->given_name . ' ' . $expert->family_name;
             }
-            else $expert = $expert->email;
+            else $expert = $expert->email; */
             
             array_push($experts, $expert);
         }
 
-        if(!empty($student->given_name) && !empty($student->family_name))
-            $student = $student->given_name . ' ' . $student->family_name;
-        else $student = $student->email;
+        
 
         if ($scoreModel->load(Yii::$app->request->post()) && $scoreModel->validate()){ // add score 
 

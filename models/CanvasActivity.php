@@ -66,7 +66,7 @@ class CanvasActivity extends \yii\db\ActiveRecord
      */
     public function getCanvas()
     {
-        return $this->hasOne(Canvases::className(), ['id' => 'canvas']);
+        return \app\models\Canvas::find()->where(['id' => $this->canvas])->one();
     }
 
     public function getName(){

@@ -13,7 +13,7 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Canvas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$checkUser = (Yii::$app->user->identity->type == 's' && ($student == Yii::$app->user->identity->email || $student == Yii::$app->user->identity->given_name . ' ' . Yii::$app->user->identity->family_name)) || (Yii::$app->user->identity->type == 'e' && !empty($expertCanvasRecord)); // checks if current user is part of project
+$checkUser = (Yii::$app->user->identity->type == 's' && $student->email == Yii::$app->user->identity->email) || (Yii::$app->user->identity->type == 'e' && !empty($expertCanvasRecord)); // checks if current user is part of project
 
 $tech_check=false;
 $creative_check=false;
@@ -66,7 +66,13 @@ $economical_check=false;
                     <div class="col-xs-6 col-md-2">
                         <b>Student</b>
                         </br>
-                        <?= $student ?>
+                        <?php
+                            if(!empty($student->given_name) && !empty($student->family_name))
+                                $studentname = $student->given_name . ' ' . $student->family_name;
+                            else $studentname = $student->email;
+
+                            echo '<a href="index.php?r=student/view&id='. $student->id . '"><p>' . $studentname . '</p></a>';
+                        ?>
                     </div>
                     <div class="col-xs-6 col-md-2">
                         <b>Evaluators</b>
@@ -74,7 +80,12 @@ $economical_check=false;
                         <?php
                             foreach($experts as $e)
                             {
-                                echo '<p>' . $e . '</p>';
+                                if(!empty($e->given_name) && !empty($e->family_name))
+                                    {
+                                        $ename = $e->given_name . ' ' . $e->family_name;
+                                    }
+                                else $ename = $e->email;
+                                echo '<a href="index.php?r=expert/view&id='. $e->id . '"><p>' . $ename . '</p></a>';
                             }
                          ?>
                     </div>
