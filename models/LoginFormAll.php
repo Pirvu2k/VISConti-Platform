@@ -46,7 +46,7 @@ class LoginFormAll extends Model
 
             if (!$user || !$user->validatePassword($this->password)) 
             {
-                $this->addError($attribute, 'Invalid user/password combination or unconfirmed account.');
+                $this->addError($attribute, 'Invalid user/password/role combination or unconfirmed account.');
             }
         }
     }

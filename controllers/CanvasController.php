@@ -353,8 +353,8 @@ class CanvasController extends Controller
                                     ->setSubject('New Project Invitation')
                                     ->setHtmlBody("
                                         <h3>You received an invitation for a project!</h3>  <br><br>".
-                                        '<h4>Project title</h4>: ' . $model->title . '<br>' .
-                                        '<h4>Project summary</h4>: ' . $model->eng_summary . '<br>' .
+                                        '<h4>Project title:</h4>' . $model->title . '<br>' .
+                                        '<h4>Project summary:</h4> ' . $model->eng_summary . '<br><br>' .
                                         'More information: <a href="' . Yii::$app->urlManager->createAbsoluteUrl(
                                         ['canvas/view','id'=>$record->project]) . '"> Here </a> <br><br>' .
                                         'In order to accept the invitation, please click the following link: <a href="'.
@@ -398,8 +398,8 @@ class CanvasController extends Controller
                                     ->setSubject('New Project Invitation')
                                     ->setHtmlBody("
                                         <h3>You received an invitation for a project!</h3>  <br><br>".
-                                        '<h4>Project title</h4>: ' . $model->title . '<br>' .
-                                        '<h4>Project summary</h4>: ' . $model->eng_summary . '<br>' .
+                                        '<h4>Project title:</h4>' . $model->title . '<br>' .
+                                        '<h4>Project summary:</h4> ' . $model->eng_summary . '<br><br>' .
                                         'More information: <a href="' . Yii::$app->urlManager->createAbsoluteUrl(
                                         ['canvas/view','id'=>$record->project]) . '"> Here </a> <br><br>' .
                                         'In order to accept the invitation, please click the following link: <a href="'.
@@ -444,8 +444,8 @@ class CanvasController extends Controller
                                     ->setSubject('New Project Invitation')
                                     ->setHtmlBody("
                                         <h3>You received an invitation for a project!</h3>  <br><br>".
-                                        '<h4>Project title</h4>: ' . $model->title . '<br>' .
-                                        '<h4>Project summary</h4>: ' . $model->eng_summary . '<br>' .
+                                        '<h4>Project title:</h4>' . $model->title . '<br>' .
+                                        '<h4>Project summary:</h4> ' . $model->eng_summary . '<br><br>' .
                                         'More information: <a href="' . Yii::$app->urlManager->createAbsoluteUrl(
                                         ['canvas/view','id'=>$record->project]) . '"> Here </a> <br><br>' .
                                         'In order to accept the invitation, please click the following link: <a href="'.
