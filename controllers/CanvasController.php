@@ -73,7 +73,7 @@ class CanvasController extends Controller
         ];
     }
 
-    
+
 
     /**
      * Lists all Canvas models.

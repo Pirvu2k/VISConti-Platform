@@ -18,6 +18,8 @@ use yii\db\Expression;
 use kartik\widgets\DepDrop;
 use app\models\SubSector;
 use app\models\ExpertCanvas;
+use app\models\CanvasActivity;
+
 class SiteController extends Controller
 {   
     public function behaviors()
@@ -57,56 +59,74 @@ class SiteController extends Controller
 
     public function actionIndex()
     {   
-		//invitations
-        $invitations=ExpertCanvas::find()->where(['expert' => Yii::$app->user->id , 'status' => 'Pending']);
 
-		$invitations_pages = new Pagination(['totalCount' => $invitations->count(), 'pageSize'=>8, 'pageParam' => 'inv']);
-		
-		$invitations = $invitations->offset($invitations_pages->offset)
-			->orderBy(['created_on' => SORT_DESC])
-			->limit($invitations_pages->limit)
-			->all();
-			
-		//ownProjects
-        $ownProjects=Project::find()->where(['created_by'=>Yii::$app->user->id ,'status'=>'Submitted']);
+        //recent activities
 
-		$ownProjects_pages = new Pagination(['totalCount' => $ownProjects->count(), 'pageSize'=>8, 'pageParam' => 'own']);
-		
-		$ownProjects = $ownProjects->offset($ownProjects_pages->offset)
-			->orderBy(['date_added' => SORT_DESC])
-			->limit($ownProjects_pages->limit)
-			->all();
-		
-		//acceptedProjects
-        $acceptedProjects=ExpertCanvas::find()->where(['expert' => Yii::$app->user->id , 'status' => 'Active']);
-				
-		$acceptedProjects_pages = new Pagination(['totalCount' => $acceptedProjects->count(), 'pageSize'=>8, 'pageParam' => 'accepted']);
-		
-		$acceptedProjects = $acceptedProjects->offset($acceptedProjects_pages->offset)
-			->orderBy(['created_on' => SORT_DESC])
-			->limit($acceptedProjects_pages->limit)
-			->all();
-		
-		//studentAcceptedProjects
-        $studentAcceptedProjects = Project::find()->where(['not',['status' => 'Submitted']])->andWhere(['created_by' => Yii::$app->user->id]);
-				
-		$studentAcceptedProjects_pages = new Pagination(['totalCount' => $studentAcceptedProjects->count(), 'pageSize'=>8, 'pageParam' => 'review']);
-		
-		$studentAcceptedProjects = $studentAcceptedProjects->offset($studentAcceptedProjects_pages->offset)
-			->orderBy(['date_added' => SORT_DESC])
-			->limit($studentAcceptedProjects_pages->limit)
-			->all();
+        if(Yii::$app->user->identity->type == 's')
+        {
+            $activities = CanvasActivity::find()->where(['added_by' => Yii::$app->user->id , 'added_by_type' => 'Student'])->orderBy(['created_on' => SORT_DESC])->limit(5)->all();
 
-        return $this->render('index', [
-            'invitations' => $invitations,
-            'invitations_pages' => $invitations_pages,
+            //ownProjects
+            $ownProjects=Project::find()->where(['created_by'=>Yii::$app->user->id ,'status'=>'Submitted'])->orWhere(['status' => 'Expert evaluation requested']);
+
+            $ownProjects_pages = new Pagination(['totalCount' => $ownProjects->count(), 'pageSize'=>8, 'pageParam' => 'own']);
+            
+            $ownProjects = $ownProjects->offset($ownProjects_pages->offset)
+                ->orderBy(['date_added' => SORT_DESC])
+                ->limit($ownProjects_pages->limit)
+                ->all();
+
+            //studentAcceptedProjects
+            $studentAcceptedProjects = Project::find()->where(['status' => 'Expert evaluation in progress'])->andWhere(['created_by' => Yii::$app->user->id]);
+                    
+            $studentAcceptedProjects_pages = new Pagination(['totalCount' => $studentAcceptedProjects->count(), 'pageSize'=>8, 'pageParam' => 'review']);
+            
+            $studentAcceptedProjects = $studentAcceptedProjects->offset($studentAcceptedProjects_pages->offset)
+                ->orderBy(['date_added' => SORT_DESC])
+                ->limit($studentAcceptedProjects_pages->limit)
+                ->all();
+
+            return $this->render('index', [
             'ownProjects' => $ownProjects,
+            'activities' => $activities,
             'ownProjects_pages' => $ownProjects_pages,
-            'acceptedProjects' => $acceptedProjects,
-            'acceptedProjects_pages' => $acceptedProjects_pages,
             'studentAcceptedProjects' => $studentAcceptedProjects,
             'studentAcceptedProjects_pages' => $studentAcceptedProjects_pages,
         ]);
+
+        } else {
+            $activities = CanvasActivity::find()->where(['added_by' => Yii::$app->user->id , 'added_by_type' => 'Expert'])->orderBy(['created_on' => SORT_DESC])->limit(5)->all();
+
+            //invitations
+            $invitations=ExpertCanvas::find()->where(['expert' => Yii::$app->user->id , 'status' => 'Pending']);
+
+            $invitations_pages = new Pagination(['totalCount' => $invitations->count(), 'pageSize'=>8, 'pageParam' => 'inv']);
+            
+            $invitations = $invitations->offset($invitations_pages->offset)
+                ->orderBy(['created_on' => SORT_DESC])
+                ->limit($invitations_pages->limit)
+                ->all();
+                
+            
+            
+            //acceptedProjects
+            $acceptedProjects=ExpertCanvas::find()->where(['expert' => Yii::$app->user->id , 'status' => 'Active']);
+                    
+            $acceptedProjects_pages = new Pagination(['totalCount' => $acceptedProjects->count(), 'pageSize'=>8, 'pageParam' => 'accepted']);
+            
+            $acceptedProjects = $acceptedProjects->offset($acceptedProjects_pages->offset)
+                ->orderBy(['created_on' => SORT_DESC])
+                ->limit($acceptedProjects_pages->limit)
+                ->all();
+
+            return $this->render('index', [
+            'invitations' => $invitations,
+            'invitations_pages' => $invitations_pages,
+            'activities' => $activities,
+            'acceptedProjects' => $acceptedProjects,
+            'acceptedProjects_pages' => $acceptedProjects_pages,
+        ]);
+        }
     }
 
     public function actionLogin()

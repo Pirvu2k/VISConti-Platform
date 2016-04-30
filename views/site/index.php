@@ -7,6 +7,26 @@ $this->title = 'Visconti';
 
 ?>
 
+<div class="row">
+    <h2> Recent Activities </h2>
+    <ul class="col-md-10 col-sm-9 feed">
+        <?php foreach($activities as $activity): ?>
+        <li>
+            <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $activity->canvas ?> "><?= $activity->action_type ?></a></h2>
+            <div class="col-sm-12 clearfix">
+                <data><b><?= $activity->activity_text ?></b>
+                </data>
+            </div>
+            <time><?= $activity->created_on ?></a></time>
+            <div class="clearfix visible-*"></div>
+        </li>
+        <?php endforeach; 
+        if(empty($activities))
+            echo "<p> Nothing here. </p>";
+        ?>
+    </ul>
+</div>
+
 <?php if(!Yii::$app->user->isGuest && Yii::$app->user->identity->type == 'e') {?>
 
 <?php
