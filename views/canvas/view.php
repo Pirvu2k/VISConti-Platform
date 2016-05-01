@@ -35,7 +35,7 @@ $economical_check=false;
                             if(Yii::$app->user->identity->type == 'e' && !is_null($record))
                             {
                                 
-                                echo Html::a('Accept Project', ['confirm', 'id' => openssl_encrypt($record->id, 'AES-128-ECB', '12345678abcdefgh')], ['class' => 'btn btn-info']);
+                                echo Html::a('Accept Project', ['confirm', 'id' => openssl_encrypt($record->id, 'AES-128-ECB', 'n9vwoxd1mv1mf8ka')], ['class' => 'btn btn-info']);
                             }
 
                              if($model->status == 'Submitted' && Yii::$app->user->identity->type == 's' && $model->created_by == Yii::$app->user->id)
@@ -108,8 +108,9 @@ $economical_check=false;
                             <?= $model->status ?>
                         </div>
                     </div>
+
                     <div class="col-xs-6 col-md-3">
-                        <div class="pull-left">
+                        <div class="pull-left"></br>
                            <p> <b>Sector:</b> <?= $sector ?> </p>
                            <p> <b>Sub-sector:</b> <?= $subsector ?> </p>
                         </div>
@@ -343,7 +344,12 @@ $economical_check=false;
                         foreach($activities as $activity) {
                     ?>
                     <li>
-                        <h2 class="col-sm-12"><a href="#"><?= $activity->action_type ?></a></h2>												<span class="pull-right"><time>At <?= $activity->created_on ?> by <a href=""><?= $activity->getName() ?> </a></time></span>
+                        <h2 class="col-sm-12"><a href="#"><?= $activity->action_type ?></a></h2>	
+		
+			<span class="pull-right"><time>At <?= $activity->created_on ?> by <a href=""><?= $activity->getName() ?> </a></time></span>
+
+			<div class="clearfix visible-*"></div>
+
                         <div class="col-sm-12">
                             <data style="word-break:break-all;"><b><?= $activity->activity_text ?></b>
                             </data>
