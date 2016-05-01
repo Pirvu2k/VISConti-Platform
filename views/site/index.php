@@ -13,11 +13,11 @@ $this->title = 'Visconti';
         <?php foreach($activities as $activity): ?>
         <li>
             <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $activity->canvas ?> "><?= $activity->action_type ?></a></h2>
+            <span class="pull-right"><time><?= $activity->created_on ?></a></time></span>
             <div class="col-sm-12 clearfix">
                 <data><b><?= $activity->activity_text ?></b>
                 </data>
             </div>
-            <time><?= $activity->created_on ?></a></time>
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
@@ -44,11 +44,11 @@ $this->title = 'Visconti';
         <?php foreach($acceptedProjects as $project): ?>
         <li>
             <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $project->getProject()->id ?> "><?= $project->getProject()->title ?></a></h2>
+            <span class="pull-right"><time><?= $project->getProject()->date_added ?></a></time></span>
             <div class="col-sm-12 clearfix">
                 <data><b><?= $project->getProject()->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $project->getProject()->date_added ?></a></time>
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
@@ -67,11 +67,11 @@ $this->title = 'Visconti';
         <?php foreach($invitations as $invitation): ?>
         <li>
             <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $invitation->getProject()->id ?> "><?= $invitation->getProject()->title ?></a></h2>
+            <span class="pull-right"><time><?= $invitation->getProject()->date_added ?></a></time></span>
             <div class="col-sm-12 clearfix">
                 <data><b><?= $invitation->getProject()->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $invitation->getProject()->date_added ?></a></time>
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
@@ -90,11 +90,11 @@ $this->title = 'Visconti';
         <?php foreach($studentAcceptedProjects as $project): ?>
         <li>
             <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $project->id ?> "><?= $project->title ?></a></h2>
+            <span class="pull-right"><time><?= $project->date_added ?></a></time></span>
             <div class="col-sm-12 clearfix">
                 <data><b><?= $project->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $project->date_added ?></a></time>
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
@@ -113,11 +113,11 @@ $this->title = 'Visconti';
         <?php foreach($ownProjects as $project): ?>
         <li>
             <h2 class="col-sm-12"><a href="?r=canvas/view&id=<?= $project->id ?> "><?= $project->title ?></a></h2>
+            <span class="pull-right"><time><?= $project->date_added ?></a></time></span>
             <div class="col-sm-12 clearfix">
                 <data><b><?= $project->eng_summary ?></b>
                 </data>
             </div>
-            <time><?= $project->date_added ?></a></time>
             <div class="clearfix visible-*"></div>
         </li>
         <?php endforeach; 
