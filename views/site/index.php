@@ -7,6 +7,15 @@ $this->title = 'Visconti';
 
 ?>
 
+<?php
+    if(empty(Yii::$app->user->identity->role) && Yii::$app->user->identity->type == 'e')
+    {
+        echo'<div class="alert alert-warning">
+                 <strong>Warning!</strong> Your role in the community is not set, you won\'t be able to receive invitations for projects until you fully complete your profile.
+             </div>';
+    }
+?>
+
 <div class="row">
     <h2> Recent Activities </h2>
     <ul class="col-md-10 col-sm-9 feed">
@@ -28,15 +37,6 @@ $this->title = 'Visconti';
 </div>
 
 <?php if(!Yii::$app->user->isGuest && Yii::$app->user->identity->type == 'e') {?>
-
-<?php
-    if(empty(Yii::$app->user->identity->role))
-    {
-        echo'<div class="alert alert-warning">
-                 <strong>Warning!</strong> Your role in the community is not set, you won\'t be able to receive invitations for projects until you fully complete your profile.
-             </div>';
-    }
-?>
 
 <div class="row">
     <h2>Accepted projects</h2>

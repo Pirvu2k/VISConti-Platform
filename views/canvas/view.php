@@ -86,7 +86,7 @@ $economical_check=false;
                                     }
                                 else $ename = $e->email;
                                 echo '<a href="index.php?r=expert/view&id='. $e->id . '"><p>' . $ename . '</p></a>';
-                            }
+                            } if(empty($experts)) echo 'No evaluators. Press the "Find Evaluators" button to progress to next stage.';
                          ?>
                     </div>
                     <div class="col-xs-6 col-md-2">

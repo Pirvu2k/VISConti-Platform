@@ -66,14 +66,6 @@ use yii\helpers\ArrayHelper;
 
 			?>
 
-			<?= $form->field($model, 'state') ?>
-
-			<?= $form->field($model, 'city') ?>
-
-			<?= $form->field($model, 'address') ?>
-
-			<?= $form->field($model, 'zip') ?>
-
 		</div>
 		<div class="tab-pane" id="3">
 			<h3> Education </h3>

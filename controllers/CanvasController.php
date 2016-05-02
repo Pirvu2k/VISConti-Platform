@@ -321,9 +321,9 @@ class CanvasController extends Controller
 
     public function findExperts($model)
     {       
-            $technical_experts = Expert::find()->where(['role' => 'Technical', 'confirmed' => 'Yes'])->orderBy('active_projects')->all();
+            $technical_experts = Expert::find()->where(['role' => 'Technical', 'confirmed' => 'Yes'])->andWhere(['not' , ['email' => Yii::$app->user->identity->email]])->orderBy('active_projects')->all();
 
-            if($technical_experts == NULL) $exist=false;
+            if($technical_experts == NULL) return false;
 
             $exist = true;
 
@@ -345,7 +345,7 @@ class CanvasController extends Controller
                                 $record->expiry_date = new Expression('DATE_ADD(NOW(), INTERVAL 14 DAY)');
                                 $record->save();
 
-                                $id = openssl_encrypt($record->id, 'AES-128-ECB', '12345678abcdefgh');
+                                $id = openssl_encrypt($record->id, 'AES-128-ECB', 'n9vwoxd1mv1mf8ka');
 
                                 Yii::$app->mailer->compose()
                                     ->setTo($expert->email)
@@ -368,9 +368,9 @@ class CanvasController extends Controller
                     }
             }
 
-            $economical_experts = Expert::find()->where(['role' => 'Economical', 'confirmed' => 'Yes'])->orderBy('active_projects')->all();
+            $economical_experts = Expert::find()->where(['role' => 'Economical', 'confirmed' => 'Yes'])->andWhere(['not' , ['email' => Yii::$app->user->identity->email]])->orderBy('active_projects')->all();
 
-            if($economical_experts == NULL) $exist=false;
+            if($economical_experts == NULL) return false;
 
             $econ_exist = ExpertCanvas::find()->where([ 'role' => 'Economical' , 'project' => $model->id])->one(); // check if canvas has economical expert already assigned
 
@@ -390,7 +390,7 @@ class CanvasController extends Controller
                                     $record->expiry_date = new Expression('DATE_ADD(NOW(), INTERVAL 14 DAY)');
                                     $record->save();
 
-                                    $id = openssl_encrypt($record->id, 'AES-128-ECB', '12345678abcdefgh');
+                                    $id = openssl_encrypt($record->id, 'AES-128-ECB', 'n9vwoxd1mv1mf8ka');
 
                                     Yii::$app->mailer->compose()
                                     ->setTo($expert->email)
@@ -414,11 +414,11 @@ class CanvasController extends Controller
                         }
             }
 
-            $creative_experts = Expert::find()->where(['role' => 'Creative', 'confirmed' => 'Yes'])->orderBy('active_projects')->all();
+            $creative_experts = Expert::find()->where(['role' => 'Creative', 'confirmed' => 'Yes'])->andWhere(['not' , ['email' => Yii::$app->user->identity->email]])->orderBy('active_projects')->all();
 
             $creative_exist = ExpertCanvas::find()->where([ 'role' => 'Creative' , 'project' => $model->id])->one(); // check if canvas has creative expert already assigned
 
-            if($creative_experts == NULL) $exist=false;
+            if($creative_experts == NULL) return false;
 
             if($creative_exist == NULL) {
 
@@ -436,7 +436,7 @@ class CanvasController extends Controller
                                 $record->expiry_date = new Expression('DATE_ADD(NOW(), INTERVAL 14 DAY)');
                                 $record->save();
 
-                                $id = openssl_encrypt($record->id, 'AES-128-ECB', '12345678abcdefgh');
+                                $id = openssl_encrypt($record->id, 'AES-128-ECB', 'n9vwoxd1mv1mf8ka');
                                 
                                 Yii::$app->mailer->compose()
                                     ->setTo($expert->email)
@@ -463,7 +463,7 @@ class CanvasController extends Controller
 
     public function actionConfirm($id){ // $id - id of project-canvas record
 
-        $record = ExpertCanvas::find()->where(['id' => openssl_decrypt($id, 'AES-128-ECB', '12345678abcdefgh') , 'status' => 'Pending' ])->one();
+        $record = ExpertCanvas::find()->where(['id' => openssl_decrypt($id, 'AES-128-ECB', 'n9vwoxd1mv1mf8ka') , 'status' => 'Pending' ])->one();
 
         if($record == NULL)
         {

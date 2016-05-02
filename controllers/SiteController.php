@@ -67,7 +67,7 @@ class SiteController extends Controller
             $activities = CanvasActivity::find()->where(['added_by' => Yii::$app->user->id , 'added_by_type' => 'Student'])->orderBy(['created_on' => SORT_DESC])->limit(5)->all();
 
             //ownProjects
-            $ownProjects=Project::find()->where(['created_by'=>Yii::$app->user->id ,'status'=>'Submitted'])->orWhere(['status' => 'Expert evaluation requested']);
+            $ownProjects=Project::find()->where(['created_by'=>Yii::$app->user->id ,'status'=>'Submitted'])->orWhere(['status' => 'Expert evaluation requested', 'created_by'=>Yii::$app->user->id]);
 
             $ownProjects_pages = new Pagination(['totalCount' => $ownProjects->count(), 'pageSize'=>8, 'pageParam' => 'own']);
             
@@ -157,7 +157,7 @@ class SiteController extends Controller
                 $student->created_on = $student->last_login_activity = new Expression('NOW()');
                 $student->last_modified_on = new Expression('NOW()');
                 $student->generateAuthKey();
-                if(!Student::findOne(['email'=>$model->email]) && !Expert::findOne(['email'=>$model->email]))
+                if(!Student::findOne(['email'=>$model->email]))
                 {
                     $student->save();
                     $email = \Yii::$app->mailer->compose()
@@ -190,7 +190,7 @@ class SiteController extends Controller
                 $expert->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
                 $expert->created_on = $expert->last_modified_on = $expert->last_login_activity = new Expression('NOW()');
                 $expert->generateAuthKey();
-                if(!Expert::findOne(['email'=>$model->email]) && !Student::findOne(['email'=>$model->email]))
+                if(!Expert::findOne(['email'=>$model->email]))
                 {   
                     $expert->save();
                     $email = \Yii::$app->mailer->compose()

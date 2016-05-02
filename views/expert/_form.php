@@ -78,14 +78,6 @@ use app\models\ExpertInterest;
 
 			?>
 
-			<?= $form->field($model, 'state') ?>
-
-			<?= $form->field($model, 'city') ?>
-
-			<?= $form->field($model, 'address') ?>
-
-			<?= $form->field($model, 'zip') ?>
-
 		</div>
 		
 		<div class="tab-pane" id="3">
